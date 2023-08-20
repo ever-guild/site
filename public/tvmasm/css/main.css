@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Lato', sans-serif;
+}
+
+code, #hex, #source, #tree {
+    font-family: 'Chivo Mono', monospace;
+}
+
+#source {
+    white-space: pre-wrap;
+}
+
+main {
+    width: 100%;
+    display: flex;
+}
+
+#hex {
+    display: none;
+    width: 50%;
+}
+#tree {
+    width: 75%;
+}
+#source {
+    width: 25%;
+}
+
+#tree, .token__subtree {
+    display: flex;
+    flex-direction: column;
+}
+#tree {
+    padding: 20px;
+}
+
+.token {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.token__subtree {
+    width: 100%;
+}
+
+.token__gas {
+    width: 40px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+.token__stack {
+    display: flex;
+    width: 50%;
+    justify-content: end;
+}
+.token__stack-value {
+    min-width: 16px;
+    height: 15px;
+    border-radius: 3px;
+    margin: 1px;
+    padding: 1px 5px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    line-height: 15px;
+}
+
+.token__mnem {
+    margin-right: 10px;
+}
+.token__mnem.is-name {
+    font-weight: 600;
+    color: #444;
+}
+.token__mnem.is-number {
+    color: green;
+}
+.token__mnem.is-stack-value {
+    color: darkblue;
+}

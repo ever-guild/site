@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web-TVM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;700&family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<main>
+  <div id="hex"></div>
+  <div id="tree"></div>
+  <div id="source" contenteditable oninput="updateSource()">
+    PROGRAM{
+    DECLPROC recv_internal
+    92939 DECLMETHOD find_branch_by_hash
+    recv_internal PROC:<{
+    }>
+    find_branch_by_hash PROC:<{
+    'cell 'hash
+    c2 SAVE
+    SAMEALTSAVE
+    PUSHNULL
+    SWAP
+    CONS ^list
+    WHILE:<{
+    DUP
+    ISNULL
+    NOT
+    }>DO<{
+    UNCONS ^ ^ 'tail 'head
+    DUP
+    HASHCU
+    s3 PUSH
+    EQUAL
+    IFJMP:<{
+    2 1 BLKDROP2
+    RETALT
+    }>
+    CTOS ^slice
+    WHILE:<{
+    DUP
+    SREFS ^refcnt
+    }>DO<{
+    LDREF ^ ^ 'ref 'slice'
+    -ROT
+    CONS ^list
+    SWAP
+    }>
+    DROP
+    }>
+    2DROP
+    NEWC ^empty_cell
+    ENDC
+    }>
+    }END>c</div>
+</main>
+<div id="buttons">
+
+</div>
+
+<script src="js/opcodes.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
