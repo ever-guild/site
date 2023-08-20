@@ -34,43 +34,27 @@
     recv_internal PROC:<{
     }>
     find_branch_by_hash PROC:<{
-    'cell 'hash
-    c2 SAVE
-    SAMEALTSAVE
-    PUSHNULL
+    'hash 'tree
     SWAP
-    CONS ^list
-    WHILE:<{
-    DUP
-    ISNULL
-    NOT
-    }>DO<{
-    UNCONS ^ ^ 'tail 'head
-    DUP
-    HASHCU
-    s3 PUSH
-    EQUAL
-    IFJMP:<{
-    2 1 BLKDROP2
-    RETALT
-    }>
+    OVER HASHCU OVER EQUAL
+    IFJMP:<{ DROP }>
+    1 SETGLOB
+    <{  UNTIL:
     CTOS ^slice
-    WHILE:<{
     DUP
-    SREFS ^refcnt
-    }>DO<{
+    SREFS ^ref_count
+    REPEAT:<{
     LDREF ^ ^ 'ref 'slice'
-    -ROT
-    CONS ^list
-    SWAP
     }>
-    DROP
-    }>
-    2DROP
-    NEWC ^empty_cell
-    ENDC
-    }>
-    }END>c</div>
+    DROP DUP HASHCU 1 GETGLOB EQUAL
+    }>CONT
+    <{ 2DROP
+    <b b> PUSHREF
+      }>CONT
+      TRY
+      1 PUSHINT ONLYTOPX
+      }>
+      }END>c</div>
 </main>
 <div id="buttons">
 
