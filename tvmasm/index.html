@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web-TVM</title>
+  <style>
+    @font-face {
+      font-family: 'JetBrains Mono';
+      src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+      url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<main>
+  <div id="hex"></div>
+  <div id="tree"></div>
+  <div id="source" contenteditable oninput="updateSource()">
+    PROGRAM{
+    DECLPROC recv_internal
+    92939 DECLMETHOD find_branch_by_hash
+    recv_internal PROC:<{
+    }>
+    find_branch_by_hash PROC:<{
+    'hash 'tree
+    SWAP
+    OVER HASHCU OVER EQUAL
+    IFJMP:<{ DROP }>
+    1 SETGLOB
+    <{  UNTIL:
+    CTOS ^slice
+    DUP
+    SREFS ^ref_count
+    REPEAT:<{
+    LDREF ^ ^ 'ref 'slice'
+    }>
+    DROP DUP HASHCU 1 GETGLOB EQUAL
+    }>CONT
+    <{ 2DROP
+    <b b> PUSHREF
+      }>CONT
+      TRY
+      1 PUSHINT ONLYTOPX
+      }>
+      }END>c</div>
+</main>
+<div id="buttons">
+
+</div>
+
+<script src="js/opcodes.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
