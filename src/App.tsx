@@ -1,6 +1,6 @@
 import './App.scss'
 import githubLogo from './assets/github.svg'
-import logo from './assets/logo.svg'
+import logo from './assets/logo.png'
 
 function App() {
   return (
