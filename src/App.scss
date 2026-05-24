@@ -122,12 +122,22 @@ button:hover {
 }
 
 .social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   color: #00343d;
   font-weight: 600;
 }
 
 .social-links a:hover {
   color: #007a89;
+}
+
+.social-links svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: currentColor;
+  flex: 0 0 auto;
 }
 
 .read-the-docs {
