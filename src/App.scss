@@ -114,6 +114,22 @@ button:hover {
   }
 }
 
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: #00343d;
+  font-weight: 600;
+}
+
+.social-links a:hover {
+  color: #007a89;
+}
+
 .read-the-docs {
   padding-top: 1em;
   color: #666;
