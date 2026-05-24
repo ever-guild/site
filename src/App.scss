@@ -117,16 +117,18 @@ button:hover {
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.85rem;
   margin-top: 1rem;
 }
 
 .social-links a {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
   color: #00343d;
-  font-weight: 600;
 }
 
 .social-links a:hover {
@@ -134,8 +136,8 @@ button:hover {
 }
 
 .social-links svg {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1.25rem;
+  height: 1.25rem;
   fill: currentColor;
   flex: 0 0 auto;
 }

@@ -32,11 +32,9 @@ function App() {
         <div className="social-links">
           <a href="https://linkedin.com/company/ever-guild/" aria-label="Ever Guild on LinkedIn">
             <LinkedInIcon />
-            <span>LinkedIn</span>
           </a>
           <a href="https://x.com/ever_guild_net" aria-label="Ever Guild on X">
             <XIcon />
-            <span>X</span>
           </a>
         </div>
       </div>
