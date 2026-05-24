@@ -67,7 +67,7 @@ button:hover {
   padding: 0;
   will-change: filter;
 }
-.logo:hover {
+.brand-logo:hover {
   filter: drop-shadow(0 0 2em #ffc400aa);
 }
 .logo.react:hover {
@@ -79,6 +79,11 @@ button:hover {
 .logo.github {
   filter: none;
   height: 1em;
+}
+
+.github-icon {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 @keyframes logo-spin {
@@ -128,13 +133,11 @@ button:hover {
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  color: #f6bd00;
-  transition: color 0.2s ease, filter 0.2s ease;
+  color: #00343d;
 }
 
 .social-links a:hover {
-  color: #ffe680;
-  filter: drop-shadow(0 0 0.75rem #ffc400aa);
+  color: #00343d;
 }
 
 .social-links svg {
