@@ -1,23 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" fill="none" viewBox="0 0 1000 1000">
   <path fill="#002835" d="M0 0h1000v1000H0z"/>
+  <g clip-path="url(#a)" data-figma-skip-parse="true">
+    <foreignObject width="2283.04" height="2283.04" x="-1141.52" y="-1141.52"
+                   transform="rotate(135.066 218.574 388.63)scale(.20215 .18034)">
+      <div xmlns="http://www.w3.org/1999/xhtml"
+           style="background:conic-gradient(from 90deg,#f0b800 0deg,#f1b800 98.6538deg,#381e00 360deg);height:100%;width:100%;opacity:1"/>
+    </foreignObject>
+  </g>
   <path
-    fill="url(#rightGradient)"
     d="M841.29 516.51c0 111.838-90.663 202.501-202.501 202.501-111.837 0-202.499-90.663-202.499-202.5S526.952 314.01 638.789 314.01c111.838 0 202.501 90.663 202.501 202.5"
-  />
+    data-figma-gradient-fill="{&quot;type&quot;:&quot;GRADIENT_ANGULAR&quot;,&quot;stops&quot;:[{&quot;color&quot;:{&quot;r&quot;:0.94328427314758301,&quot;g&quot;:0.72318458557128906,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:0.0},{&quot;color&quot;:{&quot;r&quot;:0.94509804248809814,&quot;g&quot;:0.72156864404678345,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:0.27403846383094788},{&quot;color&quot;:{&quot;r&quot;:0.22115384042263031,&quot;g&quot;:0.11794871836900711,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:1.0}],&quot;stopsVar&quot;:[{&quot;color&quot;:{&quot;r&quot;:0.94328427314758301,&quot;g&quot;:0.72318458557128906,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:0.0},{&quot;color&quot;:{&quot;r&quot;:0.94509804248809814,&quot;g&quot;:0.72156864404678345,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:0.27403846383094788},{&quot;color&quot;:{&quot;r&quot;:0.22115384042263031,&quot;g&quot;:0.11794871836900711,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:1.0}],&quot;transform&quot;:{&quot;m00&quot;:-286.21417236328125,&quot;m01&quot;:-254.74197387695312,&quot;m02&quot;:918.27331542968750,&quot;m10&quot;:285.55853271484375,&quot;m11&quot;:-255.32682800292969,&quot;m12&quot;:494.25552368164062},&quot;opacity&quot;:1.0,&quot;blendMode&quot;:&quot;NORMAL&quot;,&quot;visible&quot;:true}"/>
+  <g clip-path="url(#b)" data-figma-skip-parse="true">
+    <foreignObject width="2237.58" height="2237.58" x="-1118.79" y="-1118.79"
+                   transform="rotate(-44.758 801.6 -170.372)scale(.20338 .18481)">
+      <div xmlns="http://www.w3.org/1999/xhtml"
+           style="background:conic-gradient(from 90deg,#ffe89e 0deg,#f1b800 .19115deg,#f1b800 76.875deg,#ffe89e 360deg);height:100%;width:100%;opacity:1"/>
+    </foreignObject>
+  </g>
   <path
-    fill="url(#leftGradient)"
     d="M151.001 515.94c0-112.082 90.86-202.942 202.942-202.942s202.943 90.861 202.943 202.943-90.861 202.943-202.943 202.942c-112.082 0-202.942-90.86-202.942-202.943"
-  />
+    data-figma-gradient-fill="{&quot;type&quot;:&quot;GRADIENT_ANGULAR&quot;,&quot;stops&quot;:[{&quot;color&quot;:{&quot;r&quot;:0.94509804248809814,&quot;g&quot;:0.72156864404678345,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:0.00053097336785867810},{&quot;color&quot;:{&quot;r&quot;:0.94509804248809814,&quot;g&quot;:0.72156864404678345,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:0.21354167163372040},{&quot;color&quot;:{&quot;r&quot;:1.0,&quot;g&quot;:0.91016995906829834,&quot;b&quot;:0.62019228935241699,&quot;a&quot;:1.0},&quot;position&quot;:1.0}],&quot;stopsVar&quot;:[{&quot;color&quot;:{&quot;r&quot;:0.94509804248809814,&quot;g&quot;:0.72156864404678345,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:0.00053097336785867810},{&quot;color&quot;:{&quot;r&quot;:0.94509804248809814,&quot;g&quot;:0.72156864404678345,&quot;b&quot;:0.0,&quot;a&quot;:1.0},&quot;position&quot;:0.21354167163372040},{&quot;color&quot;:{&quot;r&quot;:1.0,&quot;g&quot;:0.91016995906829834,&quot;b&quot;:0.62019228935241699,&quot;a&quot;:1.0},&quot;position&quot;:1.0}],&quot;transform&quot;:{&quot;m00&quot;:288.83660888671875,&quot;m01&quot;:260.25473022460938,&quot;m02&quot;:77.807334899902344,&quot;m10&quot;:-286.40322875976562,&quot;m11&quot;:262.46600341796875,&quot;m12&quot;:526.99114990234375},&quot;opacity&quot;:1.0,&quot;blendMode&quot;:&quot;NORMAL&quot;,&quot;visible&quot;:true}"/>
   <defs>
-    <radialGradient id="rightGradient" cx="0" cy="0" r="1" gradientTransform="matrix(150 160 -160 150 553 380)" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f1b800"/>
-      <stop offset="0.45" stop-color="#f1b800"/>
-      <stop offset="1" stop-color="#381e00"/>
-    </radialGradient>
-    <radialGradient id="leftGradient" cx="0" cy="0" r="1" gradientTransform="matrix(-175 -165 165 -175 454 405)" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f1b800"/>
-      <stop offset="0.38" stop-color="#f1b800"/>
-      <stop offset="1" stop-color="#ffe89e"/>
-    </radialGradient>
+    <clipPath id="a">
+      <path
+        d="M841.29 516.51c0 111.838-90.663 202.501-202.501 202.501-111.837 0-202.499-90.663-202.499-202.5S526.952 314.01 638.789 314.01c111.838 0 202.501 90.663 202.501 202.5"/>
+    </clipPath>
+    <clipPath id="b">
+      <path
+        d="M151.001 515.94c0-112.082 90.86-202.942 202.942-202.942s202.943 90.861 202.943 202.943-90.861 202.943-202.943 202.942c-112.082 0-202.942-90.86-202.942-202.943"/>
+    </clipPath>
   </defs>
 </svg>
