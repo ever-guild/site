@@ -68,7 +68,7 @@ button:hover {
   will-change: filter;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #ffc400aa);
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
@@ -128,11 +128,13 @@ button:hover {
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  color: #00343d;
+  color: #f6bd00;
+  transition: color 0.2s ease, filter 0.2s ease;
 }
 
 .social-links a:hover {
-  color: #007a89;
+  color: #ffe680;
+  filter: drop-shadow(0 0 0.75rem #ffc400aa);
 }
 
 .social-links svg {
