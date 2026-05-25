@@ -9,14 +9,12 @@
   z-index: $z-fixed;
   transition:
     background-color $transition-base,
-    backdrop-filter $transition-base,
-    box-shadow $transition-base;
+    backdrop-filter $transition-base;
 
   &--scrolled {
-    background-color: rgba($color-primary, 0.88);
+    background-color: rgba(0, 40, 53, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: $shadow-md;
   }
 
   &__container {
@@ -24,7 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: 70px;
   }
 
   &__brand {
@@ -34,7 +32,7 @@
   }
 
   &__logo {
-    height: 60px;
+    height: 70px;
     width: auto;
     display: block;
   }
@@ -61,9 +59,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba($color-primary, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background-color: rgba(0, 40, 53, 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       display: flex;
       align-items: flex-start;
       justify-content: center;
@@ -87,18 +85,13 @@
   }
 
   &__link {
-    color: $color-text-inverse;
+    color: rgba(255, 255, 255, 0.8);
     font-size: $text-base;
     font-weight: 500;
-    text-decoration: none;
-    transition:
-      color $transition-fast,
-      opacity $transition-fast;
-    opacity: 0.9;
+    transition: color $transition-fast;
 
     &:hover {
-      color: $color-accent;
-      opacity: 1;
+      color: #f1b800;
     }
   }
 
@@ -106,10 +99,9 @@
     display: none;
     background: none;
     border: none;
-    color: $color-text-inverse;
+    color: #fff;
     cursor: pointer;
     padding: $space-xs;
-    margin: -$space-xs;
 
     @media (max-width: #{$bp-tablet - 1px}) {
       display: flex;

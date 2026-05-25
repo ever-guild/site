@@ -4,8 +4,10 @@ import logo from "../../assets/LogoNoBg.svg";
 import "./Navbar.scss";
 
 const navLinks = [
-  { label: "About", href: "#about" },
+  { label: "Overview", href: "#about" },
+  { label: "Team", href: "#team" },
   { label: "Services", href: "#services" },
+  { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
 

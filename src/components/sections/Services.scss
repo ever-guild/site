@@ -5,7 +5,7 @@
   &__heading {
     font-size: $text-3xl;
     font-weight: 700;
-    color: $color-text;
+    color: #fff;
     text-align: center;
     margin-bottom: $space-xl;
 
@@ -25,15 +25,15 @@
   }
 
   &__card {
-    background-color: $color-bg;
-    border: 1px solid $color-border;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: $radius-lg;
     padding: $space-xl;
-    transition: transform $transition-base, box-shadow $transition-base;
+    transition: transform $transition-base, border-color $transition-base;
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: $shadow-lg;
+      border-color: rgba(241, 184, 0, 0.15);
     }
   }
 
@@ -43,20 +43,20 @@
     height: 3rem;
     margin-bottom: $space-md;
     border-radius: $radius-md;
-    background-color: rgba(0, 52, 61, 0.06);
-    color: $color-primary;
+    background: rgba(241, 184, 0, 0.08);
+    color: #F1B800;
   }
 
   &__title {
     font-size: $text-xl;
     font-weight: 600;
-    color: $color-text;
+    color: #fff;
     margin-bottom: $space-sm;
   }
 
   &__description {
     font-size: $text-base;
     line-height: $leading-normal;
-    color: $color-text-muted;
+    color: rgba(255, 255, 255, 0.55);
   }
 }

@@ -3,39 +3,51 @@
 .App {
   min-height: 100vh;
   position: relative;
+  background: #002835;
+
+  main,
+  footer {
+    position: relative;
+    z-index: 1;
+  }
 }
 
-// Scrollbar styling
+body {
+  background: #002835 !important;
+  margin: 0;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: $color-bg;
+  background: #002835;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 52, 61, 0.2);
-  border-radius: $radius-full;
+  background: #0a3a4d;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 52, 61, 0.35);
+  background: #114c63;
 }
 
-// Selection
 ::selection {
-  background-color: rgba(0, 52, 61, 0.15);
-  color: $color-text;
+  background-color: rgba(241, 184, 0, 0.2);
+  color: #fff;
 }
 
-// Reduced motion
+.animate-item {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .App {
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+  .App * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -7,7 +7,7 @@
   &__heading {
     font-size: $text-3xl;
     font-weight: 700;
-    color: $color-text;
+    color: #fff;
     margin-bottom: $space-md;
 
     @include tablet-up {
@@ -18,7 +18,7 @@
   &__subtext {
     font-size: $text-lg;
     line-height: $leading-relaxed;
-    color: $color-text-secondary;
+    color: rgba(255, 255, 255, 0.6);
     max-width: 520px;
     margin: 0 auto $space-xl;
   }

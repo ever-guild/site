@@ -1,7 +1,3 @@
-// ============================================
-// Ever Guild — Base Reset & Global Styles
-// ============================================
-
 @use 'variables' as *;
 
 *,
@@ -23,7 +19,7 @@ body {
   font-size: $text-base;
   line-height: $leading-normal;
   color: $color-text;
-  background-color: $color-bg;
+  background: #002835;
   -webkit-text-size-adjust: 100%;
 }
 

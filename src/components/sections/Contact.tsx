@@ -2,7 +2,6 @@ import React from 'react';
 import { Section } from '../ui/Section';
 import { Button } from '../ui/Button';
 import { SocialIcon } from '../ui/SocialIcon';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { Mail } from 'lucide-react';
 import './Contact.scss';
 
@@ -15,16 +14,14 @@ const socials = [
 ];
 
 export const Contact = React.memo(function Contact() {
-  const ref = useScrollAnimation<HTMLDivElement>({ y: 40, opacity: 0, duration: 0.8 });
-
   return (
     <Section id="contact">
-      <div ref={ref} className="contact">
-        <h2 className="contact__heading animate-item">Get in Touch</h2>
-        <p className="contact__subtext animate-item">
+      <div className="contact">
+        <h2 className="contact__heading">Get in Touch</h2>
+        <p className="contact__subtext">
           Interested in collaborating? Reach out to us.
         </p>
-        <div className="contact__cta animate-item">
+        <div className="contact__cta">
           <Button
             href="mailto:n@ever-guild.net"
             variant="primary"
@@ -34,7 +31,7 @@ export const Contact = React.memo(function Contact() {
             n@ever-guild.net
           </Button>
         </div>
-        <div className="contact__socials animate-item">
+        <div className="contact__socials">
           {socials.map((social) => (
             <SocialIcon
               key={social.platform}

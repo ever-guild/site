@@ -1,6 +1,5 @@
 import React from 'react';
 import { Section } from '../ui/Section';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { Code2, Package, Users, Lightbulb } from 'lucide-react';
 import './Services.scss';
 
@@ -32,15 +31,13 @@ const services = [
 ];
 
 export const Services = React.memo(function Services() {
-  const ref = useScrollAnimation<HTMLDivElement>({ y: 40, opacity: 0, duration: 0.8 });
-
   return (
     <Section id="services" variant="alt">
-      <div ref={ref} className="services">
-        <h2 className="services__heading animate-item">What We Do</h2>
+      <div className="services">
+        <h2 className="services__heading">What We Do</h2>
         <div className="services__grid">
           {services.map((service) => (
-            <div key={service.title} className="services__card animate-item">
+            <div key={service.title} className="services__card">
               <div className="services__icon">
                 <service.icon size={28} strokeWidth={1.8} />
               </div>

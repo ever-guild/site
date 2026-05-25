@@ -1,0 +1,203 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.skills {
+  &__heading {
+    font-size: $text-3xl;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: $space-sm;
+
+    @include tablet-up {
+      font-size: $text-4xl;
+    }
+  }
+
+  &__subtext {
+    font-size: $text-lg;
+    line-height: $leading-normal;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto $space-xl;
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $space-lg;
+    margin-bottom: $space-2xl;
+  }
+
+  &__card {
+    flex: 0 0 100%;
+
+    @include tablet-up {
+      flex: 0 0 calc(50% - #{$space-lg} / 2);
+    }
+
+    @include desktop-up {
+      flex: 0 0 calc(33.333% - #{$space-lg} * 2 / 3);
+    }
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: $radius-lg;
+    padding: $space-xl;
+    transition:
+      border-color $transition-base,
+      background $transition-base;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(241, 184, 0, 0.25);
+    }
+  }
+
+  &__card-icon {
+    @include flex-center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: $radius-md;
+    background: rgba(241, 184, 0, 0.1);
+    color: $color-accent;
+    margin-bottom: $space-md;
+  }
+
+  &__card-title {
+    font-size: $text-xl;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: $space-xs;
+  }
+
+  &__card-desc {
+    font-size: $text-base;
+    line-height: $leading-normal;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+
+  &__tech {
+    text-align: center;
+  }
+
+  &__tech-heading {
+    font-size: $text-xl;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: $space-lg;
+  }
+
+  &__marquee {
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    margin-bottom: $space-md;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__marquee-track {
+    display: flex;
+    width: max-content;
+    gap: $space-md;
+    will-change: transform;
+
+    &--left {
+      animation: marquee-left 35s linear infinite;
+    }
+
+    &--right {
+      animation: marquee-right 40s linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none !important;
+    }
+  }
+
+  &__marquee-item {
+    @include flex-center;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: $radius-lg;
+    color: rgba(255, 255, 255, 0.5);
+    transition:
+      color $transition-base,
+      border-color $transition-base,
+      background $transition-base,
+      transform $transition-base;
+    cursor: default;
+
+    &:hover {
+      color: $color-accent;
+      border-color: rgba(241, 184, 0, 0.25);
+      background: rgba(241, 184, 0, 0.06);
+    }
+  }
+
+  &__marquee-icon {
+    display: block;
+  }
+
+  &__marquee-label {
+    font-size: $text-xs;
+    font-weight: 500;
+    color: inherit;
+    white-space: nowrap;
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills__marquee-track {
+    animation: none !important;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .skills__marquee {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}

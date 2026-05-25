@@ -7,13 +7,13 @@
   width: 2.75rem;
   height: 2.75rem;
   border-radius: $radius-md;
-  color: $color-text-secondary;
-  background-color: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  background: transparent;
   transition: color $transition-base, background-color $transition-base, transform $transition-base;
 
   &:hover {
-    color: $color-primary;
-    background-color: rgba(0, 52, 61, 0.06);
+    color: #F1B800;
+    background-color: rgba(241, 184, 0, 0.08);
     transform: translateY(-2px);
   }
 

@@ -1,0 +1,149 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.team {
+  &__heading {
+    font-size: $text-3xl;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: $space-xl;
+
+    @include tablet-up {
+      font-size: $text-4xl;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-lg;
+
+    @include tablet-up {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    position: relative;
+    background:
+      radial-gradient(ellipse 300px 300px at 50% 0%, rgba(241, 184, 0, 0.06) 0%, transparent 70%),
+      rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: $radius-xl;
+    padding: 1px;
+    transition: transform $transition-base, border-color $transition-base;
+
+    &:hover {
+      transform: translateY(-6px);
+      border-color: rgba(241, 184, 0, 0.12);
+
+      .team__avatar-ring {
+        opacity: 1;
+        transform: scale(1.08);
+      }
+
+      .team__avatar {
+        transform: scale(1.05);
+      }
+
+      .team__github {
+        background: rgba(241, 184, 0, 0.12);
+        border-color: rgba(241, 184, 0, 0.3);
+        color: #fff;
+      }
+    }
+  }
+
+  &__card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $space-xl $space-lg $space-lg;
+    border-radius: calc($radius-xl - 1px);
+    background: rgba(0, 20, 28, 0.35);
+    height: 100%;
+  }
+
+  &__avatar-wrapper {
+    position: relative;
+    width: 112px;
+    height: 112px;
+    margin-bottom: $space-lg;
+    flex-shrink: 0;
+  }
+
+  &__avatar {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    transition: transform $transition-slow;
+  }
+
+  &__avatar-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(241, 184, 0, 0.35);
+    opacity: 0;
+    transition: opacity $transition-base, transform $transition-slow;
+    pointer-events: none;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+  }
+
+  &__name {
+    font-size: $text-xl;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: $space-xs;
+  }
+
+  &__role {
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $color-accent;
+    margin-bottom: $space-md;
+    line-height: $leading-tight;
+    letter-spacing: 0.02em;
+  }
+
+  &__bio {
+    font-size: $text-sm;
+    line-height: $leading-normal;
+    color: rgba(255, 255, 255, 0.55);
+    flex: 1;
+  }
+
+  &__github {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-xs;
+    margin-top: $space-lg;
+    padding: 0.5rem 1rem;
+    border-radius: $radius-full;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: $text-sm;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background $transition-base, border-color $transition-base, color $transition-base;
+
+    &:hover {
+      background: rgba(241, 184, 0, 0.15) !important;
+      border-color: rgba(241, 184, 0, 0.4) !important;
+      color: #fff !important;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { ChevronDown } from "lucide-react";
-import logo from "../../assets/LogoNoBg.svg";
+// Logo is rendered by Three.js particles
 import { Button } from "../ui/Button";
 import { SocialIcon } from "../ui/SocialIcon";
 import "./Hero.scss";
@@ -23,10 +23,8 @@ const socials = [
 
 const Hero = React.memo(function Hero() {
   return (
-    <section className="hero">
+    <section id="hero" className="hero">
       <div className="hero__content">
-        <img src={logo} alt="Ever Guild" className="hero__logo" />
-
         <h1 className="hero__tagline">
           Software that lasts. Community that builds.
         </h1>

@@ -2,19 +2,20 @@
 @use '../../styles/mixins' as *;
 
 .section {
+  position: relative;
+  z-index: 1;
   @include section-padding;
 
   &--default {
-    background-color: $color-bg;
+    background: rgba(0, 40, 53, 0.92);
   }
 
   &--alt {
-    background-color: $color-surface;
+    background: rgba(0, 30, 40, 0.95);
   }
 
   &--dark {
-    background-color: $color-primary;
-    color: $color-text-inverse;
+    background: rgba(0, 20, 28, 0.4);
   }
 
   &__container {

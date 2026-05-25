@@ -101,33 +101,27 @@ $bp-wide: 1440px;
 
 ## Phase 2: Three.js Background Scene
 
-### 2.1 Particle Network Background
-A subtle, animated particle field that responds to mouse movement. Particles connect with thin lines when close to each other, forming a dynamic network graph aesthetic.
+### 2.1 Infinity Field — Logo Particle System ✅
+Particles are sampled from the Ever Guild logo (gold ∞ symbol) and rendered as a living particle field with antigravity physics. The logo forms from thousands of golden particles that levitate upward, while background teal particles float freely.
 
 **Specifications:**
-- ~150-200 particles (performance-friendly)
-- Particles drift slowly with Perlin-noise-like motion
-- Mouse proximity creates subtle attraction
-- Lines connect particles within threshold distance
-- Color: tinted primary teal (`#00343d`) at low opacity
-- Falls back to static gradient on mobile / reduced-motion
+- ~3000+ logo particles sampled from actual `logo.png` pixels
+- 1200 background particles in brand teal colors
+- Antigravity: constant upward drift on all particles
+- Spring force: particles return to their "home" position in the logo shape
+- Mouse repulsion: cursor pushes particles away like an antigravity field
+- Ambient noise: gentle floating jitter for organic feel
+- Gold `#ffc400` particles for logo, teal `#00343d` / `#006b7d` for background
+- Dark background `#001820` (deep brand teal)
+- Additive blending for soft glow
 
 **Tech approach:**
-- Use `@react-three/fiber` Canvas as full-screen background
-- Custom shader material for particles (points + lines)
-- Or use `Instances` from `@react-three/drei` for performance
-- `frameloop="always"` for hero, switch to `"demand"` when scrolled past
+- `useTexture` + canvas pixel reading to sample logo shape
+- `THREE.ShaderMaterial` with `THREE.Points`
+- Physics: velocity-based simulation in `useFrame` (spring, damping, noise, mouse)
+- `dpr={[1, 2]}`, `frameloop="always"`
 
-### 2.2 Hero 3D Element (Optional Enhancement)
-A subtle 3D geometric shape (icosahedron or torus knot) floating in the hero section, slowly rotating, with the brand gold accent color.
-
-**Specifications:**
-- Mesh: Icosahedron with wireframe overlay
-- Material: MeshStandardMaterial with low metalness
-- Slow rotation on all axes
-- Subtle float animation (sine wave on Y)
-
-**Status:** ⬜ Not started
+**Status:** ✅ Done
 
 ---
 
