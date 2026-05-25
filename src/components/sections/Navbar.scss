@@ -1,0 +1,140 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-fixed;
+  transition:
+    background-color $transition-base,
+    backdrop-filter $transition-base,
+    box-shadow $transition-base;
+
+  &--scrolled {
+    background-color: rgba($color-primary, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: $shadow-md;
+  }
+
+  &__container {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  &__logo {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+
+  &__nav {
+    @include tablet-up {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    @media (max-width: #{$bp-tablet - 1px}) {
+      &:not(.navbar__nav--open) {
+        display: none;
+      }
+    }
+  }
+
+  &__nav--open {
+    @media (max-width: #{$bp-tablet - 1px}) {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba($color-primary, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: $space-2xl;
+      animation: navbarFadeIn $transition-base forwards;
+    }
+  }
+
+  &__list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: $space-xl;
+
+    @media (max-width: #{$bp-tablet - 1px}) {
+      flex-direction: column;
+      align-items: center;
+      gap: $space-lg;
+    }
+  }
+
+  &__link {
+    color: $color-text-inverse;
+    font-size: $text-base;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      color $transition-fast,
+      opacity $transition-fast;
+    opacity: 0.9;
+
+    &:hover {
+      color: $color-accent;
+      opacity: 1;
+    }
+  }
+
+  &__toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: $color-text-inverse;
+    cursor: pointer;
+    padding: $space-xs;
+    margin: -$space-xs;
+
+    @media (max-width: #{$bp-tablet - 1px}) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: transparent;
+
+    @include tablet-up {
+      display: none;
+    }
+  }
+}
+
+@keyframes navbarFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,23 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
-    <title>Ever Guild</title>
-    <meta name="description" content="Community for maintain and distribution software">
-    <meta name="author" content="Ever Guild">
-    <meta charset="UTF-8" content="#ffffff" />
-
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black">
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" type="image/png" href="/favicon.png">
+    <meta name="theme-color" content="#00343d" />
+    <meta name="description" content="Ever Guild is a community of developers dedicated to building and maintaining high-quality open-source software." />
+    <meta name="author" content="Ever Guild" />
 
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ever Guild — Software Development Community" />
+    <meta property="og:description" content="Software that lasts. Community that builds." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ever-guild.net/" />
+    <meta property="og:image" content="https://ever-guild.net/og-image.png" />
+    <meta property="og:site_name" content="Ever Guild" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ever Guild — Software Development Community" />
+    <meta name="twitter:description" content="Software that lasts. Community that builds." />
+    <meta name="twitter:image" content="https://ever-guild.net/og-image.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" type="image/png" href="/favicon.png" />
+
+    <title>Ever Guild — Software Development Community</title>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Ever Guild",
+      "url": "https://ever-guild.net/",
+      "logo": "https://ever-guild.net/favicon.png",
+      "email": "n@ever-guild.net",
+      "sameAs": [
+        "https://github.com/ever-guild",
+        "https://x.com/ever_guild_net",
+        "https://www.linkedin.com/company/ever-guild/",
+        "https://t.me/everguild",
+        "https://www.upwork.com/agencies/everguild/"
+      ]
+    }
+    </script>
   </head>
   <body>
-
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-
   </body>
 </html>

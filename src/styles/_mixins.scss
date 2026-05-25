@@ -1,0 +1,68 @@
+@use 'variables' as *;
+
+// ============================================
+// Ever Guild — SCSS Mixins
+// ============================================
+
+// Responsive breakpoints
+@mixin mobile-up {
+  @media (min-width: #{$bp-mobile}) { @content; }
+}
+
+@mixin tablet-up {
+  @media (min-width: #{$bp-tablet}) { @content; }
+}
+
+@mixin desktop-up {
+  @media (min-width: #{$bp-desktop}) { @content; }
+}
+
+@mixin wide-up {
+  @media (min-width: #{$bp-wide}) { @content; }
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+
+  @include desktop-up {
+    padding: 0 $space-xl;
+  }
+}
+
+// Section spacing
+@mixin section-padding {
+  padding: $space-2xl 0;
+
+  @include tablet-up {
+    padding: $space-3xl 0;
+  }
+}
+
+// Flex center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Visually hidden (accessibility)
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Smooth scroll anchor offset
+@mixin scroll-offset {
+  scroll-margin-top: 80px;
+}

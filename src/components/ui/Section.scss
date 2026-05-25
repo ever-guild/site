@@ -1,0 +1,23 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include section-padding;
+
+  &--default {
+    background-color: $color-bg;
+  }
+
+  &--alt {
+    background-color: $color-surface;
+  }
+
+  &--dark {
+    background-color: $color-primary;
+    color: $color-text-inverse;
+  }
+
+  &__container {
+    @include container;
+  }
+}
