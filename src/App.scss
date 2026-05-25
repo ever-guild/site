@@ -25,6 +25,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: #002835;
+  color: #ffe89e;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -67,6 +69,9 @@ button:hover {
   padding: 0;
   will-change: filter;
 }
+.brand-logo {
+  height: 8em;
+}
 .brand-logo:hover {
   filter: drop-shadow(0 0 2em #ffc400aa);
 }
@@ -84,6 +89,7 @@ button:hover {
 .github-icon {
   width: 1.25rem;
   height: 1.25rem;
+  filter: brightness(0) saturate(100%) invert(88%) sepia(20%) saturate(835%) hue-rotate(351deg) brightness(105%) contrast(102%);
 }
 
 @keyframes logo-spin {
@@ -133,11 +139,11 @@ button:hover {
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  color: #00343d;
+  color: #ffe89e;
 }
 
 .social-links a:hover {
-  color: #00343d;
+  color: #ffe89e;
 }
 
 .social-links svg {
