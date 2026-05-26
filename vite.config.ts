@@ -11,9 +11,15 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      registerType: 'autoUpdate',
+      selfDestroying: true,
       includeAssets: [faviconURL],
       manifest: {
-        theme_color: '#ffffff',
+        name: 'Ever Guild',
+        short_name: 'Ever Guild',
+        description: 'Community for maintain and distribution software',
+        theme_color: '#002835',
+        background_color: '#002835',
         icons: [
           {
             src: faviconURL,
