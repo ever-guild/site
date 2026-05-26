@@ -1,4 +1,4 @@
-name: CodeQL
+name: CodeQL Analysis
 
 # Advanced CodeQL setup for GitHub code scanning.
 on:
