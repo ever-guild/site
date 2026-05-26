@@ -6,14 +6,6 @@
   z-index: 1;
   @include section-padding;
 
-  &--default {
-    background: rgba(0, 40, 53, 0.92);
-  }
-
-  &--alt {
-    background: rgba(0, 30, 40, 0.95);
-  }
-
   &--dark {
     background: rgba(0, 20, 28, 0.4);
   }

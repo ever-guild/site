@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .section-nav {
   position: fixed;
@@ -63,7 +63,10 @@
     height: 8px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.35);
-    transition: background $transition-base, transform $transition-base, box-shadow $transition-base;
+    transition:
+      background $transition-base,
+      transform $transition-base,
+      box-shadow $transition-base;
     flex-shrink: 0;
   }
 
@@ -73,7 +76,9 @@
     letter-spacing: 0.02em;
     opacity: 0;
     transform: translateX(-6px);
-    transition: opacity $transition-base, transform $transition-base;
+    transition:
+      opacity $transition-base,
+      transform $transition-base;
     white-space: nowrap;
     pointer-events: none;
   }

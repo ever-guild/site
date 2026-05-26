@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useSectionContext } from '../../contexts/SectionContext';
 import './SectionNav.scss';
 
 interface SectionItem {
@@ -16,30 +17,46 @@ const sections: SectionItem[] = [
 ];
 
 export const SectionNav = React.memo(function SectionNav() {
-  const [activeId, setActiveId] = useState<string>('hero');
+  const { activeId, setActiveId } = useSectionContext();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      {
-        rootMargin: '-40% 0px -40% 0px',
-        threshold: 0,
-      }
-    );
+    let rafId: number;
 
-    sections.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    const updateActive = () => {
+      const centerY = window.innerHeight / 2;
+      let closestId = sections[0].id;
+      let closestDist = Infinity;
 
-    return () => observer.disconnect();
-  }, []);
+      sections.forEach(({ id }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const elCenter = rect.top + rect.height / 2;
+        const dist = Math.abs(elCenter - centerY);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestId = id;
+        }
+      });
+
+      setActiveId(closestId);
+    };
+
+    const handleScroll = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updateActive);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateActive);
+    updateActive();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateActive);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [setActiveId]);
 
   const handleClick = useCallback((id: string) => {
     const el = document.getElementById(id);

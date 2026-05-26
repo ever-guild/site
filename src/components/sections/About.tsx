@@ -1,64 +1,77 @@
-import React from 'react';
-import { Section } from '../ui/Section';
+import React from "react";
+import { Section } from "../ui/Section";
 import {
-  Globe, Shield, Users, Clock,
-  Route, Rocket, Wrench, Sparkles, Layout, BadgeCheck, Target
-} from 'lucide-react';
-import './About.scss';
+  Globe,
+  Shield,
+  Users,
+  Clock,
+  Route,
+  Rocket,
+  Wrench,
+  Sparkles,
+  Layout,
+  BadgeCheck,
+  Target,
+  Focus,
+} from "lucide-react";
+import "./About.scss";
 
 const values = [
   {
     icon: Globe,
-    title: 'Openness',
-    description: 'We believe in transparent development and open collaboration.',
+    title: "Openness",
+    description:
+      "We believe in transparent development and open collaboration.",
   },
   {
     icon: Shield,
-    title: 'Quality',
-    description: 'We maintain high standards in every line of code we write.',
+    title: "Quality",
+    description: "We maintain high standards in every line of code we write.",
   },
   {
     icon: Users,
-    title: 'Community',
-    description: 'We grow stronger together through shared knowledge.',
+    title: "Community",
+    description: "We grow stronger together through shared knowledge.",
   },
   {
     icon: Clock,
-    title: 'Longevity',
-    description: 'We build software designed to last and evolve.',
+    title: "Longevity",
+    description: "We build software designed to last and evolve.",
   },
 ];
 
 const whyUs = [
   {
     icon: Route,
-    title: 'Shape Architecture',
-    description: 'Design technical direction and system architecture that scales.',
+    title: "Shape Architecture",
+    description:
+      "Design technical direction and system architecture that scales.",
   },
   {
     icon: Rocket,
-    title: 'Build MVPs',
-    description: 'Launch products fast with maintainable, production-ready code.',
+    title: "Build MVPs",
+    description:
+      "Launch products fast with maintainable, production-ready code.",
   },
   {
     icon: Wrench,
-    title: 'Stabilize Systems',
-    description: 'Optimize existing codebases and eliminate technical debt.',
+    title: "Stabilize Systems",
+    description: "Optimize existing codebases and eliminate technical debt.",
   },
   {
     icon: Sparkles,
-    title: 'AI-Powered Features',
-    description: 'Integrate LLMs, agents, and automation into your product.',
+    title: "AI-Powered Features",
+    description: "Integrate LLMs, agents, and automation into your product.",
   },
   {
     icon: Layout,
-    title: 'Modern Interfaces',
-    description: 'Design and build clean, responsive, accessible UI/UX.',
+    title: "Modern Interfaces",
+    description: "Design and build clean, responsive, accessible UI/UX.",
   },
   {
     icon: BadgeCheck,
-    title: 'Senior Ownership',
-    description: 'Provide technical leadership and end-to-end accountability.',
+    title: "Senior Ownership",
+    description: "Provide technical leadership and end-to-end accountability.",
   },
 ];
 
@@ -66,34 +79,46 @@ export const About = React.memo(function About() {
   return (
     <Section id="about">
       <div className="about">
-        <h2 className="about__heading">Overview</h2>
-        <div className="about__intro">
-          <p>
-            Ever Guild is a remote-first software engineering agency focused on Web3,
-            blockchain infrastructure, smart contracts, backend systems, AI-powered products,
-            developer tooling, product design, and modern frontend development.
-          </p>
-          <p>
-            Founded in 2021 by Ilia, a senior software engineer and technical lead with
-            20 years of engineering experience, Ever Guild combines technical depth with
-            reliable remote delivery, clear communication, and strong technical ownership.
-          </p>
-          <p>
-            We help startups, Web3 teams, SaaS companies, and gaming projects move from
-            idea to production-ready software without creating technical debt.
-          </p>
-        </div>
-
-        <div className="about__grid">
-          {values.map((value) => (
-            <div key={value.title} className="about__card">
-              <div className="about__icon">
-                <value.icon size={28} strokeWidth={1.8} />
-              </div>
-              <h3 className="about__title">{value.title}</h3>
-              <p className="about__description">{value.description}</p>
+        <div className="about__overview">
+          <div className="about__overview-header">
+            <div className="about__overview-accent">
+              <Focus size={20} strokeWidth={2} />
             </div>
-          ))}
+            <h2 className="about__overview-heading">Overview</h2>
+            <div className="about__overview-sub">
+              <p>
+                Ever Guild is a remote-first software engineering agency focused
+                on Web3, blockchain infrastructure, smart contracts, backend
+                systems, AI-powered products, developer tooling, product design,
+                and modern frontend development.
+              </p>
+              <p>
+                Founded in 2021 by Ilia, a senior software engineer and technical
+                lead with 20 years of engineering experience, Ever Guild combines
+                technical depth with reliable remote delivery, clear
+                communication, and strong technical ownership.
+              </p>
+              <p>
+                We help startups, Web3 teams, SaaS companies, and gaming projects
+                move from idea to production-ready software without creating
+                technical debt.
+              </p>
+            </div>
+          </div>
+
+          <div className="about__overview-grid">
+            {values.map((value) => (
+              <div key={value.title} className="about__overview-card">
+                <div className="about__overview-icon">
+                  <value.icon size={22} strokeWidth={1.8} />
+                </div>
+                <div className="about__overview-content">
+                  <h4 className="about__overview-title">{value.title}</h4>
+                  <p className="about__overview-desc">{value.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="about__why">
@@ -122,10 +147,11 @@ export const About = React.memo(function About() {
           </div>
 
           <p className="about__why-footer">
-            Whether you are building a Web3 protocol, SaaS product, AI automation tool,
-            backend platform, game interface, product prototype, or developer-facing
-            infrastructure, Ever Guild helps you move from concept to working software
-            with maintainable architecture.
+            Whether you are building a Web3 protocol, SaaS product, AI
+            automation tool, backend platform, game interface, product
+            prototype, or developer-facing infrastructure, Ever Guild helps you
+            move from concept to working software with maintainable
+            architecture.
           </p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import './App.scss';
+import { SectionProvider } from './contexts/SectionContext';
 import Scene from './components/three/Scene';
 import SectionNav from './components/ui/SectionNav';
 import Navbar from './components/sections/Navbar';
@@ -12,20 +13,22 @@ import Footer from './components/sections/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <Scene />
-      <SectionNav />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Team />
-        <Services />
-        <Skills />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <SectionProvider>
+      <div className="App">
+        <Scene />
+        <SectionNav />
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Team />
+          <Services />
+          <Skills />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </SectionProvider>
   );
 }
 
