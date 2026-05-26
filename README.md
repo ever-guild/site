@@ -22,6 +22,3 @@ build: {
 ```
 npm run preview
 ```
-
-## Security scanning
-CodeQL runs on pushes and pull requests targeting `main`.
