@@ -3,7 +3,29 @@
 .App {
   min-height: 100vh;
   position: relative;
+  isolation: isolate;
   background: #002835;
+
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 70% 52% at 50% 32%,
+        rgba(0, 40, 53, 0.16) 0%,
+        rgba(0, 40, 53, 0.3) 56%,
+        rgba(0, 20, 28, 0.42) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 25, 34, 0.2) 0%,
+        rgba(0, 40, 53, 0.1) 36%,
+        rgba(0, 20, 28, 0.34) 100%
+      );
+  }
 
   main,
   footer {

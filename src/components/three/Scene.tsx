@@ -79,7 +79,9 @@ function useScrollMorph(): number {
 
 export default function Scene() {
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const isMobile = useMediaQuery('(max-width: 767px)');
   const morph = useScrollMorph();
+  const particleOpacity = isMobile ? 0.84 : 1;
 
   return (
     <div
@@ -104,7 +106,7 @@ export default function Scene() {
         <Suspense fallback={null}>
           <InfinityField
             reducedMotion={reducedMotion}
-            opacity={1}
+            opacity={particleOpacity}
             morphTarget={morph}
           />
         </Suspense>

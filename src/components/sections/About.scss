@@ -71,7 +71,7 @@
   &__overview-sub {
     font-size: $text-lg;
     line-height: $leading-normal;
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.8);
     max-width: 800px;
     margin: 0 auto;
 
@@ -139,7 +139,7 @@
   &__overview-desc {
     font-size: $text-sm;
     line-height: $leading-normal;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.74);
     margin: 0;
   }
 
@@ -196,7 +196,7 @@
   &__why-sub {
     font-size: $text-lg;
     line-height: $leading-normal;
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.8);
     max-width: 480px;
     margin: 0 auto;
   }
@@ -256,14 +256,14 @@
   &__why-desc {
     font-size: $text-sm;
     line-height: $leading-normal;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.74);
     margin: 0;
   }
 
   &__why-footer {
     font-size: $text-base;
     line-height: $leading-relaxed;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.76);
     text-align: center;
     max-width: 720px;
     margin: 0 auto;
