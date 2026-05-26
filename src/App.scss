@@ -1,177 +1,75 @@
-:root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-}
+@use './styles/variables' as *;
 
-.center {
-  display: flex;
-  justify-content: center;
-}
+.App {
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+  background: #002835;
 
-a {
-  color: #646cff;
-  text-decoration: inherit;
-}
+  &::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 70% 52% at 50% 32%,
+        rgba(0, 40, 53, 0.16) 0%,
+        rgba(0, 40, 53, 0.3) 56%,
+        rgba(0, 20, 28, 0.42) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(0, 25, 34, 0.2) 0%,
+        rgba(0, 40, 53, 0.1) 36%,
+        rgba(0, 20, 28, 0.34) 100%
+      );
+  }
 
-a:hover {
-  color: #535bf2;
+  main,
+  footer {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 body {
+  background: #002835 !important;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
   background: #002835;
-  color: #ffe89e;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+::-webkit-scrollbar-thumb {
+  background: #0a3a4d;
+  border-radius: 4px;
 }
 
-button {
-  border-radius: 0.6em;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 2.5rem;
-  font-weight: bold;
-  font-family: inherit;
-  background-color: #f9f9f9;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  color: #535bf2;
+::-webkit-scrollbar-thumb:hover {
+  background: #114c63;
 }
 
-button:hover {
-  border-color: #646cff;
+::selection {
+  background-color: rgba(241, 184, 0, 0.2);
+  color: #fff;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.animate-item {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
-.logo {
-  height: 5em;
-  padding: 0;
-  will-change: filter;
-}
-.brand-logo {
-  height: 8em;
-}
-.brand-logo:hover {
-  filter: drop-shadow(0 0 2em #ffc400aa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-.logo.sass:hover {
-  filter: drop-shadow(0 0 2em #fb61c0aa);
-}
-.logo.github {
-  filter: none;
-  height: 1em;
-}
-
-.github-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  filter: brightness(0) saturate(100%) invert(88%) sepia(20%) saturate(835%) hue-rotate(351deg) brightness(105%) contrast(102%);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes shadow-pulse {
-  from {
-    filter: drop-shadow(0 0 0.5em #44444444);
-    transform: rotate(-1.2deg) translateX(0.6rem);
-  }
-
-  to {
-    filter: drop-shadow(0 0 1.5em #88888888);
-    transform: rotate(0.8deg) translateX(-0.6rem);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 36s linear;
-  }
-}
-
-.card {
-  h1 {
-    animation: shadow-pulse infinite alternate 3.6s ease-in-out;
-  }
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.85rem;
-  margin-top: 1rem;
-}
-
-.social-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  color: #ffe89e;
-}
-
-.social-links a:hover {
-  color: #ffe89e;
-}
-
-.social-links svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  fill: currentColor;
-  flex: 0 0 auto;
-}
-
-.read-the-docs {
-  padding-top: 1em;
-  color: #666;
-}
-
-.credits {
-  padding: 0em 1.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  font-weight: normal;
-  font-size: 1.2rem;
-  background-color: white;
-  &:hover {
-    color: black;
-  }
-  .logo {
-    padding: 0 0;
-    padding-right: 0.5em;
+@media (prefers-reduced-motion: reduce) {
+  .App * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

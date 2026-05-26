@@ -1,0 +1,75 @@
+@use '../../styles/variables' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-xs;
+  font-family: $font-body;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: $radius-md;
+  transition: transform $transition-base, box-shadow $transition-base, background-color $transition-base;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &--primary {
+    background: linear-gradient(135deg, #F1B800 0%, #c49b00 100%);
+    color: #002835;
+    font-weight: 600;
+
+    &:hover {
+      box-shadow: 0 4px 20px rgba(241, 184, 0, 0.25);
+    }
+  }
+
+  &--secondary {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+    }
+  }
+
+  &--sm {
+    padding: 0.5rem 1rem;
+    font-size: $text-sm;
+  }
+
+  &--md {
+    padding: 0.75rem 1.5rem;
+    font-size: $text-base;
+  }
+
+  &--lg {
+    padding: 1rem 2rem;
+    font-size: $text-lg;
+  }
+
+  &__icon {
+    display: inline-flex;
+    width: 1em;
+    height: 1em;
+  }
+}

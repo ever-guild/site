@@ -1,0 +1,35 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.contact {
+  text-align: center;
+
+  &__heading {
+    font-size: $text-3xl;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: $space-md;
+
+    @include tablet-up {
+      font-size: $text-4xl;
+    }
+  }
+
+  &__subtext {
+    font-size: $text-lg;
+    line-height: $leading-relaxed;
+    color: rgba(255, 255, 255, 0.78);
+    max-width: 520px;
+    margin: 0 auto $space-xl;
+  }
+
+  &__cta {
+    margin-bottom: $space-xl;
+  }
+
+  &__socials {
+    @include flex-center;
+    gap: $space-sm;
+    flex-wrap: wrap;
+  }
+}

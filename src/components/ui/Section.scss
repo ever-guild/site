@@ -1,0 +1,57 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  position: relative;
+  z-index: 1;
+  @include section-padding;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 72% 62% at 50% 22%,
+        rgba(0, 40, 53, 0.3) 0%,
+        rgba(0, 26, 35, 0.42) 68%,
+        rgba(0, 17, 24, 0.54) 100%
+      );
+  }
+
+  &--default::before {
+    background:
+      radial-gradient(
+        ellipse 72% 62% at 50% 22%,
+        rgba(0, 40, 53, 0.26) 0%,
+        rgba(0, 26, 35, 0.38) 68%,
+        rgba(0, 17, 24, 0.5) 100%
+      );
+  }
+
+  &--alt::before {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 23, 31, 0.44) 0%,
+        rgba(0, 42, 55, 0.34) 42%,
+        rgba(0, 18, 26, 0.5) 100%
+      );
+  }
+
+  &--dark {
+    background: rgba(0, 20, 28, 0.4);
+  }
+
+  &--dark::before {
+    background: rgba(0, 16, 22, 0.56);
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+    @include container;
+  }
+}
