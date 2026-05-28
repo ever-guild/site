@@ -1,80 +1,129 @@
 // ============================================
 // Ever Guild — Design Tokens
+// Brand palette: deep teal base, gold signal,
+// cream highlight, warm-brown grounding.
+// Flat, technological, no gradients/glows.
+// Source of truth: docs/brandbook.md (Colors.svg).
+// Use ONLY these tokens — no ad-hoc hex.
 // ============================================
 
-// Colors
-$color-primary: #002835;
-$color-primary-light: #003b4d;
-$color-accent: #F1B800;
-$color-accent-hover: #cc9e00;
+// --- Surfaces (deep teal scale) ---------------
+$color-bg:           #001D25; // page — deepest
+$color-bg-alt:       #002028; // alternating band
+$color-surface:      #002835; // flat cards (brand teal)
+$color-surface-2:    #00323F; // hover / elevated
+$color-surface-3:    #013C4B; // pressed / deepest panel
 
-$color-bg: #fafafa;
-$color-surface: #ffffff;
-$color-surface-elevated: #ffffff;
+// Warm grounding (from palette browns)
+$color-warm-deep:    #381E00; // footer / warm anchor
+$color-warm-deep-2:  #442801;
 
-$color-text: #1a1a1a;
-$color-text-secondary: #444444;
-$color-text-muted: #666666;
-$color-text-inverse: #ffffff;
+// --- Borders (warm hairlines) -----------------
+$color-border:       rgba(244, 241, 232, 0.09);
+$color-border-2:     rgba(244, 241, 232, 0.17);
+$color-border-3:     rgba(241, 184, 0, 0.32); // gold-tinted accent edge
 
-$color-border: rgba(0, 40, 53, 0.08);
-$color-border-strong: rgba(0, 40, 53, 0.15);
+// --- Text -------------------------------------
+$color-text:         #FFE79C; // light cream (matches footer text)
+$color-text-2:       #9FB1AF; // secondary teal-gray
+$color-text-3:       #889995; // muted / mono labels
+$color-text-4:       #475957; // faintest
 
-// Spacing scale
-$space-xs: 0.5rem;
-$space-sm: 1rem;
-$space-md: 1.5rem;
-$space-lg: 2rem;
-$space-xl: 4rem;
+// --- Accent (brand gold + cream highlight) ----
+$color-accent:       #F1B800; // gold — primary signal
+$color-accent-2:     #FFE79C; // cream — bright / hover glint
+$color-gold-2:       #F0B800; // brandbook intermediate (gradient start)
+$color-cream-2:      #FFE89E; // brandbook intermediate (cream halo)
+$color-accent-soft:  rgba(241, 184, 0, 0.10);
+$color-accent-line:  rgba(241, 184, 0, 0.34);
+
+// --- Liquid glass (frosted murky-emerald panels over the field) ---
+$color-glass:        rgba(6, 50, 44, 0.56);   // dark emerald, matte-frosted
+$color-glass-2:      rgba(10, 63, 55, 0.68);  // hover — denser
+$color-glass-border: rgba(186, 240, 212, 0.16);
+$color-glass-edge:   rgba(186, 240, 212, 0.30); // hover edge highlight
+$color-glass-sheen:  rgba(255, 255, 255, 0.08); // top rim light
+$color-cream:        #FFE79C;
+$color-on-accent:    #001D25; // deep teal text on gold
+
+// --- Legacy aliases (kept for safety) ---------
+$color-primary:           $color-surface;
+$color-primary-light:     $color-surface-2;
+$color-accent-hover:      $color-accent-2;
+$color-bg-legacy:         $color-bg;
+$color-surface-elevated:  $color-surface-2;
+$color-text-secondary:    $color-text-2;
+$color-text-muted:        $color-text-3;
+$color-text-inverse:      $color-on-accent;
+$color-border-strong:     $color-border-2;
+
+// --- Typography -------------------------------
+// Tilt Warp: characterful display — headings only.
+// Hanken Grotesk: warm, readable body & UI.
+// JetBrains Mono: small labels / tags.
+$font-display: 'Tilt Warp', system-ui, -apple-system, 'Segoe UI', sans-serif;
+$font-body:    'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+$font-mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+$text-2xs:  0.6875rem; // 11
+$text-xs:   0.75rem;   // 12
+$text-sm:   0.875rem;  // 14
+$text-base: 1rem;      // 16
+$text-lg:   1.125rem;  // 18
+$text-xl:   1.375rem;  // 22
+$text-2xl:  1.75rem;   // 28
+$text-3xl:  2.25rem;   // 36
+$text-4xl:  3rem;      // 48
+$text-5xl:  4rem;      // 64
+$text-6xl:  5.5rem;    // 88
+
+$leading-tight:   1.04;
+$leading-snug:    1.2;
+$leading-normal:  1.55;
+$leading-relaxed: 1.7;
+
+$tracking-tight:  -0.02em;
+$tracking-normal: 0;
+$tracking-wide:   0.04em;
+$tracking-mono:   0.16em; // uppercase mono labels
+
+// --- Spacing scale ----------------------------
+$space-2xs: 0.25rem;
+$space-xs:  0.5rem;
+$space-sm:  1rem;
+$space-md:  1.5rem;
+$space-lg:  2rem;
+$space-xl:  4rem;
 $space-2xl: 6rem;
-$space-3xl: 8rem;
+$space-3xl: 9rem;
+$space-4xl: 12rem;
 
-// Typography
-$font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-
-$text-xs: 0.75rem;
-$text-sm: 0.875rem;
-$text-base: 1rem;
-$text-lg: 1.125rem;
-$text-xl: 1.25rem;
-$text-2xl: 1.5rem;
-$text-3xl: 2rem;
-$text-4xl: 2.5rem;
-$text-5xl: 3.5rem;
-$text-6xl: 4.5rem;
-
-$leading-tight: 1.2;
-$leading-normal: 1.6;
-$leading-relaxed: 1.75;
-
-// Breakpoints
-$bp-mobile: 480px;
-$bp-tablet: 768px;
+// --- Breakpoints ------------------------------
+$bp-mobile:  480px;
+$bp-tablet:  768px;
 $bp-desktop: 1024px;
-$bp-wide: 1440px;
+$bp-wide:    1440px;
 
-// Transitions
-$transition-fast: 150ms ease;
-$transition-base: 250ms ease;
-$transition-slow: 400ms ease;
+// --- Transitions ------------------------------
+$transition-fast: 140ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 420ms cubic-bezier(0.4, 0, 0.2, 1);
 
-// Shadows
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-$shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
-
-// Border radius
-$radius-sm: 0.375rem;
-$radius-md: 0.5rem;
-$radius-lg: 0.75rem;
-$radius-xl: 1rem;
+// --- Radius (soft, rounded) -------------------
+$radius-sm:   8px;
+$radius-md:   12px;
+$radius-lg:   18px;
+$radius-xl:   26px;
 $radius-full: 9999px;
 
-// Z-index scale
-$z-base: 0;
-$z-dropdown: 100;
-$z-sticky: 200;
-$z-fixed: 300;
-$z-modal-backdrop: 400;
-$z-modal: 500;
+// --- Layout -----------------------------------
+$container-max: 1320px;
+$gutter:        2rem;
+
+// --- Z-index ----------------------------------
+$z-base:    0;
+$z-grid:    0;
+$z-content: 1;
+$z-nav:     200;
+$z-fixed:   300;
+$z-modal:   500;

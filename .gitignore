@@ -29,6 +29,10 @@ lerna-debug.log*
 # Test and coverage output
 coverage/
 
+# Local screenshot helpers (machine-specific paths, puppeteer-core)
+.shot.mjs
+.shot-dev.mjs
+
 # Editor and OS files
 .vscode/*
 !.vscode/extensions.json

@@ -14,7 +14,15 @@ export const Footer = React.memo(function Footer() {
   return (
     <footer className="footer">
       <div className="footer__container">
-        <p className="footer__copyright">© 2026 Ever Guild. All rights reserved.</p>
+        <div className="footer__brand">
+          <span className="footer__wordmark">EVER GUILD</span>
+          <span className="footer__tag">Remote-first engineering guild</span>
+        </div>
+
+        <p className="footer__copyright">
+          © 2026 Ever Guild · All rights reserved · ever-guild.net
+        </p>
+
         <div className="footer__socials">
           {socials.map((social) => (
             <SocialIcon
@@ -22,7 +30,6 @@ export const Footer = React.memo(function Footer() {
               platform={social.platform}
               url={social.url}
               label={social.label}
-              size={18}
             />
           ))}
         </div>

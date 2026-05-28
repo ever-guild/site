@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "../../assets/LogoNoBg.svg";
+import { Button } from "../ui/Button";
+import logo from "../../assets/logoeverguild.svg";
 import "./Navbar.scss";
 
 const navLinks = [
-  { label: "Overview", href: "#about" },
+  { label: "About", href: "#about" },
   { label: "Team", href: "#team" },
   { label: "Services", href: "#services" },
-  { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -37,7 +37,6 @@ const Navbar = React.memo(function Navbar() {
 
         <nav
           className={`navbar__nav ${isMobileMenuOpen ? "navbar__nav--open" : ""}`}
-          aria-hidden={!isMobileMenuOpen}
         >
           <ul className="navbar__list">
             {navLinks.map((link) => (
@@ -52,6 +51,15 @@ const Navbar = React.memo(function Navbar() {
               </li>
             ))}
           </ul>
+          <Button
+            href="mailto:n@ever-guild.net"
+            variant="primary"
+            size="sm"
+            className="navbar__cta"
+            onClick={closeMobileMenu}
+          >
+            Start a project
+          </Button>
         </nav>
 
         <button

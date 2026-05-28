@@ -1,51 +1,76 @@
 import React from 'react';
 import { Section } from '../ui/Section';
-import { Code2, Package, Users, Lightbulb } from 'lucide-react';
+import { SectionHeader } from '../ui/SectionHeader';
+import {
+  SiTypescript, SiReact, SiNextdotjs, SiNodedotjs, SiPython, SiRust,
+  SiGo, SiSolidity, SiDocker, SiPostgresql, SiGraphql, SiFigma,
+} from 'react-icons/si';
 import './Services.scss';
 
 const services = [
   {
-    icon: Code2,
-    title: 'Open Source Development',
-    description:
-      'Contributing to and maintaining open-source projects that benefit the developer community.',
+    title: 'Web3 & Blockchain',
+    description: 'Production-grade smart contracts and protocol integrations on TON, EVM and NEAR — audited patterns, built to hold real value.',
   },
   {
-    icon: Package,
-    title: 'Software Distribution',
-    description:
-      'Building tools and platforms for efficient software packaging and distribution.',
+    title: 'AI & Automation',
+    description: 'LLM integrations, AI agents and workflow automation wired into your product — not bolted on as an afterthought.',
   },
   {
-    icon: Users,
-    title: 'Community Building',
-    description:
-      'Creating spaces for developers to connect, learn, and grow together.',
+    title: 'Full-Stack Development',
+    description: 'React, Next.js and Node.js SaaS platforms, dashboards and marketplaces — shipped fast, built to scale.',
   },
   {
-    icon: Lightbulb,
-    title: 'Technical Consulting',
-    description:
-      'Providing expert guidance on architecture, performance, and best practices.',
+    title: 'Product Design & UI/UX',
+    description: 'Interfaces, prototypes and design systems that stay clean and responsive across every screen.',
   },
+];
+
+const stack = [
+  { name: 'TypeScript', Icon: SiTypescript },
+  { name: 'React', Icon: SiReact },
+  { name: 'Next.js', Icon: SiNextdotjs },
+  { name: 'Node.js', Icon: SiNodedotjs },
+  { name: 'Python', Icon: SiPython },
+  { name: 'Rust', Icon: SiRust },
+  { name: 'Go', Icon: SiGo },
+  { name: 'Solidity', Icon: SiSolidity },
+  { name: 'Docker', Icon: SiDocker },
+  { name: 'PostgreSQL', Icon: SiPostgresql },
+  { name: 'GraphQL', Icon: SiGraphql },
+  { name: 'Figma', Icon: SiFigma },
 ];
 
 export const Services = React.memo(function Services() {
   return (
-    <Section id="services" variant="alt">
-      <div className="services">
-        <h2 className="services__heading">What We Do</h2>
-        <div className="services__grid">
-          {services.map((service) => (
-            <div key={service.title} className="services__card">
-              <div className="services__icon">
-                <service.icon size={28} strokeWidth={1.8} />
-              </div>
-              <h3 className="services__title">{service.title}</h3>
-              <p className="services__description">{service.description}</p>
-            </div>
+    <Section id="services" index="03" label="Services">
+      <SectionHeader title="What we build for you." />
+
+      <div className="services__grid">
+        {services.map((service, i) => (
+          <article key={service.title} className="services__card">
+            <span className="services__num" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 className="services__title">{service.title}</h3>
+            <p className="services__desc">{service.description}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="services__marquee" aria-label="Tools and technologies we use">
+        <ul className="services__track">
+          {[...stack, ...stack].map((tech, i) => (
+            <li
+              key={`${tech.name}-${i}`}
+              className="services__tag"
+              aria-hidden={i >= stack.length ? true : undefined}
+            >
+              <tech.Icon className="services__tag-icon" aria-hidden="true" />
+              {tech.name}
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </Section>
   );

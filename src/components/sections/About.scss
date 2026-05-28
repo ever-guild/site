@@ -2,270 +2,48 @@
 @use "../../styles/mixins" as *;
 
 .about {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  &__heading {
-    font-size: $text-3xl;
-    font-weight: 700;
-    color: #fff;
-    text-align: center;
-    margin-bottom: $space-lg;
-
-    @include tablet-up {
-      font-size: $text-4xl;
-    }
-  }
-
-  &__overview {
-    position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(
-        ellipse 600px 400px at 20% 0%,
-        rgba(241, 184, 0, 0.06) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 500px 350px at 80% 100%,
-        rgba(0, 59, 77, 0.25) 0%,
-        transparent 70%
-      ),
-      rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: $radius-xl;
-    padding: $space-xl;
-
-    @include tablet-up {
-      padding: $space-2xl;
-    }
-  }
-
-  &__overview-header {
-    text-align: center;
-    margin-bottom: $space-xl;
-  }
-
-  &__overview-accent {
-    @include flex-center;
-    width: 2.75rem;
-    height: 2.75rem;
-    margin: 0 auto $space-md;
-    border-radius: $radius-md;
-    background: rgba(241, 184, 0, 0.12);
-    color: $color-accent;
-  }
-
-  &__overview-heading {
-    font-size: $text-2xl;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: $space-sm;
-
-    @include tablet-up {
-      font-size: $text-3xl;
-    }
-  }
-
-  &__overview-sub {
-    font-size: $text-lg;
-    line-height: $leading-normal;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 800px;
-    margin: 0 auto;
-
-    p {
-      margin-bottom: $space-sm;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  &__overview-grid {
+  &__facts {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: $space-md;
-    margin-bottom: $space-xl;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-sm;
+    margin-top: $space-xl;
 
     @include tablet-up {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 
-  &__overview-card {
-    display: flex;
-    align-items: flex-start;
-    gap: $space-md;
-    padding: $space-lg;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: $radius-lg;
-    transition:
-      transform $transition-base,
-      border-color $transition-base,
-      background $transition-base;
-
-    &:hover {
-      transform: translateY(-3px);
-      border-color: rgba(241, 184, 0, 0.2);
-      background: rgba(255, 255, 255, 0.05);
-    }
-  }
-
-  &__overview-icon {
-    @include flex-center;
-    flex-shrink: 0;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: $radius-md;
-    background: rgba(241, 184, 0, 0.1);
-    color: $color-accent;
-  }
-
-  &__overview-content {
-    min-width: 0;
-  }
-
-  &__overview-title {
-    font-size: $text-base;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: $space-xs;
-  }
-
-  &__overview-desc {
-    font-size: $text-sm;
-    line-height: $leading-normal;
-    color: rgba(255, 255, 255, 0.74);
-    margin: 0;
-  }
-
-  &__why {
+  // Each fact = its own frosted glass chip with a gold tick.
+  &__fact {
     position: relative;
-    overflow: hidden;
-    background:
-      radial-gradient(
-        ellipse 600px 400px at 20% 0%,
-        rgba(241, 184, 0, 0.06) 0%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 500px 350px at 80% 100%,
-        rgba(0, 59, 77, 0.25) 0%,
-        transparent 70%
-      ),
-      rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: $radius-xl;
-    padding: $space-xl;
-
-    @include tablet-up {
-      padding: $space-2xl;
-    }
-  }
-
-  &__why-header {
-    text-align: center;
-    margin-bottom: $space-xl;
-  }
-
-  &__why-accent {
-    @include flex-center;
-    width: 2.75rem;
-    height: 2.75rem;
-    margin: 0 auto $space-md;
-    border-radius: $radius-md;
-    background: rgba(241, 184, 0, 0.12);
-    color: $color-accent;
-  }
-
-  &__why-heading {
-    font-size: $text-2xl;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: $space-sm;
-
-    @include tablet-up {
-      font-size: $text-3xl;
-    }
-  }
-
-  &__why-sub {
-    font-size: $text-lg;
-    line-height: $leading-normal;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  &__why-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: $space-md;
-    margin-bottom: $space-xl;
-
-    @include tablet-up {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  &__why-card {
     display: flex;
-    align-items: flex-start;
-    gap: $space-md;
-    padding: $space-lg;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: $radius-lg;
-    transition:
-      transform $transition-base,
-      border-color $transition-base,
-      background $transition-base;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: $space-md;
+    @include glass;
+    border-radius: $radius-md;
+    overflow: hidden;
 
-    &:hover {
-      transform: translateY(-3px);
-      border-color: rgba(241, 184, 0, 0.2);
-      background: rgba(255, 255, 255, 0.05);
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 2px;
+      background: $color-accent;
     }
   }
 
-  &__why-icon {
-    @include flex-center;
-    flex-shrink: 0;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: $radius-md;
-    background: rgba(241, 184, 0, 0.1);
-    color: $color-accent;
+  &__fact-key {
+    @include mono-label;
+    font-size: $text-2xs;
   }
 
-  &__why-content {
-    min-width: 0;
-  }
-
-  &__why-title {
-    font-size: $text-base;
+  &__fact-val {
+    font-size: $text-xl;
     font-weight: 600;
-    color: #fff;
-    margin-bottom: $space-xs;
-  }
-
-  &__why-desc {
-    font-size: $text-sm;
-    line-height: $leading-normal;
-    color: rgba(255, 255, 255, 0.74);
-    margin: 0;
-  }
-
-  &__why-footer {
-    font-size: $text-base;
-    line-height: $leading-relaxed;
-    color: rgba(255, 255, 255, 0.76);
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto;
+    line-height: $leading-snug;
+    color: $color-text;
   }
 }

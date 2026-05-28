@@ -2,61 +2,124 @@
 @use '../../styles/mixins' as *;
 
 .services {
-  &__heading {
-    font-size: $text-3xl;
-    font-weight: 700;
-    color: #fff;
-    text-align: center;
-    margin-bottom: $space-xl;
-
-    @include tablet-up {
-      font-size: $text-4xl;
-    }
-  }
-
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $space-lg;
+    gap: $space-md;
 
-    @include tablet-up {
+    @include mobile-up {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   &__card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: $radius-lg;
-    padding: $space-xl;
-    transition: transform $transition-base, border-color $transition-base;
+    position: relative;
+    @include glass;
+    border-radius: $radius-md;
+    padding: $space-lg;
+    overflow: hidden;
+
+    // Gold top edge — strengthens on hover.
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $color-accent;
+      opacity: 0.35;
+      transition: opacity $transition-base;
+    }
 
     &:hover {
-      transform: translateY(-4px);
-      border-color: rgba(241, 184, 0, 0.15);
+      border-color: $color-glass-edge;
+      background: $color-glass-2;
+
+      &::before { opacity: 1; }
+      .services__title { color: $color-accent; }
     }
   }
 
-  &__icon {
-    @include flex-center;
-    width: 3rem;
-    height: 3rem;
-    margin-bottom: $space-md;
-    border-radius: $radius-md;
-    background: rgba(241, 184, 0, 0.08);
-    color: #F1B800;
-  }
-
-  &__title {
-    font-size: $text-xl;
+  &__num {
+    display: block;
+    font-family: $font-mono;
+    font-size: $text-xs;
     font-weight: 600;
-    color: #fff;
+    letter-spacing: $tracking-wide;
+    color: $color-text-3;
     margin-bottom: $space-sm;
   }
 
-  &__description {
-    font-size: $text-base;
-    line-height: $leading-normal;
-    color: rgba(255, 255, 255, 0.76);
+  &__title {
+    @include display;
+    font-size: $text-xl;
+    margin-bottom: 0.5rem;
+    transition: color $transition-base;
   }
+
+  &__desc {
+    font-size: $text-sm;
+    line-height: $leading-normal;
+    color: $color-text-2;
+  }
+
+  // --- Tech stack: infinite carousel with fading edges ----------
+  &__marquee {
+    margin-top: $space-xl;
+    overflow: hidden;
+    // Ends dissolve into a gradient — text appears to fade away.
+    mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
+
+    &:hover .services__track {
+      animation-play-state: paused;
+    }
+  }
+
+  &__track {
+    display: flex;
+    width: max-content;
+    animation: stack-scroll 38s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+
+  &__tag {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 0.6rem; // trailing margin on every chip → seamless -50% loop
+    padding: 0.5rem 0.9rem;
+    @include glass-chip;
+    border-radius: $radius-sm;
+    font-family: $font-mono;
+    font-size: $text-2xs;
+    letter-spacing: $tracking-wide;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: $color-text-2;
+
+    &:hover {
+      border-color: $color-glass-edge;
+      background: $color-glass-2;
+      color: $color-accent;
+    }
+  }
+
+  &__tag-icon {
+    flex-shrink: 0;
+    font-size: 1.05rem;
+    color: $color-accent;
+  }
+}
+
+@keyframes stack-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }

@@ -1,75 +1,33 @@
 @use './styles/variables' as *;
+@use './styles/mixins' as *;
 
 .App {
-  min-height: 100vh;
   position: relative;
+  min-height: 100vh;
   isolation: isolate;
-  background: #002835;
+  background: $color-bg;
 
-  &::after {
+  // Blueprint guide lines — faint vertical structure spanning the page,
+  // sits behind all content and the WebGL field. Reads as an engineering grid.
+  &::before {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: 0;
+    z-index: $z-grid;
     pointer-events: none;
-    background:
-      radial-gradient(
-        ellipse 70% 52% at 50% 32%,
-        rgba(0, 40, 53, 0.16) 0%,
-        rgba(0, 40, 53, 0.3) 56%,
-        rgba(0, 20, 28, 0.42) 100%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(0, 25, 34, 0.2) 0%,
-        rgba(0, 40, 53, 0.1) 36%,
-        rgba(0, 20, 28, 0.34) 100%
-      );
+    @include blueprint-lines($step: clamp(120px, 16.666vw, 240px));
+    opacity: 0.6;
+    mask-image: linear-gradient(to bottom, transparent 0, #000 18%, #000 100%);
   }
 
   main,
   footer {
     position: relative;
-    z-index: 1;
+    z-index: $z-content;
   }
 }
 
 body {
-  background: #002835 !important;
+  background: $color-bg;
   margin: 0;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #002835;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #0a3a4d;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #114c63;
-}
-
-::selection {
-  background-color: rgba(241, 184, 0, 0.2);
-  color: #fff;
-}
-
-.animate-item {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .App * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }
