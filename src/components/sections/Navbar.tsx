@@ -8,7 +8,6 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Team", href: "#team" },
   { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = React.memo(function Navbar() {
