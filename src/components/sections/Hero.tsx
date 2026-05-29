@@ -28,14 +28,14 @@ const Hero = React.memo(function Hero() {
         </p>
 
         <h1 className="hero__tagline">
-          Software that lasts
+          Software that lasts.
           <br />
-          <span className="hero__tagline-accent">Community</span> that builds
+          <span className="hero__tagline-accent">Community</span> that builds.
         </h1>
 
         <p className="hero__description">
           Senior engineers who ship Web3, AI and full-stack products built to
-          survive production – and stay maintainable long after launch
+          survive production – and stay maintainable long after launch.
         </p>
 
         <div className="hero__actions">

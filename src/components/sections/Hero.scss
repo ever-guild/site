@@ -6,7 +6,8 @@
   z-index: $z-content;
   display: flex;
   align-items: center;
-  min-height: 88vh;
+  min-height: 100vh;
+  min-height: 100svh; // full screen — keep the next section from peeking in
   padding-block: 8rem 4rem;
 
   &__inner {

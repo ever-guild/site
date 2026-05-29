@@ -62,7 +62,9 @@ export default function Scene() {
   const isPhone = useMediaQuery('(max-width: 600px)');
   const isTablet = useMediaQuery('(max-width: 1024px)');
   const scroll = useScrollMorph();
-  const particleOpacity = isPhone ? 0.55 : isTablet ? 0.82 : 1;
+  // Fade the field down to 20% of its base opacity as the page scrolls.
+  const baseOpacity = isPhone ? 0.55 : isTablet ? 0.82 : 1;
+  const particleOpacity = baseOpacity * (1 - scroll * 0.8);
 
   const [webglReady] = useState(supportsWebGL);
 
