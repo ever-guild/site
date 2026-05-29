@@ -73,7 +73,8 @@ Before → After (предложение, финал подтверждаем п
 
 - **Hero eyebrow:** `Remote-first software engineering guild`
   → `Senior-led · Remote-first · Since 2021`
-- **Hero tagline:** `Software that lasts. Community that builds.` – оставляем (бренд-линия).
+- **Hero tagline:** `Software that lasts. Team that builds.` – лендинг
+  позиционирует Ever Guild как senior team. Community-смысл закрепляем за GitHub.
 - **Hero description:** `A small team of senior engineers building and maintaining quality software – Web3, AI and full-stack – without the technical debt.`
   → `Senior engineers who ship Web3, AI and full-stack products built to survive production – and stay maintainable long after launch`
 - **About title:** `A senior-led engineering guild`

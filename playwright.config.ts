@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests/acceptance',
+  snapshotPathTemplate: '{testDir}/{testFilePath}-snapshots/{arg}{ext}',
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['github'], ['list']] : 'list',
@@ -21,6 +22,7 @@ export default defineConfig({
   projects: [
     {
       name: 'desktop',
+      testIgnore: /animation\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 1440, height: 1100 },
@@ -29,11 +31,25 @@ export default defineConfig({
     },
     {
       name: 'mobile',
+      testIgnore: /animation\.spec\.ts/,
       use: {
         ...devices['Pixel 5'],
         viewport: { width: 390, height: 844 },
         deviceScaleFactor: 1,
         isMobile: true,
+      },
+    },
+    {
+      name: 'animation',
+      testMatch: /animation\.spec\.ts/,
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1440, height: 1100 },
+        deviceScaleFactor: 1,
+        reducedMotion: 'no-preference',
+        launchOptions: {
+          args: ['--ignore-gpu-blocklist', '--use-gl=swiftshader'],
+        },
       },
     },
   ],
