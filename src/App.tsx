@@ -1,4 +1,5 @@
 import './App.scss';
+import Scene from './components/three/Scene';
 import Navbar from './components/sections/Navbar';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
@@ -10,6 +11,7 @@ import Footer from './components/sections/Footer';
 function App() {
   return (
     <div className="App">
+      <Scene />
       <Navbar />
       <main>
         <Hero />

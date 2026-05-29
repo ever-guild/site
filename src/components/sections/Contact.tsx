@@ -13,9 +13,18 @@ export const Contact = React.memo(function Contact() {
           lead="Tell us what you're building. We reply within a day."
         />
 
-        <Button href="https://order.ever-guild.net/" size="lg" className="contact__cta">
-          Start a project
-        </Button>
+        <a
+          href="mailto:in@ever-guild.net"
+          className="contact__email"
+          aria-label="Email Ever Guild at in@ever-guild.net"
+        >
+          <span className="contact__email-text">in@ever-guild.net</span>
+          <ArrowUpRight size={28} strokeWidth={1.8} className="contact__email-arrow" />
+        </a>
+
+        <p className="contact__note">
+          Tell us what you're building. We reply within a day.
+        </p>
       </div>
     </Section>
   );

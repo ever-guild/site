@@ -6,13 +6,86 @@
   z-index: $z-content;
   @include section-padding;
   @include scroll-offset;
+  // NOTE: no scroll-reveal here. A scroll-timeline animation (opacity) on the
+  // section promotes it to a composited layer = a backdrop root, which kills
+  // the glass cards' backdrop-filter (nothing left to blur). Keep sections
+  // un-layered so the frosted blur can sample the WebGL field behind them.
 
-  &--alt {
-    background: $color-bg-alt;
-    border-block: 1px solid $color-border;
+  // Transparent — the background particle field shows through at full strength.
+  background: transparent;
+
+  &--alt,
+  &--dark {
+    background: transparent;
   }
 
   &__container {
     @include container;
+  }
+
+  // --- Index / blueprint column ----------------------------------
+  &__index {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: $space-md;
+    padding-bottom: $space-sm;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__index-label {
+    @include mono-label;
+    // Inherit the old index-number look: gold accent, mono — bigger and bolder.
+    color: $color-accent;
+    font-size: $text-lg;
+    font-weight: 700;
+    position: relative;
+    padding-left: 1.4rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0.9rem;
+      height: 1px;
+      background: $color-border-2;
+    }
+  }
+
+  // --- Indexed layout: asymmetric grid on desktop ----------------
+  &--indexed &__container {
+    @include desktop-up {
+      @include grid-12;
+      align-items: start;
+      row-gap: 0;
+    }
+  }
+
+  &--indexed &__index {
+    @include desktop-up {
+      grid-column: 1 / span 2;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      position: sticky;
+      top: 96px;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+
+      .section__index-label {
+        padding-left: 0;
+        &::before { display: none; }
+      }
+    }
+  }
+
+  &--indexed &__body {
+    @include desktop-up {
+      // Wider content: index keeps cols 1–2, body starts at col 3
+      // (narrower gutter → content spans more of the grid).
+      grid-column: 3 / -1;
+    }
   }
 }

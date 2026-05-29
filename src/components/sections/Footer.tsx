@@ -18,16 +18,9 @@ export const Footer = React.memo(function Footer() {
           <span className="footer__tag">Senior engineering team</span>
         </div>
 
-        <p className="footer__copyright">Copyright 2026 Ever Guild</p>
-
-        <a
-          className="footer__email"
-          href="mailto:in@ever-guild.net?subject=New%20project%20enquiry"
-        >
-          in@ever-guild.net
-        </a>
-
-        <a className="footer__top" href="#hero">Back to top</a>
+        <p className="footer__copyright">
+          © 2026 Ever Guild
+        </p>
 
         <div className="footer__socials">
           {socials.map((social) => (

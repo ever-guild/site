@@ -13,9 +13,27 @@
     background-color $transition-base,
     border-color $transition-base;
 
-  &--scrolled {
-    background: rgba(1, 24, 28, 0.98);
-    border-bottom-color: $color-border;
+  // Blur-only backdrop (no darkening tint) with a feathered bottom edge.
+  // Lives on a pseudo-element so the logo/links stay crisp and unmasked.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 -24px 0;
+    z-index: -1;
+    pointer-events: none;
+    // Blur only — no darkening tint.
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    // Feather the bottom edge so there is no hard line under the header.
+    mask-image: linear-gradient(to bottom, #000 0%, #000 48%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 48%, transparent 100%);
+    // Smooth fade from clear to blurred as the user scrolls.
+    opacity: 0;
+    transition: opacity 320ms ease;
+  }
+
+  &--scrolled::before {
+    opacity: 1;
   }
 
   &__container {

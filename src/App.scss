@@ -7,8 +7,9 @@
   min-height: 100vh;
   background: $color-bg;
 
-  &::before,
-  &::after {
+  // Blueprint guide lines — faint vertical structure spanning the page,
+  // sits behind all content and the WebGL field. Reads as an engineering grid.
+  &::before {
     content: "";
     position: fixed;
     inset: 0;

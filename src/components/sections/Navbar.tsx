@@ -8,6 +8,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Team", href: "#team" },
   { label: "Services", href: "#services" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = React.memo(function Navbar() {
@@ -49,14 +50,7 @@ const Navbar = React.memo(function Navbar() {
     <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
       <div className="navbar__container">
         <a href="#" className="navbar__brand" onClick={closeMobileMenu}>
-          <img
-            src={logo}
-            alt="Ever Guild"
-            className="navbar__logo"
-            width="1020"
-            height="157"
-            fetchPriority="high"
-          />
+          <img src={logo} alt="Ever Guild" className="navbar__logo" />
         </a>
 
         <nav

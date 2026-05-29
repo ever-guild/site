@@ -5,10 +5,10 @@
   position: relative;
   z-index: $z-content;
   display: flex;
-  align-items: flex-start;
-  min-height: auto;
-  padding-block: clamp(5.5rem, 12vh, 7rem) clamp(3rem, 6vh, 4.5rem);
-  border-bottom: 1px solid $color-border;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh; // full screen — keep the next section from peeking in
+  padding-block: 8rem 4rem;
 
   &__inner {
     @include container;
