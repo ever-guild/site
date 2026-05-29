@@ -12,7 +12,7 @@ Security updates are applied to the `main` branch.
 
 Please do not open a public issue for security reports.
 
-Send vulnerability reports to `n@ever-guild.net` with:
+Send vulnerability reports to `in@ever-guild.net` with:
 
 - Affected URL, dependency, workflow, or source file.
 - Steps to reproduce or a proof of concept.
