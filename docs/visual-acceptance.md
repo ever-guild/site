@@ -9,6 +9,10 @@ The baseline covers:
 - mobile hero, team and contact viewport states;
 - real scroll/anchor positions rather than isolated components.
 
+There is also a non-baseline animation smoke test. It runs with reduced motion
+disabled and verifies that two captured hero frames differ, while keeping the
+approved screenshot baselines static and deterministic.
+
 Update the approved screenshots only when a visual change is intentional:
 
 ```bash
