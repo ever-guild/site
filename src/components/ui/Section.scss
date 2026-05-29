@@ -23,19 +23,43 @@
   // --- Index / blueprint column ----------------------------------
   &__index {
     display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
+    align-items: center;
+    gap: 0.75rem;
     margin-bottom: $space-md;
     padding-bottom: $space-sm;
     border-bottom: 1px solid $color-border;
   }
 
-  &__index-num {
-    font-family: $font-mono;
-    font-size: $text-sm;
-    font-weight: 600;
+  &__sigil {
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
     color: $color-accent;
-    letter-spacing: $tracking-wide;
+    filter: drop-shadow(0 0 10px rgba(241, 184, 0, 0.10));
+  }
+
+  &__sigil-ring,
+  &__sigil-ray,
+  &__sigil-glyph {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &__sigil-ring {
+    stroke-width: 1.2;
+    opacity: 0.62;
+  }
+
+  &__sigil-ray {
+    stroke-width: 1;
+    opacity: 0.32;
+  }
+
+  &__sigil-glyph {
+    stroke-width: 2;
+    opacity: 0.9;
   }
 
   &__index-label {
@@ -75,7 +99,10 @@
       padding-bottom: 0;
       border-bottom: 0;
 
-      .section__index-num { font-size: $text-xl; }
+      .section__sigil {
+        width: 3rem;
+        height: 3rem;
+      }
       .section__index-label {
         padding-left: 0;
         &::before { display: none; }
