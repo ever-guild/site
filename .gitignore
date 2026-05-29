@@ -29,6 +29,9 @@ lerna-debug.log*
 # Test and coverage output
 coverage/
 
+# Lighthouse CI output
+.lighthouseci/
+
 # Local screenshot helpers (machine-specific paths, puppeteer-core)
 .shot.mjs
 .shot-dev.mjs

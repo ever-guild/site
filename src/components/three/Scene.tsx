@@ -4,6 +4,22 @@ import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 const InfinityField = lazy(() => import('./InfinityField'));
 
+// Feature-detect WebGL so environments without a GPU context (headless scanners,
+// locked-down devices, blocked WebGL) degrade gracefully to the flat background
+// instead of throwing an uncaught Three.js error.
+function supportsWebGL(): boolean {
+  if (typeof document === 'undefined') return false;
+  try {
+    const canvas = document.createElement('canvas');
+    return Boolean(
+      window.WebGLRenderingContext &&
+        (canvas.getContext('webgl2') || canvas.getContext('webgl')),
+    );
+  } catch {
+    return false;
+  }
+}
+
 // Overall scroll progress (0..1) – subtly feeds the loop's scale & drift.
 function useScrollMorph(): number {
   const [morph, setMorph] = useState(0);
@@ -48,17 +64,22 @@ export default function Scene() {
   const scroll = useScrollMorph();
   const particleOpacity = isPhone ? 0.55 : isTablet ? 0.82 : 1;
 
+  const [webglReady] = useState(supportsWebGL);
+
+  const wrapperStyle = {
+    position: 'fixed',
+    inset: 0,
+    zIndex: 0,
+    pointerEvents: 'none',
+    background: '#001D25',
+  } as const;
+
+  if (!webglReady) {
+    return <div aria-hidden="true" style={wrapperStyle} />;
+  }
+
   return (
-    <div
-      aria-hidden="true"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 0,
-        pointerEvents: 'none',
-        background: '#001D25',
-      }}
-    >
+    <div aria-hidden="true" style={wrapperStyle}>
       <Canvas
         dpr={[1, 2]}
         camera={{ position: [0, 0, 18], fov: 45, near: 0.1, far: 100 }}

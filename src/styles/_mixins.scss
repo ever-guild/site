@@ -148,7 +148,6 @@
 @mixin reveal {
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      opacity: 0;
       transform: translateY(22px);
       animation: reveal-up linear both;
       animation-timeline: view();

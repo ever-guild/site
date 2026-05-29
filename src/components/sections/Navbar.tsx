@@ -31,7 +31,7 @@ const Navbar = React.memo(function Navbar() {
     <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
       <div className="navbar__container">
         <a href="#" className="navbar__brand" onClick={closeMobileMenu}>
-          <img src={logo} alt="Ever Guild" className="navbar__logo" />
+          <img src={logo} alt="Ever Guild" className="navbar__logo" width={1020} height={157} />
         </a>
 
         <nav
