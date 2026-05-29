@@ -51,14 +51,19 @@ export const Team = React.memo(function Team() {
       <SectionHeader title="The senior engineers you'll work with directly." />
 
       <div className="team">
-        {team.map((member) => (
+        {team.map((member, i) => (
           <article key={member.name} className="team__card">
-            <img
-              src={member.avatar}
-              alt={member.name}
-              className="team__avatar"
-              loading="lazy"
-            />
+            <div className="team__photo">
+              <img
+                src={member.avatar}
+                alt={member.name}
+                className="team__avatar"
+                loading="lazy"
+              />
+              <span className="team__idx" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
 
             <div className="team__body">
               <h3 className="team__name">{member.name}</h3>

@@ -2,8 +2,28 @@
 @use '../../styles/mixins' as *;
 
 .footer {
-  border-top: 1px solid rgba(241, 184, 0, 0.22);
+  position: relative;
+  border-top: 1px solid $color-border-3;
   background: $color-warm-deep;
+
+  // Engineering ruler — short ticks hanging from the gold top edge.
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(241, 184, 0, 0.32) 0,
+      rgba(241, 184, 0, 0.32) 1px,
+      transparent 1px,
+      transparent 28px
+    );
+    opacity: 0.6;
+  }
 
   &__container {
     @include container;
@@ -29,9 +49,24 @@
   }
 
   &__wordmark {
+    position: relative;
     @include display;
-    font-size: $text-xl;
-    color: $color-text;
+    font-size: $text-2xl;
+    letter-spacing: $tracking-tight;
+    color: $color-cream;
+    padding-left: 1.4rem;
+
+    // Gold crosshair "+" datum before the wordmark.
+    &::before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: $font-mono;
+      font-size: 0.85rem;
+      color: $color-accent;
+    }
   }
 
   &__tag {
@@ -75,6 +110,29 @@
       outline-offset: 3px;
       border-radius: $radius-sm;
     }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $space-md;
+
+    @media (min-width: 1100px) {
+      flex: 0 0 auto;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+  }
+
+  &__top {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    letter-spacing: $tracking-wide;
+    text-transform: uppercase;
+    color: rgba(255, 231, 156, 0.62);
+    transition: color $transition-base;
+
+    &:hover { color: $color-accent; }
   }
 
   &__socials {

@@ -18,9 +18,10 @@ export const Footer = React.memo(function Footer() {
           <span className="footer__tag">Senior engineering team</span>
         </div>
 
-        <p className="footer__copyright">
-          © 2026 Ever Guild
-        </p>
+        <div className="footer__meta">
+          <p className="footer__copyright">© 2026 Ever Guild</p>
+          <a className="footer__top" href="#hero">↑ Top</a>
+        </div>
 
         <div className="footer__socials">
           {socials.map((social) => (
