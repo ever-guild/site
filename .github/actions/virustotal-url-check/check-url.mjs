@@ -1,4 +1,5 @@
 /* global Buffer, console, fetch, process, setTimeout */
+import crypto from "node:crypto";
 import fs from "node:fs";
 
 const API_BASE = "https://www.virustotal.com/api/v3";
@@ -54,6 +55,30 @@ function loadLocalEnv() {
 
 function urlId(url) {
   return Buffer.from(url).toString("base64url");
+}
+
+function reportUrlId(url) {
+  return crypto.createHash("sha256").update(url).digest("hex");
+}
+
+function count(value) {
+  const number = Number(value);
+  return Number.isSafeInteger(number) && number >= 0 ? number : 0;
+}
+
+function normalizeStats(stats = {}) {
+  return {
+    malicious: count(stats.malicious),
+    suspicious: count(stats.suspicious),
+    harmless: count(stats.harmless),
+    undetected: count(stats.undetected),
+    timeout: count(stats.timeout),
+  };
+}
+
+function analysisDate(value) {
+  const timestamp = count(value);
+  return timestamp ? new Date(timestamp * 1000).toISOString() : "unknown";
 }
 
 function output(name, value) {
@@ -132,16 +157,13 @@ function collectFlagged(results = {}) {
     .sort((a, b) => a.engineName.localeCompare(b.engineName));
 }
 
-function writeSummary({ stats, flagged, reportUrl, lastAnalysisDate }) {
+function writeSummary({ stats, reportUrl, lastAnalysisDate }) {
   const summaryPath = process.env.GITHUB_STEP_SUMMARY;
   if (!summaryPath) {
     return;
   }
 
-  const date = lastAnalysisDate ? new Date(lastAnalysisDate * 1000).toISOString() : "unknown";
-  const rows = flagged.length
-    ? flagged.map(({ engineName, category, result }) => `| ${engineName} | ${category} | ${result || ""} |`).join("\n")
-    : "| none | clean | |";
+  const date = analysisDate(lastAnalysisDate);
 
   fs.appendFileSync(
     summaryPath,
@@ -154,15 +176,14 @@ function writeSummary({ stats, flagged, reportUrl, lastAnalysisDate }) {
       "",
       `Stats: malicious=${stats.malicious || 0}, suspicious=${stats.suspicious || 0}, harmless=${stats.harmless || 0}, undetected=${stats.undetected || 0}`,
       "",
-      "| Engine | Category | Result |",
-      "| --- | --- | --- |",
-      rows,
+      "Flagged engine details are printed in the action log.",
       "",
     ].join("\n"),
   );
 }
 
 const id = urlId(targetUrl);
+const reportId = reportUrlId(targetUrl);
 
 console.log(`Checking ${targetUrl}`);
 console.log(`VirusTotal URL id: ${id}`);
@@ -176,9 +197,9 @@ if (reanalyze) {
 
 const report = await getReport(id);
 const attributes = report?.data?.attributes || {};
-const stats = attributes.last_analysis_stats || {};
+const stats = normalizeStats(attributes.last_analysis_stats);
 const flagged = collectFlagged(attributes.last_analysis_results);
-const vtUrlId = report?.data?.id || id;
+const vtUrlId = reportId;
 const reportUrl = `https://www.virustotal.com/gui/url/${vtUrlId}`;
 
 output("url-id", vtUrlId);
@@ -190,7 +211,6 @@ output("undetected", stats.undetected || 0);
 
 writeSummary({
   stats,
-  flagged,
   reportUrl,
   lastAnalysisDate: attributes.last_analysis_date,
 });
