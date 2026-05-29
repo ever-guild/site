@@ -1,0 +1,22 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.sec-head {
+  margin-bottom: $space-xl;
+
+  &__title {
+    @include display;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: $leading-tight;
+    letter-spacing: $tracking-tight;
+    max-width: 18ch;
+  }
+
+  &__lead {
+    margin-top: $space-md;
+    max-width: 54ch;
+    font-size: $text-lg;
+    line-height: $leading-relaxed;
+    color: $color-text-2;
+  }
+}

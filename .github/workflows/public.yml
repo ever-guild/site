@@ -9,16 +9,13 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  deploy:
+  # Build + checks. Runs on every PR and on push to main.
+  # No environment binding, so PRs never touch github-pages.
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
       contents: read
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -37,6 +34,19 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           path: ./dist
+
+  # Deploy only on push to main, after a successful build.
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - uses: actions/deploy-pages@v5
         id: deployment
-        if: github.ref == 'refs/heads/main'

@@ -6,21 +6,23 @@
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
-  border-radius: $radius-md;
-  color: rgba(255, 255, 255, 0.68);
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  color: $color-text-2;
   background: transparent;
-  transition: color $transition-base, background-color $transition-base, transform $transition-base;
+  transition:
+    color $transition-base,
+    border-color $transition-base,
+    background-color $transition-base;
 
   &:hover {
-    color: #F1B800;
-    background-color: rgba(241, 184, 0, 0.08);
-    transform: translateY(-2px);
+    color: $color-accent;
+    border-color: $color-accent-line;
+    background: $color-accent-soft;
   }
 
   svg {
-    width: 100%;
-    height: 100%;
-    max-width: 1.375rem;
-    max-height: 1.375rem;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }

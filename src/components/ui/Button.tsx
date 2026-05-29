@@ -37,6 +37,7 @@ export const Button = React.memo(function Button({
         href={href}
         className={classes}
         aria-label={ariaLabel}
+        onClick={onClick}
         target={href.startsWith('http') ? '_blank' : undefined}
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
       >

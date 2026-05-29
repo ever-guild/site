@@ -3,55 +3,89 @@
 
 .section {
   position: relative;
-  z-index: 1;
+  z-index: $z-content;
   @include section-padding;
+  @include scroll-offset;
+  @include reveal;
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(
-        ellipse 72% 62% at 50% 22%,
-        rgba(0, 40, 53, 0.3) 0%,
-        rgba(0, 26, 35, 0.42) 68%,
-        rgba(0, 17, 24, 0.54) 100%
-      );
-  }
+  // Transparent — the background particle field shows through at full strength.
+  background: transparent;
 
-  &--default::before {
-    background:
-      radial-gradient(
-        ellipse 72% 62% at 50% 22%,
-        rgba(0, 40, 53, 0.26) 0%,
-        rgba(0, 26, 35, 0.38) 68%,
-        rgba(0, 17, 24, 0.5) 100%
-      );
-  }
-
-  &--alt::before {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(0, 23, 31, 0.44) 0%,
-        rgba(0, 42, 55, 0.34) 42%,
-        rgba(0, 18, 26, 0.5) 100%
-      );
-  }
-
+  &--alt,
   &--dark {
-    background: rgba(0, 20, 28, 0.4);
-  }
-
-  &--dark::before {
-    background: rgba(0, 16, 22, 0.56);
+    background: transparent;
   }
 
   &__container {
-    position: relative;
-    z-index: 1;
     @include container;
+  }
+
+  // --- Index / blueprint column ----------------------------------
+  &__index {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: $space-md;
+    padding-bottom: $space-sm;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__index-num {
+    font-family: $font-mono;
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $color-accent;
+    letter-spacing: $tracking-wide;
+  }
+
+  &__index-label {
+    @include mono-label;
+    position: relative;
+    padding-left: 1.4rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0.9rem;
+      height: 1px;
+      background: $color-border-2;
+    }
+  }
+
+  // --- Indexed layout: asymmetric grid on desktop ----------------
+  &--indexed &__container {
+    @include desktop-up {
+      @include grid-12;
+      align-items: start;
+      row-gap: 0;
+    }
+  }
+
+  &--indexed &__index {
+    @include desktop-up {
+      grid-column: 1 / span 2;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      position: sticky;
+      top: 96px;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+
+      .section__index-num { font-size: $text-xl; }
+      .section__index-label {
+        padding-left: 0;
+        &::before { display: none; }
+      }
+    }
+  }
+
+  &--indexed &__body {
+    @include desktop-up {
+      grid-column: 4 / -1;
+    }
   }
 }

@@ -18,8 +18,8 @@ export default defineConfig({
         name: 'Ever Guild',
         short_name: 'Ever Guild',
         description: 'Community for maintain and distribution software',
-        theme_color: '#002835',
-        background_color: '#002835',
+        theme_color: '#001D25',
+        background_color: '#001D25',
         icons: [
           {
             src: faviconURL,

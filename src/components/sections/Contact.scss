@@ -2,34 +2,46 @@
 @use '../../styles/mixins' as *;
 
 .contact {
-  text-align: center;
+  &__email {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-md;
+    padding: $space-lg;
+    margin-top: $space-lg;
+    @include glass;
+    border-radius: $radius-md;
+    color: $color-text;
 
-  &__heading {
-    font-size: $text-3xl;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: $space-md;
+    &:hover {
+      border-color: $color-glass-edge;
+      background: $color-glass-2;
 
-    @include tablet-up {
-      font-size: $text-4xl;
+      .contact__email-arrow {
+        transform: translate(4px, -4px);
+      }
     }
   }
 
-  &__subtext {
-    font-size: $text-lg;
+  &__email-text {
+    @include display;
+    font-size: clamp(1.5rem, 5vw, 2.75rem);
+    color: inherit;
+    word-break: break-word;
+  }
+
+  &__email-arrow {
+    flex-shrink: 0;
+    color: $color-accent;
+    transition: transform $transition-base;
+  }
+
+  &__note {
+    margin-top: $space-lg;
+    max-width: 48ch;
+    font-size: $text-base;
     line-height: $leading-relaxed;
-    color: rgba(255, 255, 255, 0.78);
-    max-width: 520px;
-    margin: 0 auto $space-xl;
-  }
-
-  &__cta {
-    margin-bottom: $space-xl;
-  }
-
-  &__socials {
-    @include flex-center;
-    gap: $space-sm;
-    flex-wrap: wrap;
+    color: $color-text-2;
   }
 }
