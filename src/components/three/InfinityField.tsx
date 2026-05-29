@@ -306,11 +306,25 @@ export default function InfinityField({ reducedMotion = false, opacity = 1, scro
     () => ({
       uTime: { value: 0 },
       uPixelRatio: { value: Math.min(gl.getPixelRatio(), 2) },
-      uOpacity: { value: opacity },
-      uScroll: { value: scroll },
+      uOpacity: { value: 1 },
+      uScroll: { value: 0 },
     }),
     [gl],
   );
+
+  useEffect(() => {
+    currentOpacity.current = opacity;
+    if (materialRef.current) {
+      materialRef.current.uniforms.uOpacity.value = opacity;
+    }
+  }, [opacity]);
+
+  useEffect(() => {
+    currentScroll.current = scroll;
+    if (materialRef.current) {
+      materialRef.current.uniforms.uScroll.value = scroll;
+    }
+  }, [scroll]);
 
   useFrame((state, delta) => {
     if (reducedMotion) {
