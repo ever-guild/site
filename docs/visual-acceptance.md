@@ -10,6 +10,7 @@ The baseline covers:
 - focused navbar states, including the scrolled blur layer;
 - focused glass surfaces in normal and hover states;
 - CSS guards for active `backdrop-filter` and translucent glass backgrounds;
+- stable page baselines with the non-deterministic WebGL canvas hidden;
 - real scroll/anchor positions rather than isolated components.
 
 There is also a non-baseline animation smoke test. It runs with reduced motion

@@ -47,9 +47,11 @@ async function waitForScrolledNavbarEffect(page: Page) {
 }
 
 async function waitForVisualReady(page: Page) {
+  await page.addStyleTag({
+    content: 'canvas { visibility: hidden !important; }',
+  });
   await page.evaluate(() => document.fonts.ready);
-  await page.locator('canvas').first().waitFor({ state: 'attached', timeout: 3_000 }).catch(() => undefined);
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(300);
 }
 
 const states = [
