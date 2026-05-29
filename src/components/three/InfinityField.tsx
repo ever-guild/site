@@ -1,5 +1,5 @@
 import { useFrame, useThree } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
 interface InfinityFieldProps {
@@ -265,7 +265,9 @@ export default function InfinityField({ reducedMotion = false, opacity = 1, scro
   const particles = useMemo(() => createParticles(), []);
   const { gl, viewport } = useThree();
 
-  scrollRef.current = scroll;
+  useEffect(() => {
+    scrollRef.current = scroll;
+  }, [scroll]);
 
   // Responsive sizing/placement across phone / tablet / desktop tiers.
   const w = viewport.width;
@@ -289,7 +291,7 @@ export default function InfinityField({ reducedMotion = false, opacity = 1, scro
       uOpacity: { value: opacity },
       uScroll: { value: scroll },
     }),
-    [gl],
+    [gl, opacity, scroll],
   );
 
   useFrame((state, delta) => {

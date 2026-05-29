@@ -17,19 +17,18 @@ export function useScrollAnimation<T extends HTMLElement>(
   options: ScrollAnimationOptions = {}
 ) {
   const ref = useRef<T>(null);
+  const {
+    y = 40,
+    opacity = 0,
+    duration = 0.8,
+    delay = 0,
+    stagger = 0.1,
+    start = 'top 85%',
+  } = options;
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    const {
-      y = 40,
-      opacity = 0,
-      duration = 0.8,
-      delay = 0,
-      stagger = 0.1,
-      start = 'top 85%',
-    } = options;
 
     const children = el.querySelectorAll('.animate-item');
     const targets = children.length > 0 ? children : el;
@@ -56,7 +55,7 @@ export function useScrollAnimation<T extends HTMLElement>(
         if (t.trigger === el) t.kill();
       });
     };
-  }, []);
+  }, [delay, duration, opacity, stagger, start, y]);
 
   return ref;
 }

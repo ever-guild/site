@@ -1,24 +1,44 @@
-# `@ever-guild/site`
+# Ever Guild Site
 
-## Run development website locally
-```
-npm start
+Public website for Ever Guild.
+
+## Stack
+
+- React
+- TypeScript
+- Vite
+- SCSS
+- Three.js
+
+## Development
+
+Install dependencies:
+
+```sh
+npm ci
 ```
 
-## Build production files - to "dist" folder
+Run the local dev server:
+
+```sh
+npm run dev
 ```
+
+Check code:
+
+```sh
+npm run lint
 npm run build
 ```
-* Ensure there are no TypeScript errors, otherwise complilation will be aborted.
-* Build files will be placed in the "dist" folder by default.
-* To change build folder, add this line to *[vite.config.ts](https://github.com/MengLinMaker/PWA-Vite-React-Boilerplate/blob/main/vite.config.ts)* `defineConfig`:
-```javascript
-build: {
-  outDir: './build-directory'
-},
-```
 
-## Run production build website locally
-```
+Preview the production build:
+
+```sh
 npm run preview
 ```
+
+## Deployment
+
+The site is deployed to GitHub Pages from `main`.
+
+CI runs lint and build on pull requests and pushes to `main`.
