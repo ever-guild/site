@@ -20,7 +20,7 @@ export default defineConfig({
       manifest: {
         name: 'Ever Guild',
         short_name: 'Ever Guild',
-        description: 'Community for maintain and distribution software',
+        description: 'Senior-led software engineering guild for Web3, AI, full-stack delivery, technical audits and crisis support.',
         theme_color: '#001D25',
         background_color: '#001D25',
         icons: [
