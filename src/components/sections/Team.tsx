@@ -10,7 +10,7 @@ import "./Team.scss";
 
 const team = [
   {
-    name: "Ilia",
+    name: "Ilyar",
     role: "Senior Engineer · Web3 Lead",
     avatar: iljarAvatar,
     github: "https://github.com/ilyar",

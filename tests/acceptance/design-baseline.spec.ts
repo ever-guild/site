@@ -54,7 +54,7 @@ test.describe('design baseline', () => {
         animations: 'disabled',
         caret: 'hide',
         fullPage: false,
-        maxDiffPixelRatio: 0.015,
+        maxDiffPixelRatio: 0.003,
       });
     });
   }

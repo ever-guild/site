@@ -30,7 +30,7 @@ const Hero = React.memo(function Hero() {
         <h1 className="hero__tagline">
           Software that lasts.
           <br />
-          <span className="hero__tagline-accent">Community</span> that builds.
+          <span className="hero__tagline-accent">Team</span> that builds.
         </h1>
 
         <p className="hero__description">
