@@ -31,6 +31,12 @@ npm run lint
 npm run build
 ```
 
+Check the public URL with VirusTotal:
+
+```sh
+VIRUSTOTAL_APIKEY=... npm run vt:check
+```
+
 Preview the production build:
 
 ```sh
@@ -42,3 +48,6 @@ npm run preview
 The site is deployed to GitHub Pages from `main`
 
 CI runs lint and build on pull requests and pushes to `main`
+
+After deployment from `main`, CI requests a VirusTotal re-analysis for `https://ever-guild.net/`
+using the `VIRUSTOTAL_APIKEY` repository secret.

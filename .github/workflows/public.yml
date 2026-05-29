@@ -4,6 +4,7 @@ on:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -52,3 +53,20 @@ jobs:
     steps:
       - uses: actions/deploy-pages@v5
         id: deployment
+
+  virustotal:
+    needs: deploy
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/virustotal-url-check
+        with:
+          api-key: ${{ secrets.VIRUSTOTAL_APIKEY }}
+          url: https://ever-guild.net/
+          reanalyze: "true"
+          wait-seconds: "90"
+          fail-on-detection: "false"

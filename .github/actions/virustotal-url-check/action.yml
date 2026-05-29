@@ -1,0 +1,65 @@
+name: VirusTotal URL Check
+description: Check a public URL with VirusTotal URL analysis API.
+
+inputs:
+  api-key:
+    description: VirusTotal API key.
+    required: true
+  url:
+    description: URL to check.
+    required: true
+  reanalyze:
+    description: Request a fresh URL re-analysis before reading the report.
+    required: false
+    default: "true"
+  wait-seconds:
+    description: Maximum number of seconds to wait for a requested re-analysis.
+    required: false
+    default: "90"
+  max-malicious:
+    description: Maximum allowed malicious detections before failing when fail-on-detection is true.
+    required: false
+    default: "0"
+  max-suspicious:
+    description: Maximum allowed suspicious detections before failing when fail-on-detection is true.
+    required: false
+    default: "0"
+  fail-on-detection:
+    description: Fail the action when malicious or suspicious detections exceed configured limits.
+    required: false
+    default: "true"
+
+outputs:
+  url-id:
+    description: VirusTotal URL identifier returned by the API.
+    value: ${{ steps.check.outputs.url-id }}
+  report-url:
+    description: VirusTotal web report URL.
+    value: ${{ steps.check.outputs.report-url }}
+  malicious:
+    description: Malicious detection count.
+    value: ${{ steps.check.outputs.malicious }}
+  suspicious:
+    description: Suspicious detection count.
+    value: ${{ steps.check.outputs.suspicious }}
+  harmless:
+    description: Harmless detection count.
+    value: ${{ steps.check.outputs.harmless }}
+  undetected:
+    description: Undetected count.
+    value: ${{ steps.check.outputs.undetected }}
+
+runs:
+  using: composite
+  steps:
+    - id: check
+      shell: bash
+      env:
+        INPUT_API_KEY: ${{ inputs.api-key }}
+        INPUT_URL: ${{ inputs.url }}
+        INPUT_REANALYZE: ${{ inputs.reanalyze }}
+        INPUT_WAIT_SECONDS: ${{ inputs.wait-seconds }}
+        INPUT_MAX_MALICIOUS: ${{ inputs.max-malicious }}
+        INPUT_MAX_SUSPICIOUS: ${{ inputs.max-suspicious }}
+        INPUT_FAIL_ON_DETECTION: ${{ inputs.fail-on-detection }}
+      run: node "$GITHUB_ACTION_PATH/check-url.mjs"
