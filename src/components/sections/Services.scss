@@ -19,7 +19,7 @@
     padding: $space-lg;
     overflow: hidden;
 
-    // Gold top edge — strengthens on hover.
+    // Gold top edge – strengthens on hover.
     &::before {
       content: "";
       position: absolute;
@@ -68,7 +68,7 @@
   &__marquee {
     margin-top: $space-xl;
     overflow: hidden;
-    // Ends dissolve into a gradient — text appears to fade away.
+    // Ends dissolve into a gradient – text appears to fade away.
     mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
 

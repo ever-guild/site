@@ -1,14 +1,14 @@
 // ============================================
-// Ever Guild — Design Tokens
+// Ever Guild – Design Tokens
 // Brand palette: deep teal base, gold signal,
 // cream highlight, warm-brown grounding.
 // Flat, technological, no gradients/glows.
 // Source of truth: docs/brandbook.md (Colors.svg).
-// Use ONLY these tokens — no ad-hoc hex.
+// Use ONLY these tokens – no ad-hoc hex.
 // ============================================
 
 // --- Surfaces (deep teal scale) ---------------
-$color-bg:           #001D25; // page — deepest
+$color-bg:           #001D25; // page – deepest
 $color-bg-alt:       #002028; // alternating band
 $color-surface:      #002835; // flat cards (brand teal)
 $color-surface-2:    #00323F; // hover / elevated
@@ -30,8 +30,8 @@ $color-text-3:       #889995; // muted / mono labels
 $color-text-4:       #475957; // faintest
 
 // --- Accent (brand gold + cream highlight) ----
-$color-accent:       #F1B800; // gold — primary signal
-$color-accent-2:     #FFE79C; // cream — bright / hover glint
+$color-accent:       #F1B800; // gold – primary signal
+$color-accent-2:     #FFE79C; // cream – bright / hover glint
 $color-gold-2:       #F0B800; // brandbook intermediate (gradient start)
 $color-cream-2:      #FFE89E; // brandbook intermediate (cream halo)
 $color-accent-soft:  rgba(241, 184, 0, 0.10);
@@ -39,7 +39,7 @@ $color-accent-line:  rgba(241, 184, 0, 0.34);
 
 // --- Liquid glass (frosted murky-emerald panels over the field) ---
 $color-glass:        rgba(6, 50, 44, 0.56);   // dark emerald, matte-frosted
-$color-glass-2:      rgba(10, 63, 55, 0.68);  // hover — denser
+$color-glass-2:      rgba(10, 63, 55, 0.68);  // hover – denser
 $color-glass-border: rgba(186, 240, 212, 0.16);
 $color-glass-edge:   rgba(186, 240, 212, 0.30); // hover edge highlight
 $color-glass-sheen:  rgba(255, 255, 255, 0.08); // top rim light
@@ -58,7 +58,7 @@ $color-text-inverse:      $color-on-accent;
 $color-border-strong:     $color-border-2;
 
 // --- Typography -------------------------------
-// Tilt Warp: characterful display — headings only.
+// Tilt Warp: characterful display – headings only.
 // Hanken Grotesk: warm, readable body & UI.
 // JetBrains Mono: small labels / tags.
 $font-display: 'Tilt Warp', system-ui, -apple-system, 'Segoe UI', sans-serif;

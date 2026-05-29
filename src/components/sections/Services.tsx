@@ -10,19 +10,19 @@ import './Services.scss';
 const services = [
   {
     title: 'Web3 & Blockchain',
-    description: 'Production-grade smart contracts and protocol integrations on TON, EVM and NEAR — audited patterns, built to hold real value.',
+    description: 'Production-grade smart contracts and protocol integrations on TON, EVM and NEAR – audited patterns, built to hold real value',
   },
   {
     title: 'AI & Automation',
-    description: 'LLM integrations, AI agents and workflow automation wired into your product — not bolted on as an afterthought.',
+    description: 'LLM integrations, AI agents and workflow automation wired into your product – not bolted on as an afterthought',
   },
   {
     title: 'Full-Stack Development',
-    description: 'React, Next.js and Node.js SaaS platforms, dashboards and marketplaces — shipped fast, built to scale.',
+    description: 'React, Next.js and Node.js SaaS platforms, dashboards and marketplaces – shipped fast, built to scale',
   },
   {
     title: 'Product Design & UI/UX',
-    description: 'Interfaces, prototypes and design systems that stay clean and responsive across every screen.',
+    description: 'Interfaces, prototypes and design systems that stay clean and responsive across every screen',
   },
 ];
 
@@ -44,7 +44,7 @@ const stack = [
 export const Services = React.memo(function Services() {
   return (
     <Section id="services" index="03" label="Services">
-      <SectionHeader title="What we build for you." />
+      <SectionHeader title="What we build for you" />
 
       <div className="services__grid">
         {services.map((service, i) => (

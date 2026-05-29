@@ -3,7 +3,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import InfinityField from './InfinityField';
 
-// Overall scroll progress (0..1) — subtly feeds the loop's scale & drift.
+// Overall scroll progress (0..1) – subtly feeds the loop's scale & drift.
 function useScrollMorph(): number {
   const [morph, setMorph] = useState(0);
 

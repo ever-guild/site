@@ -1,10 +1,10 @@
-# AGENTS.md — Ever Guild Website
+# AGENTS.md – Ever Guild Website
 
 This file provides guidance to AI coding agents (Claude Code, Cursor, Copilot, Kimi CLI, etc.) when working with code in this repository.
 
 ## Repository Overview
 
-**Ever Guild** — Community for maintain and distribution software. A modern, minimalistic, and informative corporate website built with React + TypeScript + Vite + SCSS, enhanced with Three.js for immersive 3D backgrounds and interactions.
+**Ever Guild** – Community for maintain and distribution software. A modern, minimalistic, and informative corporate website built with React + TypeScript + Vite + SCSS, enhanced with Three.js for immersive 3D backgrounds and interactions.
 
 **Live URLs:**
 - Website: https://ever-guild.net/
@@ -13,7 +13,7 @@ This file provides guidance to AI coding agents (Claude Code, Cursor, Copilot, K
 - LinkedIn: https://www.linkedin.com/company/ever-guild/
 - Telegram: https://t.me/everguild
 - Upwork: https://www.upwork.com/agencies/everguild/
-- Email: n@ever-guild.net
+- Email: in@ever-guild.net
 
 **Tech Stack:**
 - React 19 + TypeScript
@@ -28,7 +28,7 @@ This file provides guidance to AI coding agents (Claude Code, Cursor, Copilot, K
 
 The following slash commands are available to agents working on this project:
 
-### `/init` — Initialize Project Context
+### `/init` – Initialize Project Context
 Run at the start of any new session or when context is lost.
 
 **What it does:**
@@ -46,28 +46,28 @@ Run at the start of any new session or when context is lost.
 
 ---
 
-### `/design [target]` — Invoke Impeccable Design Skill
+### `/design [target]` – Invoke Impeccable Design Skill
 Uses the `impeccable` skill for UI/UX work.
 
 **Examples:**
-- `/design craft hero-section` — Design and build the hero section
-- `/design audit` — Run accessibility and performance audit
-- `/design polish` — Final quality pass before shipping
-- `/design animate` — Add purposeful animations
+- `/design craft hero-section` – Design and build the hero section
+- `/design audit` – Run accessibility and performance audit
+- `/design polish` – Final quality pass before shipping
+- `/design animate` – Add purposeful animations
 
 ---
 
-### `/3d [task]` — Invoke Three.js Skill
+### `/3d [task]` – Invoke Three.js Skill
 Uses the `three-agent-skills` skill for 3D/WebGL work.
 
 **Examples:**
-- `/3d setup scene` — Set up a Three.js/R3F scene
-- `/3d optimize` — Review and optimize 3D performance
-- `/3d add particles` — Add particle effects
+- `/3d setup scene` – Set up a Three.js/R3F scene
+- `/3d optimize` – Review and optimize 3D performance
+- `/3d add particles` – Add particle effects
 
 ---
 
-### `/plan` — Show Project Plan
+### `/plan` – Show Project Plan
 Displays the current `PLAN.md` with roadmap, milestones, and progress.
 
 ---
@@ -134,20 +134,20 @@ Displays the current `PLAN.md` with roadmap, milestones, and progress.
 
 ## Design Principles
 
-1. **Minimalist** — Clean lines, generous whitespace, no clutter
-2. **Informative** — Every element serves a purpose
-3. **Modern** — Current web standards, smooth interactions
-4. **Immersive** — Three.js backgrounds add depth without distraction
-5. **Accessible** — WCAG AA compliance, keyboard navigation, screen readers
-6. **Responsive** — Flawless experience from mobile to 4K desktop
+1. **Minimalist** – Clean lines, generous whitespace, no clutter
+2. **Informative** – Every element serves a purpose
+3. **Modern** – Current web standards, smooth interactions
+4. **Immersive** – Three.js backgrounds add depth without distraction
+5. **Accessible** – WCAG AA compliance, keyboard navigation, screen readers
+6. **Responsive** – Flawless experience from mobile to 4K desktop
 
 ---
 
 ## Brand Colors
 
 Derived from the existing brand identity:
-- **Primary:** `#00343d` (deep teal — used in social links)
-- **Accent:** `#ffc400` (gold — used in logo glow)
+- **Primary:** `#00343d` (deep teal – used in social links)
+- **Accent:** `#ffc400` (gold – used in logo glow)
 - **Background:** Light theme with tinted neutrals
 - **Text:** High contrast dark on light
 
@@ -167,7 +167,7 @@ All social/contact links must be present and functional:
 | LinkedIn | https://www.linkedin.com/company/ever-guild/ |
 | Telegram | https://t.me/everguild |
 | Upwork | https://www.upwork.com/agencies/everguild/ |
-| Email | mailto:n@ever-guild.net |
+| Email | mailto:in@ever-guild.net |
 
 ---
 
@@ -191,7 +191,7 @@ npm run preview
 ## Communication Rules for Agents
 
 - **Always use the same language as the user** (Russian/English)
-- **Make minimal changes** — achieve goals with the least code possible
-- **Follow existing patterns** — match the style of surrounding code
-- **Test before declaring done** — run `npm run build` to verify
+- **Make minimal changes** – achieve goals with the least code possible
+- **Follow existing patterns** – match the style of surrounding code
+- **Test before declaring done** – run `npm run build` to verify
 - **Update this file** if conventions or structure change significantly

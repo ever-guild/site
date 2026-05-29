@@ -12,13 +12,13 @@ export const Contact = React.memo(function Contact() {
           title="Let's build something that lasts"
         />
 
-        <a href="mailto:n@ever-guild.net" className="contact__email">
-          <span className="contact__email-text">n@ever-guild.net</span>
+        <a href="mailto:in@ever-guild.net" className="contact__email">
+          <span className="contact__email-text">in@ever-guild.net</span>
           <ArrowUpRight size={28} strokeWidth={1.8} className="contact__email-arrow" />
         </a>
 
         <p className="contact__note">
-          Tell us what you're building. We reply within a day.
+          Tell us what you're building, we reply within a day
         </p>
       </div>
     </Section>

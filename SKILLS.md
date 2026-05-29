@@ -4,13 +4,13 @@ This document catalogs all AI coding skills available in this project under `.ag
 
 ## Skill Registry
 
-### 1. `three-agent-skills` — Three.js & R3F Development
+### 1. `three-agent-skills` – Three.js & R3F Development
 **Path:** `.agents/skills/three-agent-skills/`
 
 AI coding agent skills for Three.js and React Three Fiber development. Follows the [Agent Skills](https://agentskills.io/) specification.
 
 **Contains:**
-- **`three-best-practices`** — Pure Three.js optimization guidelines (100+ rules across 17 categories)
+- **`three-best-practices`** – Pure Three.js optimization guidelines (100+ rules across 17 categories)
   - Modern Setup & Imports, Memory Management & Dispose (CRITICAL)
   - Render Loop Optimization (CRITICAL), Geometry & Buffer Management
   - Material & Texture Optimization, Lighting & Shadows
@@ -20,7 +20,7 @@ AI coding agent skills for Three.js and React Three Fiber development. Follows t
   - WebXR / VR / AR, Mobile Optimization, Production, Debug & DevTools
   - *Reference:* `THREE_BEST_PRACTICES.md`
 
-- **`r3f-best-practices`** — React Three Fiber and Poimandres ecosystem (60+ rules across 11 categories)
+- **`r3f-best-practices`** – React Three Fiber and Poimandres ecosystem (60+ rules across 11 categories)
   - Performance & Re-renders (CRITICAL), useFrame & Animation (CRITICAL)
   - Component Patterns, Canvas & Setup, Drei Helpers
   - Loading & Suspense, State Management (Zustand), Events & Interaction
@@ -31,7 +31,7 @@ AI coding agent skills for Three.js and React Three Fiber development. Follows t
 
 ---
 
-### 2. `impeccable` — Frontend UI/UX Design
+### 2. `impeccable` – Frontend UI/UX Design
 **Path:** `.agents/skills/impeccable/`
 
 Designs and iterates production-grade frontend interfaces. Real working code, committed design choices, exceptional craft.
@@ -76,21 +76,21 @@ Designs and iterates production-grade frontend interfaces. Real working code, co
 
 ---
 
-### 3. `ui-ux-pro-max-skill` — UI/UX Pro Max Design Intelligence
+### 3. `ui-ux-pro-max-skill` – UI/UX Pro Max Design Intelligence
 **Path:** `.agents/skills/ui-ux-pro-max-skill/`
 
 An AI skill that provides design intelligence for building professional UI/UX across multiple platforms and frameworks.
 
 **Key features:**
-- **161 Industry-Specific Reasoning Rules** — matches product type → UI category rules
-- **67 UI Styles** — Glassmorphism, Claymorphism, Minimalism, Brutalism, Neumorphism, Bento Grid, Dark Mode, AI-Native UI, etc.
-- **161 Color Palettes** — Industry-specific palettes aligned 1:1 with product types
-- **57 Font Pairings** — Curated typography combinations with Google Fonts imports
-- **25 Chart Types** — Recommendations for dashboards and analytics
-- **15 Tech Stacks** — React, Next.js, Astro, Vue, Nuxt.js, Svelte, SwiftUI, React Native, Flutter, HTML+Tailwind, shadcn/ui, Jetpack Compose, Angular, Laravel
-- **99 UX Guidelines** — Best practices, anti-patterns, and accessibility rules
+- **161 Industry-Specific Reasoning Rules** – matches product type → UI category rules
+- **67 UI Styles** – Glassmorphism, Claymorphism, Minimalism, Brutalism, Neumorphism, Bento Grid, Dark Mode, AI-Native UI, etc.
+- **161 Color Palettes** – Industry-specific palettes aligned 1:1 with product types
+- **57 Font Pairings** – Curated typography combinations with Google Fonts imports
+- **25 Chart Types** – Recommendations for dashboards and analytics
+- **15 Tech Stacks** – React, Next.js, Astro, Vue, Nuxt.js, Svelte, SwiftUI, React Native, Flutter, HTML+Tailwind, shadcn/ui, Jetpack Compose, Angular, Laravel
+- **99 UX Guidelines** – Best practices, anti-patterns, and accessibility rules
 
-**Design System Generator** — analyzes project requirements and generates a complete, tailored design system with pattern, style, colors, typography, effects, anti-patterns, and pre-delivery checklist.
+**Design System Generator** – analyzes project requirements and generates a complete, tailored design system with pattern, style, colors, typography, effects, anti-patterns, and pre-delivery checklist.
 
 **Supported stacks:** React, Next.js, shadcn/ui, Vue, Nuxt.js, Svelte, Astro, Angular, Laravel, SwiftUI, React Native, Flutter, HTML+Tailwind
 
@@ -98,7 +98,7 @@ An AI skill that provides design intelligence for building professional UI/UX ac
 
 ---
 
-### 4. `agent-skills` — Vercel & Agent Infrastructure
+### 4. `agent-skills` – Vercel & Agent Infrastructure
 **Path:** `.agents/skills/agent-skills/`
 
 A collection of skills for AI coding agents working with Vercel projects and general agent infrastructure.
@@ -113,7 +113,7 @@ A collection of skills for AI coding agents working with Vercel projects and gen
 
 ---
 
-### 5. `skills` — Anthropic Skills Reference
+### 5. `skills` – Anthropic Skills Reference
 **Path:** `.agents/skills/skills/`
 
 Reference implementation of the Agent Skills standard from Anthropic.

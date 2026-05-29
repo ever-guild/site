@@ -3,19 +3,19 @@ import { Section } from "../ui/Section";
 import { SectionHeader } from "../ui/SectionHeader";
 import { SiGithub } from "react-icons/si";
 import { ArrowUpRight } from "lucide-react";
-import iljarAvatar from "../../assets/avatars/ilyar.png";
+import ilyarAvatar from "../../assets/avatars/ilyar.png";
 import ppmarkekAvatar from "../../assets/avatars/ppmarkek.png";
 import glazlkAvatar from "../../assets/avatars/glazlk.png";
 import "./Team.scss";
 
 const team = [
   {
-    name: "Ilia",
+    name: "Ilyar",
     role: "Senior Engineer · Web3 Lead",
-    avatar: iljarAvatar,
+    avatar: ilyarAvatar,
     github: "https://github.com/ilyar",
     handle: "ilyar",
-    bio: "Leads the guild with expertise in Web3 infrastructure, backend systems, blockchain architecture, smart contracts, Rust, Solidity, TON, EVM, TypeScript, automated testing, and reliability.",
+    bio: "Leads the guild with expertise in Web3 infrastructure, backend systems, blockchain architecture, smart contracts, Rust (Near, Solana), TON, EVM, TypeScript, automated testing, and reliability",
   },
   {
     name: "Marks",
@@ -23,7 +23,7 @@ const team = [
     avatar: ppmarkekAvatar,
     github: "https://github.com/ppmarkek",
     handle: "ppmarkek",
-    bio: "Full-stack development, AI automation, frontend engineering, and backend APIs. React, Next.js, TypeScript, Node.js, SaaS apps, dashboards, marketplaces, and product delivery.",
+    bio: "Full-stack development, AI automation, frontend engineering, and backend APIs. React, Next.js, TypeScript, Node.js, SaaS apps, dashboards, marketplaces, and product delivery",
   },
   {
     name: "Andrei",
@@ -31,14 +31,14 @@ const team = [
     avatar: glazlkAvatar,
     github: "https://github.com/Glazlk",
     handle: "Glazlk",
-    bio: "Product design and frontend: UI/UX, visual design, interface layouts, prototypes, responsive web, web animation, game UI/UX, design systems, and AI-assisted workflows.",
+    bio: "Product design and frontend: UI/UX, visual design, interface layouts, prototypes, responsive web, web animation, game UI/UX, design systems, and AI-assisted workflows",
   },
 ];
 
 export const Team = React.memo(function Team() {
   return (
     <Section id="team" variant="alt" index="02" label="Team">
-      <SectionHeader title="The senior engineers you'll work with directly." />
+      <SectionHeader title="The senior engineers you'll work with directly" />
 
       <div className="team">
         {team.map((member) => (

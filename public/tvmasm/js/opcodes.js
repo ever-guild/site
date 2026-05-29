@@ -71,10 +71,10 @@ Parameters $i$, $j$, and $k$ of the following primitives all are 4-bit integers 
 
 When a {\\em Tuple\\/} $t$ contains elements $x_1$, \\ldots, $x_n$ (in that order), we write $t=(x_1,\\ldots,x_n)$; number $n\\geq0$ is the {\\em length\\/} of {\\em Tuple\\/}~$t$. It is also denoted by $|t|$. {\\em Tuple\\/}s of length two are called {\\em pairs}, and {\\em Tuple\\/}s of length three are {\\em triples}.
 
-Lisp-style lists are represented with the aid of pairs, i.e., tuples consisting of exactly two elements. An empty list is represented by a {\\em Null\\/} value, and a non-empty list is represented by pair $(h,t)$, where $h$ is the first element of the list, and $t$ is its tail. 
+Lisp-style lists are represented with the aid of pairs, i.e., tuples consisting of exactly two elements. An empty list is represented by a {\\em Null\\/} value, and a non-empty list is represented by pair $(h,t)$, where $h$ is the first element of the list, and $t$ is its tail.
 
 \\nxsubpoint\\emb{{\\em Null\\/} primitives}\\label{sp:null.ops}
-The following primitives work with (the only) value~$\\bot$ of type {\\em Null}, useful for representing empty lists, empty branches of binary trees, and absence of values in {\\em Maybe $X$} types. An empty {\\em Tuple\\/} created by {\\tt NIL} could have been used for the same purpose; however, {\\em Null\\/} is more efficient and costs less gas. 
+The following primitives work with (the only) value~$\\bot$ of type {\\em Null}, useful for representing empty lists, empty branches of binary trees, and absence of values in {\\em Maybe $X$} types. An empty {\\em Tuple\\/} created by {\\tt NIL} could have been used for the same purpose; however, {\\em Null\\/} is more efficient and costs less gas.
 \\begin{itemize}
 \\item {\\tt 6D} --- {\\tt NULL} or {\\tt PUSHNULL} ( -- $\\bot$), pushes the only value of type {\\em Null}.
 \\item {\\tt 6E} --- {\\tt ISNULL} ($x$ -- $?$), checks whether $x$ is a {\\em Null}, and returns $-1$ or $0$ accordingly.
@@ -246,7 +246,7 @@ The most useful of these operations are {\\tt DIV}, {\\tt DIVMOD}, {\\tt MOD}, {
 \\nxsubpoint\\emb{Quiet arithmetic primitives}
 We opted to make all arithmetic operations \`\`non-quiet'' (signaling) by default, and create their quiet counterparts by means of a prefix. Such an encoding is definitely sub-optimal. It is not yet clear whether it should be done in this way, or in the opposite way by making all arithmetic operations quiet by default, or whether quiet and non-quiet operations should be given opcodes of equal length; this can only be settled by practice.
 \\begin{itemize}
-\\item {\\tt B7xx} --- {\\tt QUIET} prefix, transforming any arithmetic operation into its \`\`quiet'' variant, indicated by prefixing a {\\tt Q} to its mnemonic. Such operations return {\\tt NaN}s instead of throwing integer overflow exceptions if the results do not fit in {\\it Integer\\/}s, or if one of their arguments is a {\\tt NaN}. Notice that this does not extend to shift amounts and other parameters that must be within a small range (e.g., 0--1023). Also notice that this does not disable type-checking exceptions if a value of a type other than {\\it Integer\\/} is supplied. 
+\\item {\\tt B7xx} --- {\\tt QUIET} prefix, transforming any arithmetic operation into its \`\`quiet'' variant, indicated by prefixing a {\\tt Q} to its mnemonic. Such operations return {\\tt NaN}s instead of throwing integer overflow exceptions if the results do not fit in {\\it Integer\\/}s, or if one of their arguments is a {\\tt NaN}. Notice that this does not extend to shift amounts and other parameters that must be within a small range (e.g., 0--1023). Also notice that this does not disable type-checking exceptions if a value of a type other than {\\it Integer\\/} is supplied.
 \\item {\\tt B7A0} --- {\\tt QADD} ($x$ $y$ -- $x+y$), always works if $x$ and $y$ are {\\it Integer\\/}s, but returns a {\\tt NaN} if the addition cannot be performed.
 \\item {\\tt B7A904} --- {\\tt QDIV} ($x$ $y$ -- $\\lfloor x/y\\rfloor$), returns a {\\tt NaN} if $y=0$, or if $y=-1$ and $x=-2^{256}$, or if either of $x$ or $y$ is a {\\tt NaN}.
 \\item {\\tt B7B0} --- {\\tt QAND} ($x$ $y$ -- $x\\&y$), bitwise \`\`and'' (similar to {\\tt AND}), but returns a {\\tt NaN} if either $x$ or $y$ is a {\\tt NaN} instead of throwing an integer overflow exception. However, if one of the arguments is zero, and the other is a {\\tt NaN}, the result is zero.
@@ -456,21 +456,21 @@ All these primitives first check whether there is enough space in the Builder, a
 \\item {\\tt D74B} --- {\\tt SBITREFS} ($s$ -- $l$ $r$), returns both the number of data bits and the number of references in~$s$.
 \\item {\\tt D74E\\_$n$} --- {\\tt PLDREFIDX $n$} ($s$ -- $c$), returns the $n$-th cell reference of {\\em Slice\\/}~$s$, where $0\\leq n\\leq 3$.
 \\item {\\tt D74C} --- {\\tt PLDREF} ($s$ -- $c$), preloads the first cell reference of a {\\em Slice}.
-\\item {\\tt D750} --- {\\tt LDILE4} ($s$ -- $x$ $s'$), loads a little-endian signed 32-bit integer. 
-\\item {\\tt D751} --- {\\tt LDULE4} ($s$ -- $x$ $s'$), loads a little-endian unsigned 32-bit integer. 
-\\item {\\tt D752} --- {\\tt LDILE8} ($s$ -- $x$ $s'$), loads a little-endian signed 64-bit integer. 
-\\item {\\tt D753} --- {\\tt LDULE8} ($s$ -- $x$ $s'$), loads a little-endian unsigned 64-bit integer. 
-\\item {\\tt D754} --- {\\tt PLDILE4} ($s$ -- $x$), preloads a little-endian signed 32-bit integer. 
-\\item {\\tt D755} --- {\\tt PLDULE4} ($s$ -- $x$), preloads a little-endian unsigned 32-bit integer. 
-\\item {\\tt D756} --- {\\tt PLDILE8} ($s$ -- $x$), preloads a little-endian signed 64-bit integer. 
-\\item {\\tt D757} --- {\\tt PLDULE8} ($s$ -- $x$), preloads a little-endian unsigned 64-bit integer. 
-\\item {\\tt D758} --- {\\tt LDILE4Q} ($s$ -- $x$ $s'$ $-1$ or $s$ $0$), quietly loads a little-endian signed 32-bit integer. 
-\\item {\\tt D759} --- {\\tt LDULE4Q} ($s$ -- $x$ $s'$ $-1$ or $s$ $0$), quietly loads a little-endian unsigned 32-bit integer. 
-\\item {\\tt D75A} --- {\\tt LDILE8Q} ($s$ -- $x$ $s'$ $-1$ or $s$ $0$), quietly loads a little-endian signed 64-bit integer. 
-\\item {\\tt D75B} --- {\\tt LDULE8Q} ($s$ -- $x$ $s'$ $-1$ or $s$ $0$), quietly loads a little-endian unsigned 64-bit integer. 
-\\item {\\tt D75C} --- {\\tt PLDILE4Q} ($s$ -- $x$ $-1$ or $0$), quietly preloads a little-endian signed 32-bit integer. 
-\\item {\\tt D75D} --- {\\tt PLDULE4Q} ($s$ -- $x$ $-1$ or $0$), quietly preloads a little-endian unsigned 32-bit integer. 
-\\item {\\tt D75E} --- {\\tt PLDILE8Q} ($s$ -- $x$ $-1$ or $0$), quietly preloads a little-endian signed 64-bit integer. 
+\\item {\\tt D750} --- {\\tt LDILE4} ($s$ -- $x$ $s'$), loads a little-endian signed 32-bit integer.
+\\item {\\tt D751} --- {\\tt LDULE4} ($s$ -- $x$ $s'$), loads a little-endian unsigned 32-bit integer.
+\\item {\\tt D752} --- {\\tt LDILE8} ($s$ -- $x$ $s'$), loads a little-endian signed 64-bit integer.
+\\item {\\tt D753} --- {\\tt LDULE8} ($s$ -- $x$ $s'$), loads a little-endian unsigned 64-bit integer.
+\\item {\\tt D754} --- {\\tt PLDILE4} ($s$ -- $x$), preloads a little-endian signed 32-bit integer.
+\\item {\\tt D755} --- {\\tt PLDULE4} ($s$ -- $x$), preloads a little-endian unsigned 32-bit integer.
+\\item {\\tt D756} --- {\\tt PLDILE8} ($s$ -- $x$), preloads a little-endian signed 64-bit integer.
+\\item {\\tt D757} --- {\\tt PLDULE8} ($s$ -- $x$), preloads a little-endian unsigned 64-bit integer.
+\\item {\\tt D758} --- {\\tt LDILE4Q} ($s$ -- $x$ $s'$ $-1$ or $s$ $0$), quietly loads a little-endian signed 32-bit integer.
+\\item {\\tt D759} --- {\\tt LDULE4Q} ($s$ -- $x$ $s'$ $-1$ or $s$ $0$), quietly loads a little-endian unsigned 32-bit integer.
+\\item {\\tt D75A} --- {\\tt LDILE8Q} ($s$ -- $x$ $s'$ $-1$ or $s$ $0$), quietly loads a little-endian signed 64-bit integer.
+\\item {\\tt D75B} --- {\\tt LDULE8Q} ($s$ -- $x$ $s'$ $-1$ or $s$ $0$), quietly loads a little-endian unsigned 64-bit integer.
+\\item {\\tt D75C} --- {\\tt PLDILE4Q} ($s$ -- $x$ $-1$ or $0$), quietly preloads a little-endian signed 32-bit integer.
+\\item {\\tt D75D} --- {\\tt PLDULE4Q} ($s$ -- $x$ $-1$ or $0$), quietly preloads a little-endian unsigned 32-bit integer.
+\\item {\\tt D75E} --- {\\tt PLDILE8Q} ($s$ -- $x$ $-1$ or $0$), quietly preloads a little-endian signed 64-bit integer.
 \\item {\\tt D75F} --- {\\tt PLDULE8Q} ($s$ -- $x$ $-1$ or $0$), quietly preloads a little-endian unsigned 64-bit integer.
 \\item {\\tt D760} --- {\\tt LDZEROES} ($s$ -- $n$ $s'$), returns the count $n$ of leading zero bits in $s$, and removes these bits from $s$.
 \\item {\\tt D761} --- {\\tt LDONES} ($s$ -- $n$ $s'$), returns the count $n$ of leading one bits in $s$, and removes these bits from $s$.
@@ -530,7 +530,7 @@ All these primitives first check whether there is enough space in the Builder, a
 Most of the loop primitives listed below are implemented with the aid of extraordinary continuations, such as {\\tt ec\\_until} (cf.~\\ptref{sp:extraord.cont}), with the loop body and the original current continuation {\\tt cc} stored as the arguments to this extraordinary continuation. Typically a suitable extraordinary continuation is constructed, and then saved into the loop body continuation savelist as {\\tt c0}; after that, the modified loop body continuation is loaded into {\\tt cc} and executed in the usual fashion.
 \\begin{itemize}
 \\item {\\tt E4} --- {\\tt REPEAT} ($n$ $c$ -- ), executes continuation $c$ $n$ times, if integer $n$ is non-negative. If $n\\geq2^{31}$ or $n<-2^{31}$, generates a range check exception. Notice that a {\\tt RET} inside the code of $c$ works as a {\\tt continue}, not as a {\\tt break}. One should use either alternative (experimental) loops or alternative {\\tt RETALT} (along with a {\\tt SETEXITALT} before the loop) to {\\tt break} out of a loop.
-\\item {\\tt E5} --- {\\tt REPEATEND} ($n$ -- ), similar to {\\tt REPEAT}, but it is applied to the current continuation {\\tt cc}. 
+\\item {\\tt E5} --- {\\tt REPEATEND} ($n$ -- ), similar to {\\tt REPEAT}, but it is applied to the current continuation {\\tt cc}.
 \\item {\\tt E6} --- {\\tt UNTIL} ($c$ -- ), executes continuation $c$, then pops an integer $x$ from the resulting stack. If $x$ is zero, performs another iteration of this loop. The actual implementation of this primitive involves an extraordinary continuation {\\tt ec\\_until} (cf.~\\ptref{sp:extraord.cont}) with its arguments set to the body of the loop (continuation $c$) and the original current continuation {\\tt cc}. This extraordinary continuation is then saved into the savelist of $c$ as $c.{\\tt c0}$ and the modified $c$ is then executed. The other loop primitives are implemented similarly with the aid of suitable extraordinary continuations.
 \\item {\\tt E7} --- {\\tt UNTILEND} ( -- ), similar to {\\tt UNTIL}, but executes the current continuation {\\tt cc} in a loop. When the loop exit condition is satisfied, performs a {\\tt RET}.
 \\item {\\tt E8} --- {\\tt WHILE} ($c'$ $c$ -- ), executes $c'$ and pops an integer $x$ from the resulting stack. If $x$ is zero, exists the loop and transfers control to the original {\\tt cc}. If $x$ is non-zero, executes $c$, and then begins a new iteration.
@@ -541,7 +541,7 @@ Most of the loop primitives listed below are implemented with the aid of extraor
 
 \\nxsubpoint\\label{sp:cont.stk.manip}\\emb{Manipulating the stack of continuations}
 \\begin{itemize}
-\\item {\\tt EC$rn$} --- {\\tt SETCONTARGS $r$,$n$} ($x_1$ $x_2$\\dots$x_r$ $c$ -- $c'$), similar to {\\tt SETCONTARGS $r$}, but sets $c.{\\tt nargs}$ to the final size of the stack of $c'$ plus $n$. In other words, transforms $c$ into a {\\em closure\\/} or a {\\em partially applied function}, with $0\\leq n\\leq 14$ arguments missing.  
+\\item {\\tt EC$rn$} --- {\\tt SETCONTARGS $r$,$n$} ($x_1$ $x_2$\\dots$x_r$ $c$ -- $c'$), similar to {\\tt SETCONTARGS $r$}, but sets $c.{\\tt nargs}$ to the final size of the stack of $c'$ plus $n$. In other words, transforms $c$ into a {\\em closure\\/} or a {\\em partially applied function}, with $0\\leq n\\leq 14$ arguments missing.
 \\item {\\tt EC0$n$} --- {\\tt SETNUMARGS $n$} or {\\tt SETCONTARGS $0$,$n$} ($c$ -- $c'$), sets $c.{\\tt nargs}$ to $n$ plus the current depth of $c$'s stack, where $0\\leq n\\leq 14$. If $c.{\\tt nargs}$ is already set to a non-negative value, does nothing.
 \\item {\\tt EC$r$F} --- {\\tt SETCONTARGS $r$} or {\\tt SETCONTARGS $r$,$-1$} ($x_1$ $x_2$\\dots$x_r$ $c$ -- $c'$), pushes $0\\leq r\\leq 15$ values $x_1\\ldots x_r$ into the stack of (a copy of) the continuation~$c$, starting with $x_1$. If the final depth of $c$'s stack turns out to be greater than $c.{\\tt nargs}$, a stack overflow exception is generated.
 \\item {\\tt ED0$p$} --- {\\tt RETURNARGS $p$} ( -- ), leaves only the top $0\\leq p\\leq 15$ values in the current stack (somewhat similarly to {\\tt ONLYTOPX}), with all the unused bottom values not discarded, but saved into continuation {\\tt c0} in the same way as {\\tt SETCONTARGS} does.
@@ -583,7 +583,7 @@ Most of the loop primitives listed below are implemented with the aid of extraor
 \\item {\\tt EDF6} --- {\\tt THENRET} ($c$ -- $c'$), computes $c':=c\\circ_0{\\tt c0}$
 \\item {\\tt EDF7} --- {\\tt THENRETALT} ($c$ -- $c'$), computes $c':=c\\circ_0{\\tt c1}$
 \\item {\\tt EDF8} --- {\\tt INVERT} ( -- ), interchanges {\\tt c0} and {\\tt c1}.
-\\item {\\tt EDF9} --- {\\tt BOOLEVAL} ($c$ -- $?$), performs \${\\tt cc}\\leftarrow \\bigl(c\\circ_0(({\\tt PUSH}\\,-1)\\circ_0{\\tt cc})\\bigr)\\circ_1(({\\tt PUSH}\\,0)\\circ_0{\\tt cc})$. If $c$ represents a boolean circuit, the net effect is to evaluate it and push either $-1$ or $0$ into the stack before continuing. 
+\\item {\\tt EDF9} --- {\\tt BOOLEVAL} ($c$ -- $?$), performs \${\\tt cc}\\leftarrow \\bigl(c\\circ_0(({\\tt PUSH}\\,-1)\\circ_0{\\tt cc})\\bigr)\\circ_1(({\\tt PUSH}\\,0)\\circ_0{\\tt cc})$. If $c$ represents a boolean circuit, the net effect is to evaluate it and push either $-1$ or $0$ into the stack before continuing.
 \\item {\\tt EE$rn$} --- {\\tt BLESSARGS $r,n$} ($x_1$\\dots$x_r$ $s$ -- $c$), described in~\\ptref{sp:cont.stk.manip}.
 \\end{itemize}
 
@@ -886,8 +886,8 @@ The \`\`global variables'' may be helpful in implementing some high-level smart-
 \\item {\\tt F900} --- {\\tt HASHCU} ($c$ -- $x$), computes the representation hash (cf.~\\ptref{sp:repr.hash}) of a {\\em Cell\\/} $c$ and returns it as a 256-bit unsigned integer~$x$. Useful for signing and checking signatures of arbitrary entities represented by a tree of cells.
 \\item {\\tt F901} --- {\\tt HASHSU} ($s$ -- $x$), computes the hash of a {\\em Slice\\/} $s$ and returns it as a 256-bit unsigned integer~$x$. The result is the same as if an ordinary cell containing only data and references from~$s$ had been created and its hash computed by {\\tt HASHCU}.
 \\item {\\tt F902} --- {\\tt SHA256U} ($s$ -- $x$), computes $\\Sha$ of the data bits of~{\\em Slice\\/}~$s$. If the bit length of $s$ is not divisible by eight, throws a cell underflow exception. The hash value is returned as a 256-bit unsigned integer~$x$.
-\\item {\\tt F910} --- {\\tt CHKSIGNU} ($h$ $s$ $k$ -- $?$), checks the Ed25519-signature $s$ of a hash $h$ (a 256-bit unsigned integer, usually computed as the hash of some data) using public key $k$ (also represented by a 256-bit unsigned integer). The signature $s$ must be a {\\em Slice\\/} containing at least 512 data bits; only the first 512 bits are used. The result is $-1$ if the signature is valid, $0$ otherwise. Notice that {\\tt CHKSIGNU} is equivalent to {\\tt ROT}; {\\tt NEWB}; {\\tt STU 256}; {\\tt ENDB}; {\\tt NEWC}; {\\tt ROTREV}; {\\tt CHKSIGNS}, i.e., to {\\tt CHKSIGNS} with the first argument $d$ set to 256-bit {\\em Slice} containing~$h$. Therefore, if $h$ is computed as the hash of some data, these data are hashed {\\em twice}, the second hashing occurring inside {\\tt CHKSIGNS}. 
-\\item {\\tt F911} --- {\\tt CHKSIGNS} ($d$ $s$ $k$ -- $?$), checks whether $s$ is a valid Ed25519-signature of the data portion of {\\em Slice\\/}~$d$ using public key~$k$, similarly to {\\tt CHKSIGNU}. If the bit length of {\\em Slice\\/}~$d$ is not divisible by eight, throws a cell underflow exception. The verification of Ed25519 signatures is the standard one, with $\\Sha$ used to reduce $d$ to the 256-bit number that is actually signed. 
+\\item {\\tt F910} --- {\\tt CHKSIGNU} ($h$ $s$ $k$ -- $?$), checks the Ed25519-signature $s$ of a hash $h$ (a 256-bit unsigned integer, usually computed as the hash of some data) using public key $k$ (also represented by a 256-bit unsigned integer). The signature $s$ must be a {\\em Slice\\/} containing at least 512 data bits; only the first 512 bits are used. The result is $-1$ if the signature is valid, $0$ otherwise. Notice that {\\tt CHKSIGNU} is equivalent to {\\tt ROT}; {\\tt NEWB}; {\\tt STU 256}; {\\tt ENDB}; {\\tt NEWC}; {\\tt ROTREV}; {\\tt CHKSIGNS}, i.e., to {\\tt CHKSIGNS} with the first argument $d$ set to 256-bit {\\em Slice} containing~$h$. Therefore, if $h$ is computed as the hash of some data, these data are hashed {\\em twice}, the second hashing occurring inside {\\tt CHKSIGNS}.
+\\item {\\tt F911} --- {\\tt CHKSIGNS} ($d$ $s$ $k$ -- $?$), checks whether $s$ is a valid Ed25519-signature of the data portion of {\\em Slice\\/}~$d$ using public key~$k$, similarly to {\\tt CHKSIGNU}. If the bit length of {\\em Slice\\/}~$d$ is not divisible by eight, throws a cell underflow exception. The verification of Ed25519 signatures is the standard one, with $\\Sha$ used to reduce $d$ to the 256-bit number that is actually signed.
 \\item {\\tt F902}--{\\tt F93F} --- Reserved for hashing and cryptography primitives.
 \\end{itemize}
 
@@ -908,18 +908,18 @@ The \`\`global variables'' may be helpful in implementing some high-level smart-
 The message and address manipulation primitives listed below serialize and deserialize values according to the following TL-B scheme (cf.~\\ptref{sp:tlb.brief}):
 \\begin{verbatim}
 addr_none$00 = MsgAddressExt;
-addr_extern$01 len:(## 8) external_address:(bits len) 
+addr_extern$01 len:(## 8) external_address:(bits len)
              = MsgAddressExt;
 anycast_info$_ depth:(#<= 30) { depth >= 1 }
    rewrite_pfx:(bits depth) = Anycast;
-addr_std$10 anycast:(Maybe Anycast) 
+addr_std$10 anycast:(Maybe Anycast)
    workchain_id:int8 address:bits256  = MsgAddressInt;
-addr_var$11 anycast:(Maybe Anycast) addr_len:(## 9) 
+addr_var$11 anycast:(Maybe Anycast) addr_len:(## 9)
    workchain_id:int32 address:(bits addr_len) = MsgAddressInt;
 _ _:MsgAddressInt = MsgAddress;
 _ _:MsgAddressExt = MsgAddress;
 int_msg_info$0 ihr_disabled:Bool bounce:Bool bounced:Bool
-  src:MsgAddress dest:MsgAddressInt 
+  src:MsgAddress dest:MsgAddressInt
   value:CurrencyCollection ihr_fee:Grams fwd_fee:Grams
   created_lt:uint64 created_at:uint32 = CommonMsgInfoRelaxed;
 ext_out_msg_info$11 src:MsgAddress dest:MsgAddressExt
@@ -1000,7 +1000,7 @@ for (let i = 0; i < raw.length; i++) {
 
   m = raw[i].match(/^\\item \{\\tt ([^}]+)\}(--\{\\tt ([^}]+)\})? --- (.+)$/s);
   if (m) {
-    //console.log(`${m[1]}-${m[3]} — ${m[4]}`);
+    //console.log(`${m[1]}-${m[3]} – ${m[4]}`);
     const opcodeSt = m[1];
     const opcodeEn = m[3];
 

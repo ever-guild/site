@@ -52,13 +52,13 @@ const vertexShader = `
     float breathe = 1.0 + sin(uTime * 0.3 + s * 0.1) * 0.06 + uScroll * 0.12;
     vec3 p = position * breathe;
 
-    // Organic form mutation — slow traveling waves warp the loop a little,
+    // Organic form mutation – slow traveling waves warp the loop a little,
     // never enough to stop it reading as an infinity.
     p.x += sin(tt * 2.0 - uTime * 0.5 + s * 0.2) * 0.30;
     p.y += cos(tt * 3.0 + uTime * 0.35) * 0.24;
     p.z += sin(tt * 2.0 + uTime * 0.6) * 0.5 + cos(uTime * 0.4 + s) * 0.26;
 
-    // Atom-like dispersion — each particle drifts slightly off the curve and
+    // Atom-like dispersion – each particle drifts slightly off the curve and
     // back, staggered, so the figure shimmers like it is made of atoms.
     float pulse = 0.5 + 0.5 * sin(uTime * 0.55 + s * 1.7);
     float drift = pulse * (0.45 + 0.5 * sin(uTime * 0.22 + aPath * 9.0)) + uScroll * 0.4;
@@ -167,7 +167,7 @@ function createParticles(): ParticleData {
 
   const color = new THREE.Color();
 
-  // Main ribbon — the crisp infinity outline.
+  // Main ribbon – the crisp infinity outline.
   for (let i = 0; i < MAIN_PARTICLES; i += 1) {
     const path = i / MAIN_PARTICLES;
     const seed = random(i + 1);
@@ -196,7 +196,7 @@ function createParticles(): ParticleData {
     );
   }
 
-  // Halo — soft volume hugging the ribbon.
+  // Halo – soft volume hugging the ribbon.
   for (let i = 0; i < HALO_PARTICLES; i += 1) {
     const index = MAIN_PARTICLES + i;
     const path = random(i + 911);
@@ -225,7 +225,7 @@ function createParticles(): ParticleData {
     );
   }
 
-  // Mist — faint drifting sparkle that wanders a touch more.
+  // Mist – faint drifting sparkle that wanders a touch more.
   for (let i = 0; i < MIST_PARTICLES; i += 1) {
     const index = MAIN_PARTICLES + HALO_PARTICLES + i;
     const seed = random(i + 1881);
