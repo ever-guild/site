@@ -14,6 +14,7 @@ const navLinks = [
 const Navbar = React.memo(function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +24,24 @@ const Navbar = React.memo(function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll-spy — highlight the nav link for the section in view.
+  useEffect(() => {
+    const ids = navLinks.map((l) => l.href.slice(1));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
   }, []);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
@@ -39,17 +58,24 @@ const Navbar = React.memo(function Navbar() {
           className={`navbar__nav ${isMobileMenuOpen ? "navbar__nav--open" : ""}`}
         >
           <ul className="navbar__list">
-            {navLinks.map((link) => (
-              <li key={link.href} className="navbar__item">
-                <a
-                  href={link.href}
-                  className="navbar__link"
-                  onClick={closeMobileMenu}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link, i) => {
+              const active = link.href === `#${activeId}`;
+              return (
+                <li key={link.href} className="navbar__item">
+                  <a
+                    href={link.href}
+                    className={`navbar__link ${active ? "navbar__link--active" : ""}`}
+                    aria-current={active ? "true" : undefined}
+                    onClick={closeMobileMenu}
+                  >
+                    <span className="navbar__link-idx" aria-hidden="true">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
           <Button
             href="#contact"
@@ -58,7 +84,7 @@ const Navbar = React.memo(function Navbar() {
             className="navbar__cta"
             onClick={closeMobileMenu}
           >
-            Get in touch
+            Start a project
           </Button>
         </nav>
 

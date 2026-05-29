@@ -22,10 +22,13 @@ const socials = [
 const Hero = React.memo(function Hero() {
   return (
     <section id="hero" className="hero">
+      <div className="hero__hud" aria-hidden="true">
+        <span className="hero__hud-line">EVER&nbsp;GUILD&nbsp;//&nbsp;ENGINEERING&nbsp;GUILD</span>
+        <span className="hero__hud-line hero__hud-line--right">EST.&nbsp;2021&nbsp;//&nbsp;GLOBAL&nbsp;·&nbsp;REMOTE</span>
+      </div>
+
       <div className="hero__inner">
-        <p className="hero__kicker">
-          Senior-led · Remote-first · Since 2021
-        </p>
+        <p className="hero__kicker">Senior-led · Remote-first · Since 2021</p>
 
         <h1 className="hero__tagline">
           Software that lasts.
@@ -39,8 +42,8 @@ const Hero = React.memo(function Hero() {
         </p>
 
         <div className="hero__actions">
-          <Button href="#contact" variant="primary" size="lg">
-            Get in touch
+          <Button href="#contact" variant="primary" size="lg" icon={<span aria-hidden="true">↗</span>}>
+            Start a project
           </Button>
           <Button
             href="https://github.com/ever-guild"
@@ -62,6 +65,11 @@ const Hero = React.memo(function Hero() {
           ))}
         </div>
       </div>
+
+      <a className="hero__scroll" href="#about" aria-label="Scroll to content">
+        <span className="hero__scroll-label">Scroll</span>
+        <span className="hero__scroll-rule" aria-hidden="true" />
+      </a>
     </section>
   );
 });

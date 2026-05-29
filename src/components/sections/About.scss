@@ -2,48 +2,68 @@
 @use "../../styles/mixins" as *;
 
 .about {
+  // Spec-strip — one machined readout panel, internally ruled into cells.
+  // Reads as an instrument cluster, not four floating cards.
   &__facts {
+    position: relative;
+    margin-top: $space-xl;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: $space-sm;
-    margin-top: $space-xl;
+    @include engineered-panel(30px);
+    @include reveal; // opacity-only — safe over backdrop-filter
 
     @include tablet-up {
       grid-template-columns: repeat(4, 1fr);
     }
-  }
 
-  // Each fact = its own frosted glass chip with a gold tick.
-  &__fact {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-    padding: $space-md;
-    @include glass;
-    border-radius: $radius-md;
-    overflow: hidden;
-
+    // Gold datum tick — top-left of the whole strip.
     &::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
-      width: 24px;
+      width: 28px;
       height: 2px;
       background: $color-accent;
+      z-index: 1;
+    }
+  }
+
+  &__fact {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: clamp(1.15rem, 2vw, 1.75rem);
+    // Internal hairline grid — top + left rule on every cell.
+    box-shadow:
+      inset 1px 0 0 $color-glass-border,
+      inset 0 1px 0 $color-glass-border;
+
+    // Crosshair "+" at the cell's top-left intersection.
+    &::before {
+      content: "+";
+      position: absolute;
+      top: -0.5rem;
+      left: -0.42rem;
+      font-family: $font-mono;
+      font-size: 0.72rem;
+      line-height: 1;
+      color: $color-crosshair;
+      pointer-events: none;
     }
   }
 
   &__fact-key {
-    @include mono-label;
+    @include mono-coord;
     font-size: $text-2xs;
   }
 
   &__fact-val {
-    font-size: $text-xl;
+    font-size: $text-2xl;
     font-weight: 600;
     line-height: $leading-snug;
+    letter-spacing: $tracking-tight;
     color: $color-text;
   }
 }

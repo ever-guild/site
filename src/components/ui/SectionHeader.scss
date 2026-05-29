@@ -6,17 +6,22 @@
 
   &__title {
     @include display;
-    font-size: clamp(2.25rem, 5vw, 3.5rem);
-    line-height: $leading-tight;
+    // Extreme type-scale: large, tight, architectural. The headline carries
+    // the section — no eyebrow above it (the datum index already categorises).
+    font-size: clamp(2.4rem, 5.6vw, 4.25rem);
+    line-height: 1.0;
     letter-spacing: $tracking-tight;
     text-wrap: balance;
+    max-width: 18ch;
+    @include reveal-rise(22%);
   }
 
   &__lead {
     margin-top: $space-md;
-    max-width: 54ch;
+    max-width: 60ch;
     font-size: $text-lg;
     line-height: $leading-relaxed;
     color: $color-text-2;
+    @include reveal-rise(28%);
   }
 }

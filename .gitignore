@@ -37,6 +37,12 @@ test-results/
 # Local screenshot helpers (machine-specific paths, puppeteer-core)
 .shot.mjs
 .shot-dev.mjs
+.redesign-shots/
+
+# Installed agent skills (machine-local, not part of the app)
+.agents/skills/
+.claude/skills/
+skills-lock.json
 
 # Editor and OS files
 .vscode/*

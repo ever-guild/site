@@ -14,12 +14,11 @@
 
   &__card {
     position: relative;
-    @include glass;
-    border-radius: $radius-md;
+    @include engineered-panel(30px);
+    @include reveal; // opacity-only — safe over backdrop-filter
     padding: $space-lg;
-    overflow: hidden;
 
-    // Gold top edge — strengthens on hover.
+    // Gold top edge — the module's "powered" rail; strengthens on hover.
     &::before {
       content: "";
       position: absolute;
@@ -28,7 +27,7 @@
       right: 0;
       height: 2px;
       background: $color-accent;
-      opacity: 0.35;
+      opacity: 0.32;
       transition: opacity $transition-base;
     }
 
@@ -36,8 +35,9 @@
       border-color: $color-glass-edge;
       background: $color-glass-2;
 
-      &::before { opacity: 1; }
+      &::before { opacity: 1; }                         // top rail
       .services__title { color: $color-accent; }
+      .services__icon { color: $color-cream-2; }
     }
   }
 
@@ -50,24 +50,37 @@
 
   &__icon {
     display: inline-flex;
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     color: $color-accent;
+    transition: color $transition-base;
 
-    svg { display: block; }
+    svg { display: block; stroke-width: 1.6; }
   }
 
+  // Oversized telemetry index — the module's registry number.
   &__num {
     font-family: $font-mono;
-    font-size: $text-xs;
+    font-size: $text-2xl;
     font-weight: 600;
-    letter-spacing: $tracking-wide;
-    color: $color-text-3;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: $color-text-4;
+    font-variant-numeric: tabular-nums;
+
+    &::before {
+      content: "// ";
+      font-size: $text-xs;
+      vertical-align: 0.35em;
+      color: $color-text-4;
+    }
   }
 
   &__title {
     @include display;
-    font-size: $text-xl;
-    margin-bottom: 0.5rem;
+    font-size: $text-2xl;
+    line-height: 1.04;
+    letter-spacing: $tracking-tight;
+    margin-bottom: 0.65rem;
     transition: color $transition-base;
   }
 

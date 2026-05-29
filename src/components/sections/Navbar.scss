@@ -105,20 +105,48 @@
   }
 
   &__link {
+    position: relative;
     display: inline-flex;
-    align-items: center;
+    align-items: baseline;
+    gap: 0.4rem;
     @include mono-label;
     color: $color-text-2;
     transition: color $transition-fast;
 
-    &:hover {
+    // Active datum — gold underline tick under the link.
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.55rem;
+      width: 100%;
+      height: 1px;
+      background: $color-accent;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform $transition-base $ease-spring;
+    }
+
+    &:hover { color: $color-accent; }
+    &:hover::after { transform: scaleX(1); }
+
+    &--active {
       color: $color-accent;
+      &::after { transform: scaleX(1); }
+      .navbar__link-idx { color: $color-accent; }
     }
 
     @media (max-width: #{$bp-desktop - 1px}) {
       padding: $space-md 0;
       font-size: $text-sm;
+      &::after { display: none; }
     }
+  }
+
+  &__link-idx {
+    font-size: $text-2xs;
+    color: $color-text-4;
+    transition: color $transition-fast;
   }
 
   &__cta {

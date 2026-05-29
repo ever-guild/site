@@ -8,7 +8,35 @@
   align-items: center;
   min-height: 100vh;
   min-height: 100svh; // full screen — keep the next section from peeking in
-  padding-block: 8rem 4rem;
+  padding-block: 8rem 5rem;
+
+  // --- HUD status readout (top) -------------------------------
+  &__hud {
+    position: absolute;
+    top: clamp(5.5rem, 11vh, 7.5rem);
+    left: 0;
+    right: 0;
+    @include container;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    pointer-events: none;
+  }
+
+  &__hud-line {
+    @include mono-coord;
+    color: $color-text-4;
+    font-size: $text-2xs;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &--right { text-align: right; }
+
+    @media (max-width: #{$bp-tablet - 1px}) {
+      &--right { display: none; }
+    }
+  }
 
   &__inner {
     @include container;
@@ -18,11 +46,12 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1040px;
     margin-inline: auto;
     text-align: center;
   }
 
+  // Bracketed telemetry tag — [ … ]
   &__kicker {
     display: inline-flex;
     align-items: center;
@@ -30,21 +59,39 @@
     @include mono-label;
     color: $color-text-2;
     margin-bottom: $space-lg;
+
+    &::before { content: "["; color: $color-accent; }
+    &::after  { content: "]"; color: $color-accent; }
   }
 
   &__tagline {
     @include display;
-    font-size: clamp(2.5rem, 7vw, 5rem);
+    // Extreme scale, compressed leading — architectural display.
+    font-size: clamp(2.4rem, 6.6vw, 4.9rem);
+    line-height: 0.98;
     letter-spacing: $tracking-tight;
+    text-wrap: balance;
 
     &-accent {
+      position: relative;
       color: $color-accent;
+      // Gold baseline tick under the accent word.
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.08em;
+        height: 2px;
+        background: $color-accent;
+        opacity: 0.55;
+      }
     }
   }
 
   &__description {
     margin-top: $space-lg;
-    max-width: 52ch;
+    max-width: 50ch;
     font-size: $text-lg;
     line-height: $leading-relaxed;
     color: $color-text-2;
@@ -72,25 +119,67 @@
     justify-content: center;
   }
 
+  // --- Scroll datum (bottom) ----------------------------------
+  &__scroll {
+    position: absolute;
+    bottom: clamp(1.5rem, 4vh, 2.75rem);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    color: $color-text-3;
+    transition: color $transition-base;
+
+    &-label {
+      @include mono-coord;
+      font-size: $text-2xs;
+    }
+
+    &-rule {
+      width: 1px;
+      height: 2.5rem;
+      background: linear-gradient(to bottom, $color-accent, transparent);
+      transform-origin: top;
+
+      @media (prefers-reduced-motion: no-preference) {
+        animation: heroScrollPulse 2s $ease-standard infinite;
+      }
+    }
+
+    &:hover { color: $color-accent; }
+
+    @media (max-height: 680px) { display: none; }
+  }
+
   // Staggered entrance on load.
   @media (prefers-reduced-motion: no-preference) {
+    &__hud,
     &__kicker,
     &__tagline,
     &__description,
     &__actions,
     &__socials {
       opacity: 0;
-      animation: heroLoad 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: heroLoad 0.8s $ease-out-expo forwards;
     }
-    &__kicker      { animation-delay: 0.05s; }
-    &__tagline     { animation-delay: 0.14s; }
-    &__description { animation-delay: 0.26s; }
-    &__actions     { animation-delay: 0.36s; }
-    &__socials     { animation-delay: 0.44s; }
+    &__hud         { animation-delay: 0.02s; }
+    &__kicker      { animation-delay: 0.08s; }
+    &__tagline     { animation-delay: 0.16s; }
+    &__description { animation-delay: 0.30s; }
+    &__actions     { animation-delay: 0.40s; }
+    &__socials     { animation-delay: 0.48s; }
   }
 }
 
 @keyframes heroLoad {
-  from { opacity: 0; transform: translateY(18px); }
+  from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroScrollPulse {
+  0%   { transform: scaleY(0.25); opacity: 0.4; }
+  50%  { transform: scaleY(1);    opacity: 1; }
+  100% { transform: scaleY(0.25); opacity: 0.4; }
 }
