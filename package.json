@@ -7,6 +7,8 @@
     "lint": "eslint .",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "acceptance:test": "npm run build && playwright test",
+    "acceptance:update": "npm run build && playwright test --update-snapshots",
     "lighthouse": "npm run build && lhci autorun",
     "vt:check": "node .github/actions/virustotal-url-check/check-url.mjs"
   },
@@ -27,6 +29,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.60.0",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "@types/three": "^0.184.1",
