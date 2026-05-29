@@ -8,7 +8,6 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Team", href: "#team" },
   { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = React.memo(function Navbar() {
@@ -52,13 +51,13 @@ const Navbar = React.memo(function Navbar() {
             ))}
           </ul>
           <Button
-            href="mailto:n@ever-guild.net"
+            href="#contact"
             variant="primary"
             size="sm"
             className="navbar__cta"
             onClick={closeMobileMenu}
           >
-            Start a project
+            Get in touch
           </Button>
         </nav>
 

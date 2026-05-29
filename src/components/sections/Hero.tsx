@@ -39,8 +39,8 @@ const Hero = React.memo(function Hero() {
         </p>
 
         <div className="hero__actions">
-          <Button href="mailto:n@ever-guild.net" variant="primary" size="lg">
-            Start a project
+          <Button href="#contact" variant="primary" size="lg">
+            Get in touch
           </Button>
           <Button
             href="https://github.com/ever-guild"
