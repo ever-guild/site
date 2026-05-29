@@ -24,6 +24,14 @@ const services = [
     title: 'Product Design & UI/UX',
     description: 'Interfaces, prototypes and design systems that stay clean and responsive across every screen',
   },
+  {
+    title: 'Candidate Experience Verification',
+    description: 'Independent verification of claimed engineering experience for safer technical hiring decisions',
+  },
+  {
+    title: 'Crisis Engineering Management',
+    description: 'Rapid intervention for software projects facing delivery, quality or team breakdowns',
+  },
 ];
 
 const stack = [
