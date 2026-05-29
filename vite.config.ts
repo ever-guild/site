@@ -7,7 +7,7 @@ export default defineConfig({
     transformer: 'postcss',
   },
   build: {
-    sourcemap: true,
+    sourcemap: false,
     cssTarget: 'chrome120',
     cssMinify: false,
     chunkSizeWarningLimit: 950,
