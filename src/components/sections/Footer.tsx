@@ -11,6 +11,8 @@ const socials = [
 ];
 
 export const Footer = React.memo(function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer">
       <div className="footer__container">
@@ -20,7 +22,7 @@ export const Footer = React.memo(function Footer() {
         </div>
 
         <p className="footer__copyright">
-          © 2026 Ever Guild · All rights reserved · ever-guild.net
+          © 2021-{currentYear} Ever Guild · All rights reserved · ever-guild.net
         </p>
 
         <div className="footer__socials">
