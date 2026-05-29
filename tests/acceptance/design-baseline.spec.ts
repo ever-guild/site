@@ -46,6 +46,12 @@ async function waitForScrolledNavbarEffect(page: Page) {
     .toBeGreaterThan(0.95);
 }
 
+async function waitForVisualReady(page: Page) {
+  await page.evaluate(() => document.fonts.ready);
+  await page.locator('canvas').first().waitFor({ state: 'attached', timeout: 3_000 }).catch(() => undefined);
+  await page.waitForTimeout(500);
+}
+
 const states = [
   {
     name: 'hero',
@@ -82,8 +88,7 @@ test.describe('design baseline', () => {
     await page.evaluate(() => window.scrollTo(0, 0));
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
     await expect(page.locator('.navbar')).toBeVisible();
-    await page.evaluate(() => document.fonts.ready);
-    await page.waitForTimeout(300);
+    await waitForVisualReady(page);
 
     await expect(page.locator('.navbar')).toHaveScreenshot(`${testInfo.project.name}-navbar.png`, {
       animations: 'disabled',
@@ -96,8 +101,7 @@ test.describe('design baseline', () => {
     await page.goto('/');
     await page.evaluate(() => window.scrollTo(0, 360));
     await waitForScrolledNavbarEffect(page);
-    await page.evaluate(() => document.fonts.ready);
-    await page.waitForTimeout(300);
+    await waitForVisualReady(page);
 
     await expect(page.locator('.navbar')).toHaveScreenshot(`${testInfo.project.name}-navbar-scrolled.png`, {
       animations: 'disabled',
@@ -109,8 +113,7 @@ test.describe('design baseline', () => {
   test('glass surfaces match approved baselines', async ({ page }, testInfo) => {
     await page.goto('/');
     await lockViewportOn(page, '#team');
-    await page.evaluate(() => document.fonts.ready);
-    await page.waitForTimeout(300);
+    await waitForVisualReady(page);
 
     await expect(page.locator('.team__card').first()).toHaveScreenshot(`${testInfo.project.name}-team-glass.png`, {
       animations: 'disabled',
@@ -163,8 +166,7 @@ test.describe('design baseline', () => {
   for (const state of states) {
     test(`${state.name} viewport matches approved baseline`, async ({ page }, testInfo) => {
       await state.target(page);
-      await page.evaluate(() => document.fonts.ready);
-      await page.waitForTimeout(300);
+      await waitForVisualReady(page);
 
       await expect(page).toHaveScreenshot(`${testInfo.project.name}-${state.name}.png`, {
         animations: 'disabled',
