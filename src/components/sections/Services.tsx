@@ -34,15 +34,30 @@ const services = [
   },
 ];
 
+const morphemes: Record<string, React.ReactNode> = {
+  axis: <path d="M32 16v32" />,
+  break: <path d="M22 22l9 10-7 10M42 22l-9 10 7 10" />,
+  core: <circle cx="32" cy="32" r="5" />,
+  frame: <path d="M20 20h24v24H20z" />,
+  gate: <path d="M18 24h28v18H18zM18 24l14 12 14-12" />,
+  link: <path d="M18 32h28M24 24l16 16M40 24 24 40" />,
+  stack: <path d="M20 24h24l-12 8-12-8Zm0 16h24l-12-8-12 8Z" />,
+  spark: <path d="M32 16v32M16 32h32M22 22l20 20M42 22 22 42" />,
+  seal: <path d="M20 38c4-10 20-10 24 0M24 24h16" />,
+  sight: <path d="M18 32c6-9 22-9 28 0-6 9-22 9-28 0Z" />,
+};
+
+const serviceSigils = [
+  ['core', 'link', 'stack'],
+  ['core', 'spark', 'axis'],
+  ['core', 'stack', 'axis'],
+  ['core', 'frame', 'sight'],
+  ['core', 'seal', 'sight'],
+  ['core', 'break', 'link'],
+];
+
 function ServiceSigil({ variant }: { variant: number }) {
-  const glyphs = [
-    <path key="chain" d="M18 32h28M22 24l20 16M22 40l20-16" />,
-    <path key="spark" d="M32 15v34M15 32h34M22 22l20 20M42 22 22 42" />,
-    <path key="stack" d="M18 24h28l-14 9-14-9Zm0 16h28l-14-9-14 9Z" />,
-    <path key="frame" d="M20 20h24v24H20zM26 26h12v12H26z" />,
-    <path key="seal" d="M20 36c4-10 20-10 24 0M24 24h16M32 18v28" />,
-    <path key="crisis" d="M20 22l10 8-8 12M44 22l-10 8 8 12M25 32h14M30 20l4 24" />,
-  ];
+  const parts = serviceSigils[variant % serviceSigils.length];
 
   return (
     <svg
@@ -55,7 +70,11 @@ function ServiceSigil({ variant }: { variant: number }) {
       <circle className="services__sigil-ring" cx="32" cy="32" r="26" />
       <path className="services__sigil-ray" d="M32 4v10M32 50v10M4 32h10M50 32h10" />
       <path className="services__sigil-ray" d="M12.2 12.2l7.1 7.1M44.7 44.7l7.1 7.1M51.8 12.2l-7.1 7.1M19.3 44.7l-7.1 7.1" />
-      <g className="services__sigil-glyph">{glyphs[variant % glyphs.length]}</g>
+      <g className="services__sigil-glyph">
+        {parts.map((part) => (
+          <React.Fragment key={part}>{morphemes[part]}</React.Fragment>
+        ))}
+      </g>
     </svg>
   );
 }
