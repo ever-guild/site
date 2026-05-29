@@ -1,4 +1,5 @@
 import React from 'react';
+import type { IconType } from 'react-icons';
 import {
   FaGithub,
   FaLinkedin,
@@ -11,17 +12,17 @@ import {
 } from 'react-icons/fa6';
 import './SocialIcon.scss';
 
-const iconMap: Record<string, React.FC<{ size?: number }>> = {
-  github: FaGithub as unknown as React.FC<{ size?: number }>,
-  linkedin: FaLinkedin as unknown as React.FC<{ size?: number }>,
-  twitter: FaXTwitter as unknown as React.FC<{ size?: number }>,
-  x: FaXTwitter as unknown as React.FC<{ size?: number }>,
-  telegram: FaTelegram as unknown as React.FC<{ size?: number }>,
-  upwork: FaUpwork as unknown as React.FC<{ size?: number }>,
-  email: FaEnvelope as unknown as React.FC<{ size?: number }>,
-  mail: FaEnvelope as unknown as React.FC<{ size?: number }>,
-  website: FaGlobe as unknown as React.FC<{ size?: number }>,
-  default: FaLink as unknown as React.FC<{ size?: number }>,
+const iconMap: Record<string, IconType> = {
+  github: FaGithub,
+  linkedin: FaLinkedin,
+  twitter: FaXTwitter,
+  x: FaXTwitter,
+  telegram: FaTelegram,
+  upwork: FaUpwork,
+  email: FaEnvelope,
+  mail: FaEnvelope,
+  website: FaGlobe,
+  default: FaLink,
 };
 
 interface SocialIconProps {
@@ -49,7 +50,7 @@ export const SocialIcon = React.memo(function SocialIcon({
       rel="noopener noreferrer"
       title={displayLabel}
     >
-      <Icon size={size} />
+      <Icon size={size} aria-hidden="true" focusable="false" />
     </a>
   );
 });
