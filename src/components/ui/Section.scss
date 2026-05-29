@@ -65,7 +65,7 @@
 
   &--indexed &__index {
     @include desktop-up {
-      grid-column: 1 / span 2;
+      grid-column: 1 / span 1;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.5rem;
@@ -85,7 +85,7 @@
 
   &--indexed &__body {
     @include desktop-up {
-      grid-column: 4 / -1;
+      grid-column: 2 / -1;
     }
   }
 }

@@ -1,6 +1,6 @@
 # Ever Guild Site
 
-Public website for Ever Guild.
+Public website for Ever Guild
 
 ## Stack
 
@@ -39,6 +39,6 @@ npm run preview
 
 ## Deployment
 
-The site is deployed to GitHub Pages from `main`.
+The site is deployed to GitHub Pages from `main`
 
-CI runs lint and build on pull requests and pushes to `main`.
+CI runs lint and build on pull requests and pushes to `main`
