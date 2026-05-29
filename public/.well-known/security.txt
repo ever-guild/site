@@ -1,0 +1,3 @@
+Contact: mailto:in@ever-guild.net
+Preferred-Languages: en
+Canonical: https://ever-guild.net/.well-known/security.txt
