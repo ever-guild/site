@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 // ============================================
-// Ever Guild – SCSS Mixins
+// Ever Guild — SCSS Mixins
 // ============================================
 
 @mixin mobile-up  { @media (min-width: #{$bp-mobile})  { @content; } }
@@ -19,7 +19,7 @@
   @include desktop-up { padding-inline: 4rem; }
 }
 
-// Unified vertical rhythm – fluid, kills uneven gaps between sections
+// Unified vertical rhythm — fluid, kills uneven gaps between sections
 @mixin section-padding {
   padding-block: clamp(4rem, 8vw, 8.5rem);
 }
@@ -32,7 +32,7 @@
   row-gap: clamp(2rem, 4vw, 3.5rem);
 }
 
-// Blueprint hairlines – faint vertical structure behind content.
+// Blueprint hairlines — faint vertical structure behind content.
 // Subtle by design (uses translucent border token); reads as engineering grid.
 @mixin blueprint-lines($step: 16.666%, $color: $color-border) {
   background-image: repeating-linear-gradient(
@@ -60,7 +60,7 @@
   color: $color-text-3;
 }
 
-// Display type (headlines) – Tilt Warp
+// Display type (headlines) — Tilt Warp
 @mixin display {
   font-family: $font-display;
   font-weight: 400;
@@ -76,10 +76,10 @@
   transition: border-color $transition-base, background-color $transition-base;
 }
 
-// Liquid glass – matte murky-emerald frosted panel.
+// Liquid glass — matte murky-emerald frosted panel.
 // Blurs the particle field behind it for depth. Used for ALL content blocks.
 // Top rim-light + soft drop give the "liquid glass" read.
-@mixin glass($blur: 22px) {
+@mixin glass($blur: 43px) {
   background: $color-glass;
   backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
   -webkit-backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
@@ -94,8 +94,8 @@
     transform $transition-base;
 }
 
-// Small frosted glass chip (tags, pills) – lighter blur, same matte emerald.
-@mixin glass-chip($blur: 12px) {
+// Small frosted glass chip (tags, pills) — lighter blur, same matte emerald.
+@mixin glass-chip($blur: 22px) {
   background: $color-glass;
   backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
   -webkit-backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
@@ -146,9 +146,12 @@
 
 // Scroll-reveal (2026 scroll-driven animations, graceful fallback)
 @mixin reveal {
+  // NOTE: opacity-only — no transform. A transform on the section (an
+  // ancestor of the glass cards) would establish a containing block and
+  // permanently break the cards' backdrop-filter (nothing left to blur).
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      transform: translateY(22px);
+      opacity: 0;
       animation: reveal-up linear both;
       animation-timeline: view();
       animation-range: entry 0% cover 26%;

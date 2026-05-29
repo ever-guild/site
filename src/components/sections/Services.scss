@@ -19,7 +19,7 @@
     padding: $space-lg;
     overflow: hidden;
 
-    // Gold top edge – strengthens on hover.
+    // Gold top edge — strengthens on hover.
     &::before {
       content: "";
       position: absolute;
@@ -41,37 +41,27 @@
     }
   }
 
-  &__sigil {
-    display: block;
-    width: 3.5rem;
-    height: 3.5rem;
-    margin-bottom: $space-sm;
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $space-md;
+  }
+
+  &__icon {
+    display: inline-flex;
+    font-size: 1.6rem;
     color: $color-accent;
-    filter: drop-shadow(0 0 10px rgba(241, 184, 0, 0.12));
+
+    svg { display: block; }
   }
 
-  &__sigil-ring,
-  &__sigil-ray,
-  &__sigil-glyph {
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  &__sigil-ring {
-    stroke-width: 1.2;
-    opacity: 0.62;
-  }
-
-  &__sigil-ray {
-    stroke-width: 1;
-    opacity: 0.32;
-  }
-
-  &__sigil-glyph {
-    stroke-width: 2;
-    opacity: 0.9;
+  &__num {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 600;
+    letter-spacing: $tracking-wide;
+    color: $color-text-3;
   }
 
   &__title {
@@ -91,7 +81,7 @@
   &__marquee {
     margin-top: $space-xl;
     overflow: hidden;
-    // Ends dissolve into a gradient – text appears to fade away.
+    // Ends dissolve into a gradient — text appears to fade away.
     mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
 

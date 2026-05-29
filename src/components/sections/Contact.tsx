@@ -22,7 +22,7 @@ export const Contact = React.memo(function Contact() {
         </a>
 
         <p className="contact__note">
-          Tell us what you're building, we reply within a day
+          Tell us what you're building. We reply within a day.
         </p>
       </div>
     </Section>

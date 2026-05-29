@@ -9,7 +9,7 @@
     font-size: clamp(2.25rem, 5vw, 3.5rem);
     line-height: $leading-tight;
     letter-spacing: $tracking-tight;
-    max-width: 18ch;
+    text-wrap: balance;
   }
 
   &__lead {

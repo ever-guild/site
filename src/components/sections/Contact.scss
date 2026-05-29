@@ -4,20 +4,15 @@
 .contact {
   &__email {
     position: relative;
-    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: $space-md;
-    width: 100%;
     padding: $space-lg;
     margin-top: $space-lg;
     @include glass;
     border-radius: $radius-md;
     color: $color-text;
-    text-decoration: none;
-    cursor: pointer;
-    pointer-events: auto;
 
     &:hover {
       border-color: $color-glass-edge;

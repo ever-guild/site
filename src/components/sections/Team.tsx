@@ -3,19 +3,19 @@ import { Section } from "../ui/Section";
 import { SectionHeader } from "../ui/SectionHeader";
 import { SiGithub } from "react-icons/si";
 import { ArrowUpRight } from "lucide-react";
-import ilyarAvatar from "../../assets/avatars/ilyar.webp";
+import iljarAvatar from "../../assets/avatars/ilyar.webp";
 import ppmarkekAvatar from "../../assets/avatars/ppmarkek.webp";
 import glazlkAvatar from "../../assets/avatars/glazlk.webp";
 import "./Team.scss";
 
 const team = [
   {
-    name: "Ilyar",
+    name: "Ilia",
     role: "Senior Engineer · Web3 Lead",
-    avatar: ilyarAvatar,
+    avatar: iljarAvatar,
     github: "https://github.com/ilyar",
     handle: "ilyar",
-    bio: "Leads the guild with expertise in Web3 infrastructure, backend systems, blockchain architecture, smart contracts, Rust (Near, Solana), TON, EVM, TypeScript, automated testing, and reliability",
+    bio: "Leads Web3 infrastructure and backend systems – smart contracts in Rust and Solidity on TON and EVM, built to stay reliable.",
   },
   {
     name: "Marks",
@@ -23,7 +23,7 @@ const team = [
     avatar: ppmarkekAvatar,
     github: "https://github.com/ppmarkek",
     handle: "ppmarkek",
-    bio: "Full-stack development, AI automation, frontend engineering, and backend APIs. React, Next.js, TypeScript, Node.js, SaaS apps, dashboards, marketplaces, and product delivery",
+    bio: "Builds full-stack products and AI automation – React, Next.js and Node.js for SaaS apps, dashboards and marketplaces.",
   },
   {
     name: "Andrei",
@@ -31,14 +31,14 @@ const team = [
     avatar: glazlkAvatar,
     github: "https://github.com/Glazlk",
     handle: "Glazlk",
-    bio: "Product design and frontend: UI/UX, visual design, interface layouts, prototypes, responsive web, web animation, game UI/UX, design systems, and AI-assisted workflows",
+    bio: "Designs products end to end – UI/UX, prototypes and design systems for responsive web, with AI-assisted workflows.",
   },
 ];
 
 export const Team = React.memo(function Team() {
   return (
     <Section id="team" variant="alt" index="02" label="Team">
-      <SectionHeader title="The senior engineers you'll work with directly" />
+      <SectionHeader title="The senior engineers you'll work with directly." />
 
       <div className="team">
         {team.map((member) => (
@@ -47,10 +47,7 @@ export const Team = React.memo(function Team() {
               src={member.avatar}
               alt={member.name}
               className="team__avatar"
-              width={800}
-              height={800}
               loading="lazy"
-              decoding="async"
             />
 
             <div className="team__body">
@@ -63,7 +60,7 @@ export const Team = React.memo(function Team() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="team__github"
-                aria-label={`${member.name} (@${member.handle}) on GitHub`}
+                aria-label={`${member.name} on GitHub`}
               >
                 <SiGithub size={15} />
                 <span className="team__github-handle">@{member.handle}</span>

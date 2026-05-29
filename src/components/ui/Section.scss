@@ -6,9 +6,12 @@
   z-index: $z-content;
   @include section-padding;
   @include scroll-offset;
-  @include reveal;
+  // NOTE: no scroll-reveal here. A scroll-timeline animation (opacity) on the
+  // section promotes it to a composited layer = a backdrop root, which kills
+  // the glass cards' backdrop-filter (nothing left to blur). Keep sections
+  // un-layered so the frosted blur can sample the WebGL field behind them.
 
-  // Transparent – the background particle field shows through at full strength.
+  // Transparent — the background particle field shows through at full strength.
   background: transparent;
 
   &--alt,
@@ -23,47 +26,19 @@
   // --- Index / blueprint column ----------------------------------
   &__index {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    align-items: baseline;
+    gap: 0.6rem;
     margin-bottom: $space-md;
     padding-bottom: $space-sm;
     border-bottom: 1px solid $color-border;
   }
 
-  &__sigil {
-    flex-shrink: 0;
-    width: 2.25rem;
-    height: 2.25rem;
-    color: $color-accent;
-    filter: drop-shadow(0 0 10px rgba(241, 184, 0, 0.10));
-  }
-
-  &__sigil-ring,
-  &__sigil-ray,
-  &__sigil-glyph {
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  &__sigil-ring {
-    stroke-width: 1.2;
-    opacity: 0.62;
-  }
-
-  &__sigil-ray {
-    stroke-width: 1;
-    opacity: 0.32;
-  }
-
-  &__sigil-glyph {
-    stroke-width: 2;
-    opacity: 0.9;
-  }
-
   &__index-label {
     @include mono-label;
+    // Inherit the old index-number look: gold accent, mono — bigger and bolder.
+    color: $color-accent;
+    font-size: $text-lg;
+    font-weight: 700;
     position: relative;
     padding-left: 1.4rem;
 
@@ -89,7 +64,7 @@
 
   &--indexed &__index {
     @include desktop-up {
-      grid-column: 1 / span 1;
+      grid-column: 1 / span 2;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.5rem;
@@ -99,10 +74,6 @@
       padding-bottom: 0;
       border-bottom: 0;
 
-      .section__sigil {
-        width: 3rem;
-        height: 3rem;
-      }
       .section__index-label {
         padding-left: 0;
         &::before { display: none; }
@@ -112,7 +83,9 @@
 
   &--indexed &__body {
     @include desktop-up {
-      grid-column: 2 / -1;
+      // Wider content: index keeps cols 1–2, body starts at col 3
+      // (narrower gutter → content spans more of the grid).
+      grid-column: 3 / -1;
     }
   }
 }
