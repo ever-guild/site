@@ -1,7 +1,8 @@
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
-import InfinityField from './InfinityField';
+
+const InfinityField = lazy(() => import('./InfinityField'));
 
 // Overall scroll progress (0..1) – subtly feeds the loop's scale & drift.
 function useScrollMorph(): number {

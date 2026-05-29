@@ -8,6 +8,9 @@ const faviconURL = '/favicon.png'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    chunkSizeWarningLimit: 950,
+  },
   plugins: [
     react(),
     VitePWA({
