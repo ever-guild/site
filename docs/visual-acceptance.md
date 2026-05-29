@@ -20,3 +20,6 @@ Check the current implementation against the approved screenshots:
 ```bash
 npm run acceptance:test
 ```
+
+The command also checks that all approved screenshots are distinct. If multiple
+states accidentally capture the same viewport, the snapshot check fails.
