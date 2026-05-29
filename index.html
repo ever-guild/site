@@ -56,7 +56,30 @@
     </script>
   </head>
   <body style="background:#001D25; margin:0; min-height:100vh;">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static fallback so JS-less crawlers and URL scanners see real, legitimate content -->
+      <main style="max-width:760px;margin:0 auto;padding:64px 24px;color:#f4efe2;font-family:system-ui,sans-serif;line-height:1.6;">
+        <h1>Ever Guild</h1>
+        <p>Senior-led software engineering guild. We build Web3, AI and full-stack
+          products that survive production and stay maintainable long after launch.</p>
+        <h2>What we do</h2>
+        <ul>
+          <li>Web3 &amp; Blockchain engineering (TON, EVM, NEAR)</li>
+          <li>AI &amp; automation and LLM integrations</li>
+          <li>Full-stack development (React, Next.js, Node.js)</li>
+          <li>Product design &amp; UI/UX</li>
+          <li>Candidate experience verification</li>
+          <li>Crisis engineering management</li>
+        </ul>
+        <p>Contact: <a href="mailto:in@ever-guild.net" style="color:#f1b800;">in@ever-guild.net</a></p>
+        <p>
+          <a href="https://github.com/ever-guild" style="color:#f1b800;">GitHub</a> ·
+          <a href="https://www.linkedin.com/company/ever-guild/" style="color:#f1b800;">LinkedIn</a> ·
+          <a href="https://x.com/ever_guild_net" style="color:#f1b800;">X</a> ·
+          <a href="https://t.me/everguild" style="color:#f1b800;">Telegram</a>
+        </p>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
