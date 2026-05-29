@@ -35,6 +35,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           path: ./dist
+          include-hidden-files: true
 
   # Deploy only on push to main, after a successful build.
   deploy:
