@@ -165,6 +165,34 @@ test.describe('design baseline', () => {
     expect(navbarRule, 'scrolled navbar should keep backdrop blur CSS rule').toContain('blur');
   });
 
+  test('team photos keep square framing', async ({ page }) => {
+    await page.goto('/');
+    await lockViewportOn(page, '#team');
+    await waitForVisualReady(page);
+
+    const frames = await page.locator('.team__photo').evaluateAll((elements) =>
+      elements.map((element) => {
+        const frame = element.getBoundingClientRect();
+        const image = element.querySelector('img')?.getBoundingClientRect();
+
+        return {
+          frameWidth: frame.width,
+          frameHeight: frame.height,
+          imageWidth: image?.width ?? 0,
+          imageHeight: image?.height ?? 0,
+        };
+      }),
+    );
+
+    expect(frames).toHaveLength(3);
+
+    for (const frame of frames) {
+      expect(Math.abs(frame.frameWidth - frame.frameHeight), 'team photo frame should stay square').toBeLessThan(2);
+      expect(Math.abs(frame.imageWidth - frame.frameWidth), 'team image should fill frame width').toBeLessThan(2);
+      expect(Math.abs(frame.imageHeight - frame.frameHeight), 'team image should fill frame height').toBeLessThan(2);
+    }
+  });
+
   for (const state of states) {
     test(`${state.name} viewport matches approved baseline`, async ({ page }, testInfo) => {
       await state.target(page);

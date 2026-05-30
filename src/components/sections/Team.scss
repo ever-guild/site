@@ -43,6 +43,8 @@
   // with a telemetry index tag and crosshair.
   &__photo {
     position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
     border-bottom: 1px solid $color-glass-border;
 
     // crosshair "+" at the top-left of the frame
@@ -62,7 +64,7 @@
   &__avatar {
     display: block;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: 100%;
     object-fit: cover;
     object-position: center 22%;
     filter: grayscale(0.4) contrast(1.02);
