@@ -50,7 +50,14 @@ const Navbar = React.memo(function Navbar() {
     <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
       <div className="navbar__container">
         <a href="#" className="navbar__brand" onClick={closeMobileMenu}>
-          <img src={logo} alt="Ever Guild" className="navbar__logo" />
+          <img
+            src={logo}
+            alt="Ever Guild"
+            className="navbar__logo"
+            width="1020"
+            height="157"
+            fetchPriority="high"
+          />
         </a>
 
         <nav
@@ -93,7 +100,11 @@ const Navbar = React.memo(function Navbar() {
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileMenuOpen}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? (
+            <X size={24} aria-hidden="true" focusable="false" />
+          ) : (
+            <Menu size={24} aria-hidden="true" focusable="false" />
+          )}
         </button>
       </div>
 

@@ -13,6 +13,7 @@ const team = [
     name: "Ilyar",
     role: "Senior Engineer · Web3 Lead",
     avatar: iljarAvatar,
+    avatarSize: 800,
     github: "https://github.com/ilyar",
     handle: "ilyar",
     bio: "Leads Web3 infrastructure and backend systems – smart contracts in Rust and Solidity on TON and EVM, built to stay reliable.",
@@ -21,6 +22,7 @@ const team = [
     name: "Marks",
     role: "Full-Stack · AI Engineer",
     avatar: ppmarkekAvatar,
+    avatarSize: 800,
     github: "https://github.com/ppmarkek",
     handle: "ppmarkek",
     bio: "Builds full-stack products and AI automation – React, Next.js and Node.js for SaaS apps, dashboards and marketplaces.",
@@ -29,6 +31,7 @@ const team = [
     name: "Andrei",
     role: "Product Designer",
     avatar: andreiAvatar,
+    avatarSize: 700,
     github: "https://github.com/Glazlk",
     handle: "Glazlk",
     bio: "Designs products end to end – UI/UX, prototypes and design systems for responsive web, with AI-assisted workflows.",
@@ -49,6 +52,8 @@ export const Team = React.memo(function Team() {
                 alt={member.name}
                 className="team__avatar"
                 loading="lazy"
+                width={member.avatarSize}
+                height={member.avatarSize}
               />
             </div>
 
@@ -62,11 +67,17 @@ export const Team = React.memo(function Team() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="team__github"
-                aria-label={`${member.name} on GitHub`}
+                aria-label={`@${member.handle} on GitHub`}
               >
-                <SiGithub size={15} />
+                <SiGithub size={15} aria-hidden="true" focusable="false" />
                 <span className="team__github-handle">@{member.handle}</span>
-                <ArrowUpRight size={14} strokeWidth={2} className="team__github-arrow" />
+                <ArrowUpRight
+                  size={14}
+                  strokeWidth={2}
+                  className="team__github-arrow"
+                  aria-hidden="true"
+                  focusable="false"
+                />
               </a>
             </div>
           </article>
