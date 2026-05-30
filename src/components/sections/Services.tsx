@@ -68,7 +68,7 @@ export const Services = React.memo(function Services() {
           <article key={service.title} className="services__card">
             <div className="services__head">
               <span className="services__icon" aria-hidden="true">
-                <service.Icon />
+                <service.Icon aria-hidden="true" focusable="false" />
               </span>
               <span className="services__num" aria-hidden="true">
                 {String(i + 1).padStart(2, '0')}
@@ -88,7 +88,7 @@ export const Services = React.memo(function Services() {
               className="services__tag"
               aria-hidden={i >= stack.length ? true : undefined}
             >
-              <tech.Icon className="services__tag-icon" aria-hidden="true" />
+              <tech.Icon className="services__tag-icon" aria-hidden="true" focusable="false" />
               {tech.name}
             </li>
           ))}

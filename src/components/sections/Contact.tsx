@@ -21,7 +21,13 @@ export const Contact = React.memo(function Contact() {
         >
           <span className="contact__email-prompt" aria-hidden="true">▸</span>
           <span className="contact__email-text">in@ever-guild.net</span>
-          <ArrowUpRight size={28} strokeWidth={1.8} className="contact__email-arrow" />
+          <ArrowUpRight
+            size={28}
+            strokeWidth={1.8}
+            className="contact__email-arrow"
+            aria-hidden="true"
+            focusable="false"
+          />
         </a>
 
         <p className="contact__note">
