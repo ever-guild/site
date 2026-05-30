@@ -13,7 +13,9 @@ export const Contact = React.memo(function Contact() {
         />
 
         <a
-          href="mailto:in@ever-guild.net"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=in@ever-guild.net&su=New%20project%20enquiry"
+          target="_blank"
+          rel="noopener noreferrer"
           className="contact__email"
           aria-label="Email Ever Guild at in@ever-guild.net"
         >

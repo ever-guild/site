@@ -116,14 +116,14 @@ $transition-base: 240ms $ease-standard;
 $transition-slow: 420ms $ease-standard;
 $transition-reveal: 760ms $ease-out-expo; // scroll-entry choreography
 
-// --- Radius (engineering blueprint — razor-sharp) ---
-// Industrial-brutalist shape-lock: 90° corners everywhere. No soft cards,
-// no pills. Geometry reads as machined hardware, not consumer UI.
-$radius-sm:   0;
-$radius-md:   0;
-$radius-lg:   0;
-$radius-xl:   0;
-$radius-full: 0;
+// --- Radius (iOS-style soft continuous corners) ---
+// Shape-lock: one smooth, generous rounding scale across the whole UI —
+// reads like iOS surfaces (controls, cards, sheets). No sharp corners.
+$radius-sm:   12px; // controls, chips, small tags
+$radius-md:   18px; // buttons, github chip
+$radius-lg:   24px; // cards / panels
+$radius-xl:   30px; // large feature panels
+$radius-full: 9999px; // pills / circular icons
 
 // --- Blueprint grid / telemetry ---------------
 $color-grid:      rgba(244, 241, 232, 0.05); // faint structural hairlines

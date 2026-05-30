@@ -10,7 +10,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     @include engineered-panel(30px);
-    @include reveal; // opacity-only — safe over backdrop-filter
+    overflow: hidden; // clip the internal rule grid to rounded corners
 
     @include tablet-up {
       grid-template-columns: repeat(4, 1fr);

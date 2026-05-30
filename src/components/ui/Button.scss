@@ -14,8 +14,8 @@
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  // Razor-sharp — machined control, never a pill.
-  border-radius: 0;
+  // Soft iOS-style rounded control.
+  border-radius: $radius-md;
   border: 1px solid transparent;
   will-change: transform;
   transition:
