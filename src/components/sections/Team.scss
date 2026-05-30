@@ -13,7 +13,7 @@
   &__card {
     position: relative;
     @include engineered-panel(30px);
-    @include reveal; // opacity-only — safe over backdrop-filter
+    overflow: hidden; // clip the photo to the card's rounded corners
     display: flex;
     flex-direction: column;
     transition:
@@ -21,17 +21,11 @@
       background-color $transition-base,
       transform 300ms $ease-spring;
 
-    @include corner-brackets(12px, transparent);
-
     &:hover {
       border-color: $color-border-2;
       background: $color-surface-2;
 
-      &::before { border-color: $color-accent-line; }
-      &::after  { border-color: $color-accent-line; }
-
       .team__avatar { filter: grayscale(0) contrast(1); }
-      .team__idx { color: $color-accent; border-color: $color-accent-line; }
 
       .team__github {
         border-color: $color-accent-line;
@@ -74,23 +68,6 @@
     transition: filter $transition-slow;
   }
 
-  &__idx {
-    position: absolute;
-    top: 0.55rem;
-    right: 0.55rem;
-    z-index: 2;
-    padding: 0.15rem 0.4rem;
-    font-family: $font-mono;
-    font-weight: 600;
-    font-size: $text-2xs;
-    letter-spacing: 0.06em;
-    color: $color-text;
-    background: rgba(0, 29, 37, 0.55);
-    border: 1px solid $color-glass-border;
-    backdrop-filter: blur(6px);
-    transition: color $transition-base, border-color $transition-base;
-  }
-
   &__body {
     display: flex;
     flex-direction: column;
@@ -128,7 +105,7 @@
     margin-top: $space-lg;
     padding: 0.55rem 0.875rem;
     border: 1px solid $color-border-2;
-    border-radius: 0;
+    border-radius: $radius-sm;
     color: $color-text-2;
     font-size: $text-sm;
     transition: border-color $transition-base, color $transition-base;

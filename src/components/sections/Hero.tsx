@@ -25,7 +25,7 @@ const Hero = React.memo(function Hero() {
         </p>
 
         <div className="hero__actions">
-          <Button href="#contact" variant="primary" size="lg" icon={<span aria-hidden="true">↗</span>}>
+          <Button href="https://mail.google.com/mail/?view=cm&fs=1&to=in@ever-guild.net&su=New%20project%20enquiry" variant="primary" size="lg" icon={<span aria-hidden="true">↗</span>}>
             Start a project
           </Button>
           <Button

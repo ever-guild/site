@@ -68,19 +68,7 @@
     text-wrap: balance;
 
     &-accent {
-      position: relative;
       color: $color-accent;
-      // Gold baseline tick under the accent word.
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -0.08em;
-        height: 2px;
-        background: $color-accent;
-        opacity: 0.55;
-      }
     }
   }
 

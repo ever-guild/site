@@ -276,11 +276,10 @@
   &::after  { width: 1px; height: $size; transform: translate(-50%, -50%); }
 }
 
-// Engineered panel — sharp machined-plate surface. Frosted emerald glass with
-// crisp 90° hairline edges. The signature "liquid glass over the field" look,
-// hardened into blueprint geometry.
-@mixin engineered-panel($blur: 30px) {
+// Engineered panel — frosted emerald glass surface with soft iOS-style
+// rounded corners. The signature "liquid glass over the field" look.
+@mixin engineered-panel($blur: 30px, $radius: $radius-lg) {
   position: relative;
   @include glass($blur);
-  border-radius: 0;
+  border-radius: $radius;
 }

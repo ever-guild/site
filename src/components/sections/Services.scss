@@ -16,7 +16,7 @@
   &__card {
     position: relative;
     @include engineered-panel(30px);
-    @include reveal; // opacity-only — safe over backdrop-filter
+    overflow: hidden; // clip the top gold rail to rounded corners
     padding: $space-lg;
 
     // Gold top edge — the module's "powered" rail; strengthens on hover.

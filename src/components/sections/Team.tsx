@@ -5,11 +5,7 @@ import { SiGithub } from "react-icons/si";
 import { ArrowUpRight } from "lucide-react";
 import iljarAvatar from "../../assets/avatars/ilyar.webp";
 import ppmarkekAvatar from "../../assets/avatars/ppmarkek.webp";
-import ppmarkekAvatar400 from "../../assets/avatars/ppmarkek-400.webp";
-import ppmarkekAvatar640 from "../../assets/avatars/ppmarkek-640.webp";
 import andreiAvatar from "../../assets/avatars/andrei.webp";
-import andreiAvatar400 from "../../assets/avatars/andrei-400.webp";
-import andreiAvatar640 from "../../assets/avatars/andrei-640.webp";
 import "./Team.scss";
 
 const team = [
@@ -36,9 +32,6 @@ const team = [
     name: "Andrei",
     role: "Product Designer",
     avatar: andreiAvatar,
-    avatarSize: 700,
-    avatar400: andreiAvatar400,
-    avatar640: andreiAvatar640,
     github: "https://github.com/Glazlk",
     handle: "Glazlk",
     bio: "Designs products end to end – UI/UX, prototypes and design systems for responsive web, with AI-assisted workflows.",
@@ -51,7 +44,7 @@ export const Team = React.memo(function Team() {
       <SectionHeader title="The senior engineers you'll work with directly." />
 
       <div className="team">
-        {team.map((member, i) => (
+        {team.map((member) => (
           <article key={member.name} className="team__card">
             <div className="team__photo">
               <img
@@ -60,9 +53,6 @@ export const Team = React.memo(function Team() {
                 className="team__avatar"
                 loading="lazy"
               />
-              <span className="team__idx" aria-hidden="true">
-                {String(i + 1).padStart(2, "0")}
-              </span>
             </div>
 
             <div className="team__body">

@@ -11,10 +11,7 @@
     padding: clamp(1.25rem, 3vw, 2rem);
     margin-top: $space-lg;
     @include engineered-panel(30px);
-    @include reveal; // opacity-only — safe over backdrop-filter
     color: $color-text;
-
-    @include corner-brackets(14px, $color-accent-line);
 
     // Gold rail along the top edge (inset) + frosted depth.
     box-shadow:
@@ -26,9 +23,6 @@
     &:hover {
       border-color: $color-glass-edge;
       background: $color-glass-2;
-
-      &::before,
-      &::after { border-color: $color-accent; }
 
       .contact__email-arrow { transform: translate(4px, -4px); color: $color-cream-2; }
       .contact__email-prompt { color: $color-cream-2; }
