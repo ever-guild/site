@@ -27,7 +27,7 @@ $color-border-3:     rgba(241, 184, 0, 0.32); // gold-tinted accent edge
 $color-text:         #FFE79C; // light cream (matches footer text)
 $color-text-2:       #C7D4D1; // secondary teal-gray — lightened for readability (AA+)
 $color-text-3:       #AAB9B5; // muted / mono labels — lightened for readability
-$color-text-4:       #475957; // faintest
+$color-text-4:       #8CA09B; // faintest readable telemetry text
 
 // --- Accent (brand gold + cream highlight) ----
 $color-accent:       #F1B800; // gold — primary signal
@@ -104,17 +104,31 @@ $bp-tablet:  768px;
 $bp-desktop: 1024px;
 $bp-wide:    1440px;
 
-// --- Transitions ------------------------------
-$transition-fast: 140ms cubic-bezier(0.4, 0, 0.2, 1);
-$transition-base: 240ms cubic-bezier(0.4, 0, 0.2, 1);
-$transition-slow: 420ms cubic-bezier(0.4, 0, 0.2, 1);
+// --- Motion easings ---------------------------
+// Spring-ish curves for choreographed motion (entry, hover physics).
+$ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);   // heavy fade-up / reveals
+$ease-spring:    cubic-bezier(0.32, 0.72, 0, 1);  // physical, weighted hover
+$ease-standard:  cubic-bezier(0.4, 0, 0.2, 1);
 
-// --- Radius (soft, rounded) -------------------
-$radius-sm:   8px;
-$radius-md:   12px;
-$radius-lg:   18px;
-$radius-xl:   26px;
-$radius-full: 9999px;
+// --- Transitions ------------------------------
+$transition-fast: 140ms $ease-standard;
+$transition-base: 240ms $ease-standard;
+$transition-slow: 420ms $ease-standard;
+$transition-reveal: 760ms $ease-out-expo; // scroll-entry choreography
+
+// --- Radius (iOS-style soft continuous corners) ---
+// Shape-lock: one smooth, generous rounding scale across the whole UI —
+// reads like iOS surfaces (controls, cards, sheets). No sharp corners.
+$radius-sm:   12px; // controls, chips, small tags
+$radius-md:   18px; // buttons, github chip
+$radius-lg:   24px; // cards / panels
+$radius-xl:   30px; // large feature panels
+$radius-full: 9999px; // pills / circular icons
+
+// --- Blueprint grid / telemetry ---------------
+$color-grid:      rgba(244, 241, 232, 0.05); // faint structural hairlines
+$color-grid-2:    rgba(244, 241, 232, 0.10); // stronger ruler line
+$color-crosshair: rgba(241, 184, 0, 0.22);   // gold tick at grid intersections
 
 // --- Layout -----------------------------------
 $container-max: 1450px;

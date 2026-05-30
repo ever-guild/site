@@ -35,6 +35,8 @@ export const Section = React.memo(function Section({
       <div className="section__container">
         {indexed && (
           <div className="section__index" aria-hidden="true">
+            <span className="section__index-tick" />
+            {index && <span className="section__index-num">{index}</span>}
             {label && <span className="section__index-label">{label}</span>}
           </div>
         )}

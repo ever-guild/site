@@ -13,6 +13,7 @@ const navLinks = [
 const Navbar = React.memo(function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +25,24 @@ const Navbar = React.memo(function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Scroll-spy — highlight the nav link for the section in view.
+  useEffect(() => {
+    const ids = navLinks.map((l) => l.href.slice(1));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
@@ -31,33 +50,47 @@ const Navbar = React.memo(function Navbar() {
     <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
       <div className="navbar__container">
         <a href="#" className="navbar__brand" onClick={closeMobileMenu}>
-          <img src={logo} alt="Ever Guild" className="navbar__logo" />
+          <img
+            src={logo}
+            alt="Ever Guild"
+            className="navbar__logo"
+            width="1020"
+            height="157"
+            fetchPriority="high"
+          />
         </a>
 
         <nav
           className={`navbar__nav ${isMobileMenuOpen ? "navbar__nav--open" : ""}`}
         >
           <ul className="navbar__list">
-            {navLinks.map((link) => (
-              <li key={link.href} className="navbar__item">
-                <a
-                  href={link.href}
-                  className="navbar__link"
-                  onClick={closeMobileMenu}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link, i) => {
+              const active = link.href === `#${activeId}`;
+              return (
+                <li key={link.href} className="navbar__item">
+                  <a
+                    href={link.href}
+                    className={`navbar__link ${active ? "navbar__link--active" : ""}`}
+                    aria-current={active ? "true" : undefined}
+                    onClick={closeMobileMenu}
+                  >
+                    <span className="navbar__link-idx" aria-hidden="true">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
           <Button
-            href="#contact"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=in@ever-guild.net&su=New%20project%20enquiry"
             variant="primary"
             size="sm"
             className="navbar__cta"
             onClick={closeMobileMenu}
           >
-            Get in touch
+            Start a project
           </Button>
         </nav>
 
@@ -67,7 +100,11 @@ const Navbar = React.memo(function Navbar() {
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileMenuOpen}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? (
+            <X size={24} aria-hidden="true" focusable="false" />
+          ) : (
+            <Menu size={24} aria-hidden="true" focusable="false" />
+          )}
         </button>
       </div>
 

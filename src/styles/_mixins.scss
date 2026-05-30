@@ -158,3 +158,61 @@
     }
   }
 }
+
+// Transform reveal — heavy fade-up for LEAF elements only (headings, text,
+// dividers, ticks). NEVER on an ancestor of a .glass card (kills backdrop-filter).
+@mixin reveal-rise($range: 24%) {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      opacity: 0;
+      animation: reveal-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover $range;
+    }
+  }
+}
+
+// Hairline draw-in (section dividers, gold ticks). Set transform-origin in caller.
+@mixin reveal-draw($range: 30%) {
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      opacity: 0;
+      animation: reveal-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover $range;
+    }
+  }
+}
+
+// Telemetry coordinate label — mono, uppercase, bracketed engineering voice.
+@mixin mono-coord {
+  font-family: $font-mono;
+  font-size: $text-2xs;
+  font-weight: 500;
+  letter-spacing: $tracking-mono;
+  text-transform: uppercase;
+  color: $color-text-3;
+}
+
+// Gold crosshair tick — a small machined "+" marker. Place on a positioned host.
+@mixin tick($size: 9px, $color: $color-accent) {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background: $color;
+    left: 50%;
+    top: 50%;
+  }
+  &::before { width: $size; height: 1px; transform: translate(-50%, -50%); }
+  &::after  { width: 1px; height: $size; transform: translate(-50%, -50%); }
+}
+
+// Engineered panel — frosted emerald glass surface with soft iOS-style
+// rounded corners. The signature "liquid glass over the field" look.
+@mixin engineered-panel($blur: 30px, $radius: $radius-lg) {
+  position: relative;
+  @include glass($blur);
+  border-radius: $radius;
+}
