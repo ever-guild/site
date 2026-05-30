@@ -6,7 +6,9 @@ name: update-baselines
 # artifact and commit it. Safe to delete after baselines are in sync.
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - redesign/engineering-console
 
 jobs:
   update:
