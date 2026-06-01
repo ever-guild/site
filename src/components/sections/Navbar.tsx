@@ -84,7 +84,7 @@ const Navbar = React.memo(function Navbar() {
             })}
           </ul>
           <Button
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=in@ever-guild.net&su=New%20project%20enquiry"
+            href="#contact"
             variant="primary"
             size="sm"
             className="navbar__cta"

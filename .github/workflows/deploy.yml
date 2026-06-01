@@ -61,4 +61,4 @@ jobs:
           url: https://ever-guild.net/
           reanalyze: "true"
           wait-seconds: "90"
-          fail-on-detection: "false"
+          fail-on-detection: "true"
