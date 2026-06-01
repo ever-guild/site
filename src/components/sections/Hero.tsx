@@ -11,7 +11,6 @@ const socials = [
     label: "LinkedIn",
   },
   { platform: "x", url: "https://x.com/ever_guild_net", label: "X" },
-  { platform: "telegram", url: "https://t.me/everguild", label: "Telegram" },
   {
     platform: "upwork",
     url: "https://www.upwork.com/agencies/everguild/",
