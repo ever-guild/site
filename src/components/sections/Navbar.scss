@@ -44,6 +44,13 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    min-height: 44px;
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 4px;
+      border-radius: $radius-sm;
+    }
   }
 
   &__logo {
@@ -109,6 +116,7 @@
     display: inline-flex;
     align-items: baseline;
     gap: 0.4rem;
+    min-height: 44px;
     @include mono-label;
     color: $color-text-2;
     transition: color $transition-fast;
@@ -129,6 +137,12 @@
 
     &:hover { color: $color-accent; }
     &:hover::after { transform: scaleX(1); }
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 0.55rem;
+      border-radius: 2px;
+    }
 
     &--active {
       color: $color-accent;
@@ -161,6 +175,14 @@
     display: none;
     color: $color-text;
     padding: $space-xs;
+    min-width: 44px;
+    min-height: 44px;
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 3px;
+      border-radius: $radius-sm;
+    }
 
     @media (max-width: #{$bp-desktop - 1px}) {
       @include flex-center;

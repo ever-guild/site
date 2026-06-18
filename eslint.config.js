@@ -5,7 +5,16 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: [".agents", "dist", "node_modules", "public"],
+    ignores: [
+      ".agents",
+      ".claude",
+      ".codex",
+      ".github/skills",
+      ".impeccable",
+      "dist",
+      "node_modules",
+      "public",
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

@@ -6,9 +6,14 @@
   z-index: $z-content;
   display: flex;
   align-items: center;
-  min-height: 100vh;
-  min-height: 100svh; // full screen — keep the next section from peeking in
-  padding-block: 8rem 5rem;
+  min-height: calc(100vh - clamp(5.25rem, 8vh, 6rem));
+  min-height: calc(100svh - clamp(5.25rem, 8vh, 6rem));
+  padding-block: clamp(6.75rem, 11vh, 8rem) clamp(3rem, 6vh, 5rem);
+
+  @media (max-width: #{$bp-mobile - 1px}) {
+    min-height: calc(100svh - 5.5rem);
+    padding-block: 5.75rem 3rem;
+  }
 
   // --- HUD status readout (top) -------------------------------
   &__hud {
@@ -89,7 +94,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: $space-sm;
-    margin-top: $space-xl;
+    margin-top: clamp(2rem, 5vh, #{$space-xl});
     justify-content: center;
 
     @media (max-width: #{$bp-mobile - 1px}) {
@@ -103,7 +108,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.625rem;
-    margin-top: $space-xl;
+    margin-top: clamp(1.75rem, 5vh, #{$space-xl});
     justify-content: center;
   }
 
@@ -139,6 +144,8 @@
     &:hover { color: $color-accent; }
 
     @media (max-height: 680px) { display: none; }
+
+    @media (max-width: #{$bp-mobile - 1px}) { display: none; }
   }
 
   // Staggered entrance on load.

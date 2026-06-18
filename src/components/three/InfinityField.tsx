@@ -265,6 +265,7 @@ function createParticles(density: number): ParticleData {
 export default function InfinityField({ reducedMotion = false, opacity = 1, scroll = 0 }: InfinityFieldProps) {
   const pointsRef = useRef<THREE.Points>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
+  const elapsedRef = useRef(0);
   const currentOpacity = useRef(opacity);
   const currentScroll = useRef(scroll);
   const scrollRef = useRef(scroll);
@@ -326,12 +327,13 @@ export default function InfinityField({ reducedMotion = false, opacity = 1, scro
     }
   }, [scroll]);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (reducedMotion) {
       return;
     }
 
-    const t = state.clock.getElapsedTime();
+    elapsedRef.current += delta;
+    const t = elapsedRef.current;
 
     if (materialRef.current) {
       materialRef.current.uniforms.uTime.value = t;

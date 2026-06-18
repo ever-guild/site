@@ -27,6 +27,11 @@
       .contact__email-arrow { transform: translate(4px, -4px); color: $color-cream-2; }
       .contact__email-prompt { color: $color-cream-2; }
     }
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 4px;
+    }
   }
 
   &__email-prompt {

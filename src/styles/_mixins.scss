@@ -164,7 +164,6 @@
 @mixin reveal-rise($range: 24%) {
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
-      opacity: 0;
       animation: reveal-rise linear both;
       animation-timeline: view();
       animation-range: entry 0% cover $range;

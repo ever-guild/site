@@ -106,12 +106,18 @@
     gap: 0.5rem;
     align-self: flex-start;
     margin-top: $space-lg;
+    min-height: 44px;
     padding: 0.55rem 0.875rem;
     border: 1px solid $color-border-2;
     border-radius: $radius-sm;
     color: $color-text-2;
     font-size: $text-sm;
     transition: border-color $transition-base, color $transition-base;
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 3px;
+    }
   }
 
   &__github-handle {

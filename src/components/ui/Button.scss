@@ -77,9 +77,14 @@
 
   &--sm { padding: 0.55rem 1rem; }
   &--md { padding: 0.72rem 1.3rem; }
+  &--sm,
+  &--md {
+    min-height: 2.75rem;
+  }
   &--lg {
     padding: 0.95rem 1.65rem;
     font-size: $text-sm;
+    min-height: 3.25rem;
   }
 
   // Trailing icon — separated by a hairline rule (telemetry control read).

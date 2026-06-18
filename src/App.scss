@@ -47,6 +47,10 @@
     position: relative;
     z-index: $z-content;
   }
+
+  .hero + .section {
+    padding-top: clamp(1.5rem, 3vw, 2rem);
+  }
 }
 
 body {

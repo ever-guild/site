@@ -96,6 +96,11 @@
   }
 
   &__top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
     font-family: $font-mono;
     font-size: $text-xs;
     letter-spacing: $tracking-wide;
@@ -104,6 +109,12 @@
     transition: color $transition-base;
 
     &:hover { color: $color-accent; }
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 3px;
+      border-radius: $radius-sm;
+    }
   }
 
   &__socials {
