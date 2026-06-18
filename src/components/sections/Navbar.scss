@@ -8,13 +8,13 @@
   right: 0;
   z-index: $z-fixed;
   border-bottom: 1px solid transparent;
-  background: transparent;
+  background: rgba(1, 24, 28, 0.94);
   transition:
     background-color $transition-base,
     border-color $transition-base;
 
   &--scrolled {
-    background: rgba(1, 24, 28, 0.94);
+    background: rgba(1, 24, 28, 0.98);
     border-bottom-color: $color-border;
   }
 

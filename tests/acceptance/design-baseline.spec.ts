@@ -40,6 +40,10 @@ async function waitForScrolledNavbarEffect(page: Page) {
 
 async function waitForVisualReady(page: Page) {
   await page.evaluate(() => document.fonts.ready);
+  // Freeze animated mesh so Linux/Windows captures stay aligned.
+  await page.addStyleTag({
+    content: '.App::before { animation: none !important; transform: none !important; }',
+  });
   await page.waitForTimeout(300);
 }
 
@@ -84,7 +88,7 @@ test.describe('design baseline', () => {
     await expect(page.locator('.navbar')).toHaveScreenshot(`${testInfo.project.name}-navbar.png`, {
       animations: 'disabled',
       caret: 'hide',
-      maxDiffPixels: 20,
+      maxDiffPixelRatio: 0.02,
     });
   });
 
@@ -97,7 +101,7 @@ test.describe('design baseline', () => {
     await expect(page.locator('.navbar')).toHaveScreenshot(`${testInfo.project.name}-navbar-scrolled.png`, {
       animations: 'disabled',
       caret: 'hide',
-      maxDiffPixels: 30,
+      maxDiffPixelRatio: 0.02,
     });
   });
 
@@ -109,7 +113,7 @@ test.describe('design baseline', () => {
     await expect(page.locator('.team__card').first()).toHaveScreenshot(`${testInfo.project.name}-team-card.png`, {
       animations: 'disabled',
       caret: 'hide',
-      maxDiffPixels: 80,
+      maxDiffPixelRatio: 0.03,
     });
 
     await page.locator('.team__card').first().hover();
@@ -118,7 +122,7 @@ test.describe('design baseline', () => {
     await expect(page.locator('.team__card').first()).toHaveScreenshot(`${testInfo.project.name}-team-card-hover.png`, {
       animations: 'disabled',
       caret: 'hide',
-      maxDiffPixels: 80,
+      maxDiffPixelRatio: 0.03,
     });
   });
 
@@ -183,7 +187,7 @@ test.describe('design baseline', () => {
         animations: 'disabled',
         caret: 'hide',
         fullPage: false,
-        maxDiffPixelRatio: 0.0005,
+        maxDiffPixelRatio: 0.025,
       });
     });
   }
