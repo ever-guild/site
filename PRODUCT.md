@@ -24,10 +24,10 @@ Avoid community-first language on the public landing page; community positioning
 
 - Lead with team capability, not community scale.
 - Make the brand feel engineered: structured, readable, deliberate, and production-minded.
-- Use immersive 3D and motion as atmosphere that supports the content rather than competing with it.
+- Use flat surfaces and purposeful motion that supports the content rather than competing with it.
 - Keep every section purposeful: explain what the team does, who does it, how to contact them, and why the work is trustworthy.
 - Preserve all external social and contact paths so visitors can choose the channel that fits their intent.
 
 ## Accessibility & Inclusion
 
-Target WCAG AA contrast and keyboard-accessible navigation. Respect reduced-motion preferences for all animation and Three.js effects. Maintain readable text on tinted dark surfaces and avoid relying on color alone for interactive state.
+Target WCAG AA contrast and keyboard-accessible navigation. Respect reduced-motion preferences for all animation. Maintain readable text on tinted dark surfaces and avoid relying on color alone for interactive state.

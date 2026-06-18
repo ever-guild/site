@@ -3,43 +3,37 @@
 
 .App {
   position: relative;
-  min-height: 100vh;
   isolation: isolate;
+  min-height: 100vh;
   background: $color-bg;
 
-  // Blueprint grid — bidirectional hairlines with gold crosshair ticks at
-  // every intersection. Sits behind all content and the WebGL field. Reads
-  // as a declassified engineering drawing / tactical plotting surface.
-  &::before {
+  &::before,
+  &::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: $z-grid;
     pointer-events: none;
-    background-image:
-      url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='200'%20height='200'%3E%3Cg%20stroke='%23F1B800'%20stroke-opacity='0.22'%20stroke-width='1'%3E%3Cline%20x1='100'%20y1='94'%20x2='100'%20y2='106'/%3E%3Cline%20x1='94'%20y1='100'%20x2='106'%20y2='100'/%3E%3C/g%3E%3C/svg%3E"),
-      repeating-linear-gradient(to right,  #{$color-grid} 0, #{$color-grid} 1px, transparent 1px, transparent 200px),
-      repeating-linear-gradient(to bottom, #{$color-grid} 0, #{$color-grid} 1px, transparent 1px, transparent 200px);
-    background-position: 0 0, 100px 0, 0 100px;
-    background-size: 200px 200px, auto, auto;
-    opacity: 0.85;
-    mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
   }
 
-  // Film grain — fixed, pointer-events-none overlay breaking digital flatness.
-  // Very low opacity, soft-light blend so it tints without muddying contrast.
-  &::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 400;
-    pointer-events: none;
-    opacity: 0.05;
-    mix-blend-mode: soft-light;
-    background-image:
-      url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='140'%20height='140'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.9'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E");
+  &::before {
+    @include page-mesh;
+    transform-origin: 50% 40%;
+    will-change: transform;
 
-    @media (prefers-reduced-motion: reduce) { opacity: 0.035; }
+    @media (prefers-reduced-motion: no-preference) {
+      animation: page-mesh-drift 32s $ease-out-expo infinite alternate;
+    }
+  }
+
+  &::after {
+    @include page-field-dots;
+    mask-image: radial-gradient(
+      ellipse 95% 85% at 50% 42%,
+      rgb(0 0 0 / 72%) 0%,
+      rgb(0 0 0 / 18%) 55%,
+      transparent 78%
+    );
   }
 
   main,
@@ -47,10 +41,11 @@
     position: relative;
     z-index: $z-content;
   }
+}
 
-  .hero + .section {
-    padding-top: clamp(1.5rem, 3vw, 2rem);
-  }
+@keyframes page-mesh-drift {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to   { transform: scale(1.05) translate3d(1.2%, -0.8%, 0); }
 }
 
 body {

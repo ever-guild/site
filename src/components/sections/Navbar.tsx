@@ -25,7 +25,6 @@ const Navbar = React.memo(function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Scroll-spy — highlight the nav link for the section in view.
   useEffect(() => {
     const ids = navLinks.map((l) => l.href.slice(1));
     const observer = new IntersectionObserver(
@@ -43,8 +42,8 @@ const Navbar = React.memo(function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  const toggleMobileMenu = () => setIsMobileMenuOpen((open) => !open);
 
   return (
     <header className={`navbar ${isScrolled ? "navbar--scrolled" : ""}`}>
@@ -64,7 +63,7 @@ const Navbar = React.memo(function Navbar() {
           className={`navbar__nav ${isMobileMenuOpen ? "navbar__nav--open" : ""}`}
         >
           <ul className="navbar__list">
-            {navLinks.map((link, i) => {
+            {navLinks.map((link) => {
               const active = link.href === `#${activeId}`;
               return (
                 <li key={link.href} className="navbar__item">
@@ -74,9 +73,6 @@ const Navbar = React.memo(function Navbar() {
                     aria-current={active ? "true" : undefined}
                     onClick={closeMobileMenu}
                   >
-                    <span className="navbar__link-idx" aria-hidden="true">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
                     {link.label}
                   </a>
                 </li>

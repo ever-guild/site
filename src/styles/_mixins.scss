@@ -44,6 +44,72 @@
   );
 }
 
+// Soft color mesh — infinity-loop echo + logo palette washes.
+@mixin page-mesh {
+  background-color: $color-bg;
+  background-image:
+    radial-gradient(
+      ellipse 130% 92% at 50% 48%,
+      transparent 34%,
+      $color-field-vignette 100%
+    ),
+    radial-gradient(
+      ellipse 44% 38% at 76% 16%,
+      $color-mesh-gold 0%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 40% 36% at 58% 12%,
+      $color-mesh-cream 0%,
+      transparent 66%
+    ),
+    radial-gradient(
+      ellipse 52% 46% at 14% 82%,
+      $color-mesh-warm 0%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 58% 50% at 90% 70%,
+      $color-mesh-teal 0%,
+      transparent 74%
+    ),
+    radial-gradient(
+      ellipse 48% 42% at 26% 34%,
+      $color-mesh-depth 0%,
+      transparent 70%
+    );
+
+  @media (max-width: #{$bp-mobile - 1px}) {
+    background-image:
+      radial-gradient(
+        ellipse 130% 92% at 50% 48%,
+        transparent 40%,
+        $color-field-vignette 100%
+      ),
+      radial-gradient(
+        ellipse 55% 45% at 88% 8%,
+        $color-mesh-gold 0%,
+        transparent 62%
+      ),
+      radial-gradient(
+        ellipse 50% 44% at 10% 88%,
+        $color-mesh-warm 0%,
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse 45% 40% at 30% 38%,
+        $color-mesh-depth 0%,
+        transparent 68%
+      );
+  }
+}
+
+// Micro dot field — modern texture, not blueprint lines.
+@mixin page-field-dots {
+  background-image: radial-gradient(circle, $color-field-dot 0.55px, transparent 0.55px);
+  background-size: $field-dot-size $field-dot-size;
+}
+
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -60,11 +126,11 @@
   color: $color-text-3;
 }
 
-// Display type (headlines) — Tilt Warp
+// Display type (headlines) — Hanken Grotesk, weight contrast
 @mixin display {
   font-family: $font-display;
-  font-weight: 400;
-  letter-spacing: 0;
+  font-weight: 600;
+  letter-spacing: $tracking-tight;
   line-height: 1.08;
   color: $color-text;
 }
@@ -73,35 +139,19 @@
 @mixin card {
   background: $color-surface;
   border: 1px solid $color-border;
+  border-radius: $radius-lg;
   transition: border-color $transition-base, background-color $transition-base;
 }
 
-// Liquid glass — matte murky-emerald frosted panel.
-// Blurs the particle field behind it for depth. Used for ALL content blocks.
-// Top rim-light + soft drop give the "liquid glass" read.
-@mixin glass($blur: 43px) {
-  background: $color-glass;
-  backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
-  -webkit-backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
-  border: 1px solid $color-glass-border;
-  box-shadow:
-    inset 0 1px 0 $color-glass-sheen,
-    inset 0 -12px 28px rgba(0, 0, 0, 0.14),
-    0 12px 36px rgba(0, 0, 0, 0.30);
+// Solid content panel — no glass, no blur
+@mixin panel {
+  position: relative;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
   transition:
     border-color $transition-base,
-    background-color $transition-base,
-    transform $transition-base;
-}
-
-// Small frosted glass chip (tags, pills) — lighter blur, same matte emerald.
-@mixin glass-chip($blur: 22px) {
-  background: $color-glass;
-  backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
-  -webkit-backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
-  border: 1px solid $color-glass-border;
-  box-shadow: inset 0 1px 0 $color-glass-sheen;
-  transition: border-color $transition-base, background-color $transition-base, color $transition-base;
+    background-color $transition-base;
 }
 
 // Corner-bracket decoration (technical motif)
@@ -208,10 +258,7 @@
   &::after  { width: 1px; height: $size; transform: translate(-50%, -50%); }
 }
 
-// Engineered panel — frosted emerald glass surface with soft iOS-style
-// rounded corners. The signature "liquid glass over the field" look.
-@mixin engineered-panel($blur: 30px, $radius: $radius-lg) {
-  position: relative;
-  @include glass($blur);
-  border-radius: $radius;
+// Engineered panel — solid surface
+@mixin engineered-panel($blur: null) {
+  @include panel;
 }

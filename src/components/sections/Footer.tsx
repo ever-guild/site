@@ -14,14 +14,20 @@ export const Footer = React.memo(function Footer() {
     <footer className="footer">
       <div className="footer__container">
         <div className="footer__brand">
-          <span className="footer__wordmark">EVER GUILD</span>
-          <span className="footer__tag">Remote-first engineering guild</span>
+          <span className="footer__wordmark">Ever Guild</span>
+          <span className="footer__tag">Senior engineering team</span>
         </div>
 
-        <div className="footer__meta">
-          <p className="footer__copyright">© 2026 Ever Guild</p>
-          <a className="footer__top" href="#hero">↑ Top</a>
-        </div>
+        <p className="footer__copyright">© 2026 Ever Guild</p>
+
+        <a
+          className="footer__email"
+          href="mailto:in@ever-guild.net?subject=New%20project%20enquiry"
+        >
+          in@ever-guild.net
+        </a>
+
+        <a className="footer__top" href="#hero">Back to top</a>
 
         <div className="footer__socials">
           {socials.map((social) => (

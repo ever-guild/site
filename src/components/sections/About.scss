@@ -2,68 +2,86 @@
 @use "../../styles/mixins" as *;
 
 .about {
-  // Spec-strip — one machined readout panel, internally ruled into cells.
-  // Reads as an instrument cluster, not four floating cards.
-  &__facts {
-    position: relative;
+  &__proof {
     margin-top: $space-xl;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    @include engineered-panel(30px);
-    overflow: hidden; // clip the internal rule grid to rounded corners
-
-    @include tablet-up {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    // Gold datum tick — top-left of the whole strip.
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 28px;
-      height: 2px;
-      background: $color-accent;
-      z-index: 1;
-    }
+    max-width: 52rem;
   }
 
-  &__fact {
-    position: relative;
+  &__proof-label {
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 500;
+    letter-spacing: $tracking-wide;
+    text-transform: uppercase;
+    color: $color-text-3;
+    margin-bottom: $space-md;
+  }
+
+  &__proof-list {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    padding: clamp(1.15rem, 2vw, 1.75rem);
-    // Internal hairline grid — top + left rule on every cell.
-    box-shadow:
-      inset 1px 0 0 $color-glass-border,
-      inset 0 1px 0 $color-glass-border;
+    gap: 0;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    background: $color-surface;
+  }
 
-    // Crosshair "+" at the cell's top-left intersection.
-    &::before {
-      content: "+";
-      position: absolute;
-      top: -0.5rem;
-      left: -0.42rem;
-      font-family: $font-mono;
-      font-size: 0.72rem;
-      line-height: 1;
-      color: $color-crosshair;
-      pointer-events: none;
+  &__proof-link {
+    display: grid;
+    grid-template-columns: minmax(7rem, 10rem) 1fr auto;
+    gap: $space-md;
+    align-items: baseline;
+    padding: clamp(1rem, 2.5vw, 1.35rem) clamp(1rem, 2.5vw, 1.5rem);
+    color: inherit;
+    text-decoration: none;
+    border-top: 1px solid $color-border;
+    transition:
+      background-color $transition-base,
+      border-color $transition-base;
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    &:hover {
+      background: $color-surface-2;
+
+      .about__proof-name { color: $color-accent; }
+      .about__proof-arrow { transform: translate(2px, -2px); color: $color-accent; }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: -2px;
+    }
+
+    @media (max-width: #{$bp-tablet - 1px}) {
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+
+      .about__proof-desc {
+        grid-column: 1 / -1;
+      }
     }
   }
 
-  &__fact-key {
-    @include mono-coord;
-    font-size: $text-2xs;
+  &__proof-name {
+    font-family: $font-mono;
+    font-size: $text-sm;
+    font-weight: 600;
+    color: $color-text;
+    transition: color $transition-base;
   }
 
-  &__fact-val {
-    font-size: $text-2xl;
-    font-weight: 600;
-    line-height: $leading-snug;
-    letter-spacing: $tracking-tight;
-    color: $color-text;
+  &__proof-desc {
+    font-size: $text-sm;
+    line-height: $leading-normal;
+    color: $color-text-2;
+  }
+
+  &__proof-arrow {
+    color: $color-text-3;
+    transition: transform $transition-base, color $transition-base;
   }
 }

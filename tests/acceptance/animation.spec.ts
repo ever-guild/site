@@ -20,16 +20,15 @@ test.describe('animated design smoke', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('heading', { name: /Software that lasts/i })).toBeVisible();
 
+    const hero = page.locator('.hero');
     await page.waitForTimeout(80);
-    const first = await page.screenshot({
-      clip: { x: 0, y: 0, width: 1440, height: 760 },
+    const first = await hero.screenshot({
       animations: 'allow',
       caret: 'hide',
     });
 
     await page.waitForTimeout(520);
-    const second = await page.screenshot({
-      clip: { x: 0, y: 0, width: 1440, height: 760 },
+    const second = await hero.screenshot({
       animations: 'allow',
       caret: 'hide',
     });

@@ -7,32 +7,18 @@
   left: 0;
   right: 0;
   z-index: $z-fixed;
+  border-bottom: 1px solid transparent;
+  background: rgba(1, 24, 28, 0.94);
+  transition:
+    background-color $transition-base,
+    border-color $transition-base;
 
-  // Blur-only backdrop (no darkening tint) with a feathered bottom edge.
-  // Lives on a pseudo-element so the logo/links stay crisp and unmasked.
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 -24px 0;
-    z-index: -1;
-    pointer-events: none;
-    // Blur only — no darkening tint.
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    // Feather the bottom edge so there is no hard line under the header.
-    mask-image: linear-gradient(to bottom, #000 0%, #000 48%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 48%, transparent 100%);
-    // Smooth fade from clear to blurred as the user scrolls.
-    opacity: 0;
-    transition: opacity 320ms ease;
-  }
-
-  &--scrolled::before {
-    opacity: 1;
+  &--scrolled {
+    background: rgba(1, 24, 28, 0.98);
+    border-bottom-color: $color-border;
   }
 
   &__container {
-    position: relative;
     @include container;
     display: flex;
     align-items: center;
@@ -80,9 +66,8 @@
     @media (max-width: #{$bp-desktop - 1px}) {
       position: fixed;
       inset: 68px 0 0 0;
-      background: rgba(0, 22, 29, 0.97);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: $color-bg;
+      border-top: 1px solid $color-border;
       display: flex;
       flex-direction: column;
       align-items: stretch;
@@ -114,53 +99,30 @@
   &__link {
     position: relative;
     display: inline-flex;
-    align-items: baseline;
-    gap: 0.4rem;
+    align-items: center;
     min-height: 44px;
-    @include mono-label;
+    font-family: $font-body;
+    font-size: $text-sm;
+    font-weight: 500;
     color: $color-text-2;
     transition: color $transition-fast;
 
-    // Active datum — gold underline tick under the link.
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -0.55rem;
-      width: 100%;
-      height: 1px;
-      background: $color-accent;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform $transition-base $ease-spring;
-    }
-
-    &:hover { color: $color-accent; }
-    &:hover::after { transform: scaleX(1); }
+    &:hover { color: $color-text; }
 
     &:focus-visible {
       outline: 2px solid $color-accent;
-      outline-offset: 0.55rem;
+      outline-offset: 0.35rem;
       border-radius: 2px;
     }
 
     &--active {
       color: $color-accent;
-      &::after { transform: scaleX(1); }
-      .navbar__link-idx { color: $color-accent; }
     }
 
     @media (max-width: #{$bp-desktop - 1px}) {
       padding: $space-md 0;
-      font-size: $text-sm;
-      &::after { display: none; }
+      font-size: $text-base;
     }
-  }
-
-  &__link-idx {
-    font-size: $text-2xs;
-    color: $color-text-4;
-    transition: color $transition-fast;
   }
 
   &__cta {
