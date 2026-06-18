@@ -6,101 +6,13 @@
   z-index: $z-content;
   @include section-padding;
   @include scroll-offset;
-  // NOTE: no scroll-reveal here. A scroll-timeline animation (opacity) on the
-  // section promotes it to a composited layer = a backdrop root, which kills
-  // the glass cards' backdrop-filter (nothing left to blur). Keep sections
-  // un-layered so the frosted blur can sample the WebGL field behind them.
 
-  // Transparent — the background particle field shows through at full strength.
-  background: transparent;
-
-  &--alt,
-  &--dark {
-    background: transparent;
+  &--alt {
+    background: $color-bg-alt;
+    border-block: 1px solid $color-border;
   }
 
   &__container {
     @include container;
-  }
-
-  // --- Index / blueprint column ----------------------------------
-  // Telemetry marker: gold crosshair tick, oversized mono index number,
-  // mono label. On mobile it reads as a top-aligned datum line.
-  &__index {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: $space-md;
-    padding-bottom: $space-sm;
-    border-bottom: 1px solid $color-border;
-  }
-
-  &__index-tick {
-    @include tick(11px, $color-accent);
-    flex: none;
-    width: 11px;
-    height: 11px;
-    @include reveal-draw(20%);
-  }
-
-  &__index-num {
-    font-family: $font-mono;
-    font-weight: 600;
-    font-size: $text-xl;
-    line-height: 1;
-    color: $color-accent;
-    letter-spacing: 0.02em;
-    font-variant-numeric: tabular-nums;
-  }
-
-  &__index-label {
-    @include mono-coord;
-    color: $color-text-3;
-    font-size: $text-xs;
-
-    &::before {
-      content: "// ";
-      color: $color-text-4;
-    }
-  }
-
-  // --- Indexed layout: asymmetric grid on desktop ----------------
-  &--indexed &__container {
-    @include desktop-up {
-      @include grid-12;
-      align-items: start;
-      row-gap: 0;
-    }
-  }
-
-  &--indexed &__index {
-    @include desktop-up {
-      grid-column: 1 / span 2;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.85rem;
-      position: sticky;
-      top: 110px;
-      margin-bottom: 0;
-      padding: 0.85rem 0 1.4rem 1.25rem;
-      border-bottom: 0;
-      // Vertical blueprint ruler running down the datum column.
-      border-left: 1px solid $color-border;
-
-      .section__index-tick { margin-left: calc(-1.25rem - 5px); } // straddle the ruler
-
-      .section__index-num {
-        font-size: $text-4xl;
-        font-weight: 600;
-      }
-    }
-  }
-
-  &--indexed &__body {
-    @include desktop-up {
-      // Wider content: index keeps cols 1–2, body starts at col 3
-      // (narrower gutter → content spans more of the grid).
-      grid-column: 3 / -1;
-    }
   }
 }

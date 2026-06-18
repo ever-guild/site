@@ -17,25 +17,25 @@ import "./Team.scss";
 const team = [
   {
     name: "Ilyar",
-    role: "Senior Engineer · Web3 Lead",
+    role: "Senior Engineer, Web3 Lead",
     avatar: iljarAvatar,
     avatarSize: 800,
     avatar400: iljarAvatar400,
     avatar640: iljarAvatar640,
     github: "https://github.com/ilyar",
     handle: "ilyar",
-    bio: "Leads Web3 infrastructure and backend systems – smart contracts in Rust and Solidity on TON and EVM, built to stay reliable.",
+    bio: "Web3 infrastructure and smart contracts in Rust and Solidity on TON and EVM.",
   },
   {
     name: "Marks",
-    role: "Full-Stack · AI Engineer",
+    role: "Full-Stack, AI Engineer",
     avatar: ppmarkekAvatar,
     avatarSize: 800,
     avatar400: ppmarkekAvatar400,
     avatar640: ppmarkekAvatar640,
     github: "https://github.com/ppmarkek",
     handle: "ppmarkek",
-    bio: "Builds full-stack products and AI automation – React, Next.js and Node.js for SaaS apps, dashboards and marketplaces.",
+    bio: "Full-stack products and AI automation with React, Next.js, and Node.js.",
   },
   {
     name: "Andrei",
@@ -46,13 +46,13 @@ const team = [
     avatar640: andreiAvatar640,
     github: "https://github.com/Glazlk",
     handle: "Glazlk",
-    bio: "Designs products end to end – UI/UX, prototypes and design systems for responsive web, with AI-assisted workflows.",
+    bio: "UI/UX, prototypes, and design systems for responsive web products.",
   },
 ];
 
 export const Team = React.memo(function Team() {
   return (
-    <Section id="team" variant="alt" index="02" label="Team">
+    <Section id="team" variant="alt">
       <SectionHeader title="The senior engineers you'll work with directly." />
 
       <div className="team">

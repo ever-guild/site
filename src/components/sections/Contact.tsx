@@ -6,10 +6,11 @@ import './Contact.scss';
 
 export const Contact = React.memo(function Contact() {
   return (
-    <Section id="contact" variant="alt" index="04" label="Contact">
+    <Section id="contact" variant="alt">
       <div className="contact">
         <SectionHeader
           title="Let's build something that lasts"
+          lead="Tell us what you're building. We reply within a day."
         />
 
         <a
@@ -17,20 +18,15 @@ export const Contact = React.memo(function Contact() {
           className="contact__email"
           aria-label="Email Ever Guild at in@ever-guild.net"
         >
-          <span className="contact__email-prompt" aria-hidden="true">▸</span>
           <span className="contact__email-text">in@ever-guild.net</span>
           <ArrowUpRight
-            size={28}
-            strokeWidth={1.8}
+            size={24}
+            strokeWidth={2}
             className="contact__email-arrow"
             aria-hidden="true"
             focusable="false"
           />
         </a>
-
-        <p className="contact__note">
-          Tell us what you're building. We reply within a day.
-        </p>
       </div>
     </Section>
   );

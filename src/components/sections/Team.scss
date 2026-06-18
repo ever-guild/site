@@ -11,54 +11,36 @@
   }
 
   &__card {
-    position: relative;
-    @include engineered-panel(30px);
-    overflow: hidden; // clip the photo to the card's rounded corners
+    @include panel;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition:
-      border-color $transition-base,
-      background-color $transition-base,
-      transform 300ms $ease-spring;
 
     &:hover {
-      border-color: $color-glass-edge;
-      background: $color-glass-2;
-      transform: translateY(-4px);
+      border-color: $color-border-2;
+      background: $color-surface-2;
 
-      .team__avatar { filter: grayscale(0) contrast(1); }
+      .team__avatar {
+        filter: grayscale(0.15) contrast(1.05) sepia(0.08);
+      }
 
       .team__github {
-        border-color: $color-accent-line;
+        border-color: $color-border-3;
         color: $color-text;
       }
       .team__github-arrow {
-        transform: translate(3px, -3px);
+        transform: translate(2px, -2px);
         color: $color-accent;
       }
     }
   }
 
-  // Photo — catalogued specimen: fixed crop, desaturated until hover,
-  // with a telemetry index tag and crosshair.
   &__photo {
     position: relative;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    border-bottom: 1px solid $color-glass-border;
-
-    // crosshair "+" at the top-left of the frame
-    &::before {
-      content: "+";
-      position: absolute;
-      top: 0.4rem;
-      left: 0.45rem;
-      z-index: 2;
-      font-family: $font-mono;
-      font-size: 0.8rem;
-      line-height: 1;
-      color: $color-crosshair;
-    }
+    border-bottom: 1px solid $color-border;
+    background: $color-surface-3;
   }
 
   &__avatar {
@@ -67,7 +49,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center 22%;
-    filter: grayscale(0.4) contrast(1.02);
+    filter: grayscale(0.55) contrast(1.08) sepia(0.12);
     transition: filter $transition-slow;
   }
 
@@ -80,52 +62,48 @@
 
   &__name {
     @include display;
-    font-size: $text-3xl;
-    line-height: 1;
-    letter-spacing: $tracking-tight;
-    margin-bottom: 0.5rem;
+    font-size: $text-2xl;
+    line-height: 1.1;
+    color: $color-text;
   }
 
   &__role {
-    @include mono-coord;
-    font-size: $text-2xs;
+    margin-top: 0.35rem;
+    font-size: $text-xs;
+    font-weight: 500;
+    letter-spacing: $tracking-wide;
+    text-transform: uppercase;
     color: $color-accent;
-    margin-bottom: $space-md;
   }
 
   &__bio {
+    margin-top: $space-sm;
+    flex: 1;
     font-size: $text-sm;
     line-height: $leading-normal;
     color: $color-text-2;
-    flex: 1;
   }
 
   &__github {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    align-self: flex-start;
-    margin-top: $space-lg;
-    min-height: 44px;
-    padding: 0.55rem 0.875rem;
-    border: 1px solid $color-border-2;
-    border-radius: $radius-sm;
-    color: $color-text-2;
-    font-size: $text-sm;
-    transition: border-color $transition-base, color $transition-base;
-
-    &:focus-visible {
-      outline: 2px solid $color-accent;
-      outline-offset: 3px;
-    }
-  }
-
-  &__github-handle {
+    gap: 0.45rem;
+    margin-top: $space-md;
+    padding: 0.5rem 0.75rem;
+    width: fit-content;
     font-family: $font-mono;
     font-size: $text-xs;
+    color: $color-text-2;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    transition:
+      border-color $transition-base,
+      color $transition-base;
   }
 
   &__github-arrow {
+    margin-left: 0.15rem;
+    color: $color-text-3;
     transition: transform $transition-base, color $transition-base;
   }
 }
