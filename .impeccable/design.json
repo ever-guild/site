@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-18T10:25:55Z",
+  "title": "Design System: Ever Guild Website",
+  "extensions": {
+    "colorMeta": {
+      "bg-deep": {
+        "role": "primary",
+        "displayName": "Abyss Teal Field",
+        "canonical": "#001D25",
+        "tonalRamp": ["oklch(15% 0.035 220)", "oklch(23% 0.045 220)", "oklch(31% 0.055 220)", "oklch(40% 0.065 220)", "oklch(52% 0.07 220)", "oklch(64% 0.06 220)", "oklch(78% 0.035 220)", "oklch(94% 0.012 220)"]
+      },
+      "accent-gold": {
+        "role": "primary",
+        "displayName": "Guild Gold Signal",
+        "canonical": "#F1B800",
+        "tonalRamp": ["oklch(20% 0.055 88)", "oklch(32% 0.08 88)", "oklch(44% 0.105 88)", "oklch(58% 0.13 88)", "oklch(72% 0.16 88)", "oklch(82% 0.13 88)", "oklch(90% 0.08 88)", "oklch(96% 0.035 88)"]
+      },
+      "text-cream": {
+        "role": "neutral",
+        "displayName": "Cream Readout",
+        "canonical": "#FFE79C",
+        "tonalRamp": ["oklch(18% 0.025 85)", "oklch(30% 0.04 85)", "oklch(42% 0.055 85)", "oklch(56% 0.07 85)", "oklch(70% 0.075 85)", "oklch(82% 0.06 85)", "oklch(90% 0.04 85)", "oklch(97% 0.018 85)"]
+      },
+      "surface-teal": {
+        "role": "secondary",
+        "displayName": "Frosted Emerald Surface",
+        "canonical": "#002835",
+        "tonalRamp": ["oklch(16% 0.035 210)", "oklch(24% 0.045 210)", "oklch(32% 0.055 210)", "oklch(42% 0.06 210)", "oklch(54% 0.055 210)", "oklch(66% 0.045 210)", "oklch(80% 0.025 210)", "oklch(95% 0.01 210)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only; physical and machined."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section-level statements with short balanced line lengths."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Readable engineering copy and descriptions."
+      },
+      "label": {
+        "displayName": "Telemetry Label",
+        "purpose": "Buttons, tags, section indexes, and coordinate readouts."
+      }
+    },
+    "shadows": [
+      {
+        "name": "glass-panel-depth",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -12px 28px rgba(0,0,0,0.14), 0 12px 36px rgba(0,0,0,0.30)",
+        "purpose": "Places frosted emerald panels over the WebGL field."
+      },
+      {
+        "name": "glass-chip-rim",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.08)",
+        "purpose": "Small chip and tag rim light."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default color and border transitions."
+      },
+      {
+        "name": "ease-spring",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Weighted hover lift and icon drift."
+      },
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Hero load and reveal choreography."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "480px" },
+      { "name": "tablet", "value": "768px" },
+      { "name": "desktop", "value": "1024px" },
+      { "name": "wide", "value": "1440px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Gold command button for the main project-starting action.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\">START A PROJECT</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 15px 26px; border: 1px solid transparent; border-radius: 18px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; transition: background-color 240ms cubic-bezier(0.4,0,0.2,1), transform 220ms cubic-bezier(0.32,0.72,0,1); } .ds-btn-primary { background: #F1B800; color: #001D25; } .ds-btn-primary:hover { background: #FFE89E; transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: 2px solid #F1B800; outline-offset: 3px; } .ds-btn-primary:active { transform: translateY(0) scale(0.985); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet outlined command for secondary external actions.",
+      "html": "<a class=\"ds-btn ds-btn-secondary\" href=\"#\">VIEW ON GITHUB</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 15px 26px; border-radius: 18px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; transition: background-color 240ms cubic-bezier(0.4,0,0.2,1), border-color 240ms cubic-bezier(0.4,0,0.2,1), transform 220ms cubic-bezier(0.32,0.72,0,1); } .ds-btn-secondary { background: transparent; color: #FFE79C; border: 1px solid rgba(244,241,232,0.17); } .ds-btn-secondary:hover { background: #00323F; border-color: rgba(241,184,0,0.32); transform: translateY(-1px); } .ds-btn-secondary:focus-visible { outline: 2px solid #F1B800; outline-offset: 3px; } .ds-btn-secondary:active { transform: translateY(0) scale(0.985); }"
+    },
+    {
+      "name": "Glass Service Card",
+      "kind": "card",
+      "refersTo": "panel-glass",
+      "description": "Engineered frosted panel with a gold top rail and display title.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-head\"><span class=\"ds-card-icon\">◇</span><span class=\"ds-card-num\">// 01</span></div><h3>Web3 & Blockchain</h3><p>Production-grade systems built to hold real value.</p></article>",
+      "css": ".ds-card { position: relative; overflow: hidden; padding: 32px; border-radius: 24px; background: rgba(6,50,44,0.46); color: #C7D4D1; border: 1px solid rgba(186,240,212,0.16); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -12px 28px rgba(0,0,0,0.14), 0 12px 36px rgba(0,0,0,0.30); backdrop-filter: blur(30px) saturate(150%) brightness(1.06); transition: background-color 240ms cubic-bezier(0.4,0,0.2,1), border-color 240ms cubic-bezier(0.4,0,0.2,1); } .ds-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #F1B800; opacity: 0.32; transition: opacity 240ms cubic-bezier(0.4,0,0.2,1); } .ds-card:hover { background: rgba(10,63,55,0.60); border-color: rgba(186,240,212,0.30); } .ds-card:hover::before { opacity: 1; } .ds-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; } .ds-card-icon { color: #F1B800; font-size: 24px; } .ds-card-num { font-family: 'JetBrains Mono', ui-monospace, monospace; color: #8CA09B; font-size: 12px; letter-spacing: 0.04em; } .ds-card h3 { margin: 0 0 10px; color: #FFE79C; font-family: 'Tilt Warp', system-ui, sans-serif; font-size: 28px; line-height: 1.04; letter-spacing: -0.02em; } .ds-card p { margin: 0; font-family: 'Hanken Grotesk', system-ui, sans-serif; font-size: 14px; line-height: 1.55; }"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "chip-glass",
+      "description": "Small frosted mono tag used for stack and telemetry lists.",
+      "html": "<span class=\"ds-chip\">TYPESCRIPT</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 12px; background: rgba(6,50,44,0.46); color: #C7D4D1; border: 1px solid rgba(186,240,212,0.16); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); backdrop-filter: blur(22px) saturate(150%) brightness(1.06); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; transition: color 240ms cubic-bezier(0.4,0,0.2,1), background-color 240ms cubic-bezier(0.4,0,0.2,1), border-color 240ms cubic-bezier(0.4,0,0.2,1); } .ds-chip:hover { color: #F1B800; background: rgba(10,63,55,0.60); border-color: rgba(186,240,212,0.30); }"
+    },
+    {
+      "name": "Navbar Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Mono coordinate link with numeric index and gold datum hover line.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\"><span>01</span> ABOUT</a>",
+      "css": ".ds-nav-link { position: relative; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #C7D4D1; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; transition: color 140ms cubic-bezier(0.4,0,0.2,1); } .ds-nav-link span { color: #8CA09B; font-size: 11px; } .ds-nav-link::after { content: ''; position: absolute; left: 0; bottom: 4px; width: 100%; height: 1px; background: #F1B800; transform: scaleX(0); transform-origin: left; transition: transform 240ms cubic-bezier(0.32,0.72,0,1); } .ds-nav-link:hover, .ds-nav-link:hover span { color: #F1B800; } .ds-nav-link:hover::after { transform: scaleX(1); } .ds-nav-link:focus-visible { outline: 2px solid #F1B800; outline-offset: 8px; }"
+    },
+    {
+      "name": "Contact Terminal",
+      "kind": "custom",
+      "refersTo": "panel-glass",
+      "description": "Large email command surface with mono prompt and display email text.",
+      "html": "<a class=\"ds-contact\" href=\"mailto:in@ever-guild.net\"><span class=\"ds-contact-prompt\">▸</span><span class=\"ds-contact-text\">in@ever-guild.net</span><span class=\"ds-contact-arrow\">↗</span></a>",
+      "css": ".ds-contact { display: flex; align-items: center; gap: 24px; padding: 24px 32px; border-radius: 24px; color: #FFE79C; background: rgba(6,50,44,0.46); border: 1px solid rgba(186,240,212,0.16); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 2px 0 -1px rgba(241,184,0,0.10), inset 0 -12px 28px rgba(0,0,0,0.14), 0 12px 36px rgba(0,0,0,0.30); backdrop-filter: blur(30px) saturate(150%) brightness(1.06); text-decoration: none; transition: background-color 240ms cubic-bezier(0.4,0,0.2,1), border-color 240ms cubic-bezier(0.4,0,0.2,1); } .ds-contact:hover { background: rgba(10,63,55,0.60); border-color: rgba(186,240,212,0.30); } .ds-contact:focus-visible { outline: 2px solid #F1B800; outline-offset: 4px; } .ds-contact-prompt { color: #F1B800; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 28px; } .ds-contact-text { font-family: 'Tilt Warp', system-ui, sans-serif; font-size: clamp(24px, 5vw, 44px); line-height: 1; letter-spacing: -0.02em; word-break: break-word; } .ds-contact-arrow { margin-left: auto; color: #F1B800; font-size: 28px; transition: transform 240ms cubic-bezier(0.4,0,0.2,1), color 240ms cubic-bezier(0.4,0,0.2,1); } .ds-contact:hover .ds-contact-arrow { transform: translate(4px,-4px); color: #FFE89E; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineering Field Manual",
+    "overview": "Ever Guild's visual system should feel like a senior engineering team working over a live technical field: deep teal atmosphere, precise gold signals, frosted emerald panels, and measured mono telemetry. The site is a brand surface, not an app shell. It communicates capability, trust, and maintainability before it asks for contact.\n\nThe system is committed, dark, and engineered. The Three.js infinity field is the primary imagery; glass panels and blueprint hairlines sit above it as instrumentation, not decoration. The copy stays direct and specific, carrying the product line from PRODUCT.md: \"Precise, senior, durable.\"\n\nThe system explicitly rejects community-first public positioning, generic SaaS hero tropes, decorative gradient text, identical card grids, excessive glassmorphism, sketchy illustrations, over-rounded cards, and vague engineering claims.",
+    "keyCharacteristics": [
+      "Deep teal field with rare gold signal.",
+      "Cream display type over readable teal-gray body copy.",
+      "Frosted engineered panels that sample the WebGL atmosphere beneath.",
+      "Mono labels used as telemetry and coordinates, never as generic \"developer\" costume.",
+      "Motion that reveals structure while preserving contrast and reduced-motion safety."
+    ],
+    "rules": [
+      {
+        "name": "The Gold Signal Rule",
+        "body": "Gold marks intent: primary action, active position, index, and focus. Never wash the page in gold.",
+        "section": "colors"
+      },
+      {
+        "name": "The Teal Field Rule",
+        "body": "The main surface is always deep teal. Do not introduce beige, slate, purple gradients, or unrelated neutral themes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Readability Rule",
+        "body": "Body text uses text-secondary or brighter. text-faint is telemetry only and never carries content the visitor must read.",
+        "section": "colors"
+      },
+      {
+        "name": "The Display Scarcity Rule",
+        "body": "Tilt Warp carries hierarchy. Do not use it for body copy or low-priority metadata.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Telemetry Rule",
+        "body": "Mono text is a readout system. It should label structure, not become paragraphs.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Cramped-Type Rule",
+        "body": "Display tracking never goes tighter than -0.02em in this codebase; -0.04em is the absolute external floor.",
+        "section": "typography"
+      },
+      {
+        "name": "The Glass Has a Job Rule",
+        "body": "Use backdrop blur only on real content surfaces over the field. Decorative glass is prohibited.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No Ghost Card Rule",
+        "body": "Do not pair a decorative 1px border with a soft wide shadow unless it is the established engineered glass panel.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the public site team-first: senior engineers, direct work, production durability.",
+      "Do use Gold Signal for primary action, focus, section index, and active state only.",
+      "Do keep the WebGL field visible behind panels while preserving WCAG AA contrast.",
+      "Do use 44px minimum hit areas for every link and button.",
+      "Do use transform-only reveal motion for text so scroll animation never reduces contrast.",
+      "Do preserve every external contact path: GitHub, website, X, LinkedIn, Telegram, Upwork, and email."
+    ],
+    "donts": [
+      "Don't use community-first language on the public landing page; community positioning belongs to the GitHub presence.",
+      "Don't use generic SaaS hero tropes, hero-metric templates, decorative gradient text, or identical card grids.",
+      "Don't use excessive glassmorphism. Glass is allowed only as the engineered panel material over the field.",
+      "Don't add sketchy illustrations, hand-drawn SVG scenes, or decorative stripe backgrounds.",
+      "Don't over-round cards beyond the established 24px to 30px panel scale.",
+      "Don't ship vague engineering claims. Specific capability and maintainability language is required."
+    ]
+  }
+}
