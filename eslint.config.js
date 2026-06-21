@@ -9,7 +9,6 @@ export default tseslint.config(
       ".agents",
       ".claude",
       ".codex",
-      ".github/skills",
       ".impeccable",
       "dist",
       "node_modules",
