@@ -80,7 +80,7 @@ const Navbar = React.memo(function Navbar() {
             })}
           </ul>
           <Button
-            href="#contact"
+            href="https://order.ever-guild.net/"
             variant="primary"
             size="sm"
             className="navbar__cta"
