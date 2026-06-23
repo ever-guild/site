@@ -60,5 +60,5 @@ jobs:
           api-key: ${{ secrets.VIRUSTOTAL_APIKEY }}
           url: https://ever-guild.net/
           reanalyze: "true"
-          wait-seconds: "90"
+          wait-seconds: "240"
           fail-on-detection: "true"
