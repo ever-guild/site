@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 // ============================================
-// Ever Guild — SCSS Mixins
+// Ever Guild - SCSS Mixins
 // ============================================
 
 @mixin mobile-up  { @media (min-width: #{$bp-mobile})  { @content; } }
@@ -19,7 +19,7 @@
   @include desktop-up { padding-inline: 4rem; }
 }
 
-// Unified vertical rhythm — fluid, kills uneven gaps between sections
+// Unified vertical rhythm. Fluid spacing removes uneven gaps between sections.
 @mixin section-padding {
   padding-block: clamp(4rem, 8vw, 8.5rem);
 }
@@ -32,7 +32,7 @@
   row-gap: clamp(2rem, 4vw, 3.5rem);
 }
 
-// Blueprint hairlines — faint vertical structure behind content.
+// Blueprint hairlines - faint vertical structure behind content.
 // Subtle by design (uses translucent border token); reads as engineering grid.
 @mixin blueprint-lines($step: 16.666%, $color: $color-border) {
   background-image: repeating-linear-gradient(
@@ -44,7 +44,7 @@
   );
 }
 
-// Soft color mesh — infinity-loop echo + logo palette washes.
+// Soft color mesh - infinity-loop echo + logo palette washes.
 @mixin page-mesh {
   background-color: $color-bg;
   background-image:
@@ -104,7 +104,7 @@
   }
 }
 
-// Micro dot field — modern texture, not blueprint lines.
+// Micro dot field - modern texture, not blueprint lines.
 @mixin page-field-dots {
   background-image: radial-gradient(circle, $color-field-dot 0.55px, transparent 0.55px);
   background-size: $field-dot-size $field-dot-size;
@@ -126,7 +126,7 @@
   color: $color-text-3;
 }
 
-// Display type (headlines) — Hanken Grotesk, weight contrast
+// Display type for headlines - Hanken Grotesk, weight contrast.
 @mixin display {
   font-family: $font-display;
   font-weight: 600;
@@ -143,7 +143,7 @@
   transition: border-color $transition-base, background-color $transition-base;
 }
 
-// Solid content panel — no glass, no blur
+// Solid content panel - no glass, no blur.
 @mixin panel {
   position: relative;
   background: $color-surface;
@@ -196,7 +196,7 @@
 
 // Scroll-reveal (2026 scroll-driven animations, graceful fallback)
 @mixin reveal {
-  // NOTE: opacity-only — no transform. A transform on the section (an
+  // NOTE: opacity only, no transform. A transform on the section (an
   // ancestor of the glass cards) would establish a containing block and
   // permanently break the cards' backdrop-filter (nothing left to blur).
   @supports (animation-timeline: view()) {
@@ -209,7 +209,7 @@
   }
 }
 
-// Transform reveal — heavy fade-up for LEAF elements only (headings, text,
+// Transform reveal - heavy fade-up for LEAF elements only (headings, text,
 // dividers, ticks). NEVER on an ancestor of a .glass card (kills backdrop-filter).
 @mixin reveal-rise($range: 24%) {
   @supports (animation-timeline: view()) {
@@ -233,7 +233,7 @@
   }
 }
 
-// Telemetry coordinate label — mono, uppercase, bracketed engineering voice.
+// Telemetry coordinate label - mono, uppercase, bracketed engineering voice.
 @mixin mono-coord {
   font-family: $font-mono;
   font-size: $text-2xs;
@@ -243,7 +243,7 @@
   color: $color-text-3;
 }
 
-// Gold crosshair tick — a small machined "+" marker. Place on a positioned host.
+// Gold crosshair tick - a small machined "+" marker. Place on a positioned host.
 @mixin tick($size: 9px, $color: $color-accent) {
   position: relative;
   &::before,
@@ -258,7 +258,7 @@
   &::after  { width: 1px; height: $size; transform: translate(-50%, -50%); }
 }
 
-// Engineered panel — solid surface
+// Engineered panel - solid surface.
 @mixin engineered-panel($blur: null) {
   @include panel;
 }

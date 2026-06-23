@@ -4,43 +4,7 @@
 .contact {
   max-width: $editorial-measure;
 
-  &__email {
-    display: inline-flex;
-    align-items: center;
-    gap: $space-sm;
+  &__cta {
     margin-top: $space-lg;
-    padding: clamp(1rem, 2.5vw, 1.25rem) 0;
-    color: $color-text;
-    border-bottom: 1px solid $color-border-3;
-    transition:
-      border-color $transition-base,
-      color $transition-base;
-
-    &:hover {
-      border-bottom-color: $color-accent;
-      color: $color-accent;
-
-      .contact__email-arrow { transform: translate(3px, -3px); }
-    }
-
-    &:focus-visible {
-      outline: 2px solid $color-accent;
-      outline-offset: 4px;
-      border-radius: $radius-sm;
-    }
-  }
-
-  &__email-text {
-    @include display;
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-    line-height: 1;
-    letter-spacing: $tracking-tight;
-    word-break: break-word;
-  }
-
-  &__email-arrow {
-    flex-shrink: 0;
-    color: $color-accent;
-    transition: transform $transition-base;
   }
 }

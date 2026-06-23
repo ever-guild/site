@@ -1,17 +1,17 @@
 // ============================================
-// Ever Guild — Design Tokens
+// Ever Guild - Design Tokens
 // Logo-merged palette: teal surfaces + logo gold/cream/brown.
 // Ivory for reading text; logo cream reserved for highlights.
 // Flat, technological. Subtle field gradients only (no glow, no gradient text).
 // Source of truth: docs/brandbook.md (Colors.svg).
-// Use ONLY these tokens — no ad-hoc hex.
+// Use ONLY these tokens. No ad-hoc hex.
 // ============================================
 
 // --- Surfaces (teal scale, warm-shifted depths) ---
-$color-bg:           #01181C; // page — deep teal with brown undertone
+$color-bg:           #01181C; // page - deep teal with brown undertone
 $color-bg-alt:       #021C21; // alternating band
 $color-surface:      #002835; // flat cards (= logo context teal)
-$color-surface-2:    #04313C; // hover / elevated
+$color-surface-2:    #04313C; // hover / raised
 $color-surface-3:    #083A42; // pressed / deep panel
 
 // Logo warm anchors (wordmark gradient end)
@@ -24,23 +24,23 @@ $color-border-2:     rgba(236, 230, 214, 0.18);
 $color-border-3:     rgba(241, 184, 0, 0.34); // gold-tinted accent edge
 
 // --- Text (ivory body; logo cream for highlights only) ---
-$color-text:         #ECE6D6; // warm ivory — readable, logo-adjacent
+$color-text:         #ECE6D6; // warm ivory - readable, logo-adjacent
 $color-text-2:       #B8C9C4; // secondary warm teal-gray
 $color-text-3:       #94A8A2; // muted / mono labels
 $color-text-4:       #7A8F89; // faintest telemetry text
 
 // --- Logo accents (exact brandbook values) ------
-$color-accent:       #F1B800; // gold — CTA / signal
-$color-accent-2:     #F0B800; // gold-2 — hover / gradient start
+$color-accent:       #F1B800; // gold - CTA / signal
+$color-accent-2:     #F0B800; // gold-2 - hover / gradient start
 $color-gold-2:       #F0B800;
-$color-cream:        #FFE79C; // logo cream — highlights, wordmark echo
+$color-cream:        #FFE79C; // logo cream - highlights, wordmark echo
 $color-cream-2:      #FFE89E; // cream halo
 $color-accent-soft:  rgba(241, 184, 0, 0.12);
 $color-accent-line:  rgba(241, 184, 0, 0.36);
 
 // --- Liquid glass (frosted murky-emerald panels over the field) ---
 $color-glass:        rgba(6, 50, 44, 0.46);   // dark emerald, matte-frosted
-$color-glass-2:      rgba(10, 63, 55, 0.60);  // hover — denser
+$color-glass-2:      rgba(10, 63, 55, 0.60);  // denser hover
 $color-glass-border: rgba(186, 240, 212, 0.16);
 $color-glass-edge:   rgba(186, 240, 212, 0.30); // hover edge highlight
 $color-glass-sheen:  rgba(255, 255, 255, 0.08); // top rim light
@@ -51,7 +51,7 @@ $color-primary:           $color-surface;
 $color-primary-light:     $color-surface-2;
 $color-accent-hover:      $color-accent-2;
 $color-bg-legacy:         $color-bg;
-$color-surface-elevated:  $color-surface-2;
+$color-surface-raised:    $color-surface-2;
 $color-text-secondary:    $color-text-2;
 $color-text-muted:        $color-text-3;
 $color-text-inverse:      $color-on-accent;

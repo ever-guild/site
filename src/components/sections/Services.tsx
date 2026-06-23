@@ -3,38 +3,36 @@ import { Section } from '../ui/Section';
 import { SectionHeader } from '../ui/SectionHeader';
 import './Services.scss';
 
-const tracks = [
+const services = [
   {
     title: 'Web3 & Blockchain',
     description:
-      'Smart contracts and protocol integrations on TON, EVM, and NEAR. Audited patterns, built to hold real value.',
+      'Production-grade smart contracts and protocol integrations on TON, EVM, and NEAR. Audited patterns, built to hold real value.',
+  },
+  {
+    title: 'AI & Automation',
+    description:
+      'LLM integrations, AI agents, and workflow automation wired into your product, not bolted on as an afterthought.',
   },
   {
     title: 'Full-Stack Development',
     description:
-      'React, Next.js, and Node.js platforms, dashboards, and marketplaces. Shipped fast, built to scale.',
-  },
-];
-
-const alsoAvailable = [
-  'AI & Automation',
-  'Product Design & UI/UX',
-  'Candidate Experience Verification',
-  'Crisis Engineering Management',
-];
-
-const toolkitGroups = [
-  {
-    label: 'Languages',
-    items: ['TypeScript', 'Python', 'Rust', 'Go', 'Solidity'],
+      'React, Next.js, and Node.js SaaS platforms, dashboards, and marketplaces. Shipped fast, built to scale.',
   },
   {
-    label: 'Product',
-    items: ['React', 'Next.js', 'Node.js', 'GraphQL', 'Figma'],
+    title: 'Product Design & UI/UX',
+    description:
+      'Interfaces, prototypes, and design systems that stay clean and responsive across every screen.',
   },
   {
-    label: 'Infrastructure',
-    items: ['Docker', 'PostgreSQL'],
+    title: 'Candidate Experience Verification',
+    description:
+      'Independent verification of claimed engineering experience for safer technical hiring decisions.',
+  },
+  {
+    title: 'Crisis Engineering Management',
+    description:
+      'Rapid intervention for software projects facing delivery, quality, or team breakdowns. Restore the delivery path quickly.',
   },
 ];
 
@@ -43,38 +41,19 @@ export const Services = React.memo(function Services() {
     <Section id="services">
       <SectionHeader
         title="What we build for you."
-        lead="Two delivery tracks we lead, and specialized work when the brief needs it."
+        lead="Senior service lines we can own from architecture through production support."
       />
 
-      <div className="services__tracks">
-        {tracks.map((track) => (
-          <article key={track.title} className="services__track">
-            <h3 className="services__track-title">{track.title}</h3>
-            <p className="services__track-desc">{track.description}</p>
+      <div className="services__grid">
+        {services.map((service, index) => (
+          <article key={service.title} className="services__card">
+            <span className="services__num" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 className="services__title">{service.title}</h3>
+            <p className="services__desc">{service.description}</p>
           </article>
         ))}
-      </div>
-
-      <p className="services__also">
-        <span className="services__also-label">Also available</span>
-        {alsoAvailable.join(' · ')}
-      </p>
-
-      <div className="services__toolkit" aria-label="Tools and technologies we use">
-        <div className="services__toolkit-groups">
-          {toolkitGroups.map((group) => (
-            <div key={group.label} className="services__toolkit-group">
-              <p className="services__toolkit-group-label">{group.label}</p>
-              <p className="services__toolkit-group-items">
-                {group.items.map((name) => (
-                  <span key={name} className="services__toolkit-name">
-                    {name}
-                  </span>
-                ))}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
     </Section>
   );

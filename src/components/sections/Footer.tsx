@@ -18,7 +18,7 @@ export const Footer = React.memo(function Footer() {
           <span className="footer__tag">Senior engineering team</span>
         </div>
 
-        <p className="footer__copyright">© 2026 Ever Guild</p>
+        <p className="footer__copyright">Copyright 2026 Ever Guild</p>
 
         <a
           className="footer__email"

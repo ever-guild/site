@@ -71,7 +71,7 @@ const states = [
     target: async (page: Page) => {
       await page.goto('/');
       await lockViewportOn(page, '#contact');
-      await expect(page.getByRole('link', { name: /Email Ever Guild/i })).toBeVisible();
+      await expect(page.locator('#contact').getByRole('link', { name: /Start a project/i })).toBeVisible();
       await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
     },
   },
