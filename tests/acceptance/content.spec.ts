@@ -104,4 +104,16 @@ test.describe('landing page content', () => {
       expect(copy, `copy should not contain U+${codePoint.toString(16).toUpperCase()}`).not.toContain(character);
     }
   });
+
+  test('legacy service worker URLs clear browser caches', async ({ request }) => {
+    for (const path of ['/sw.js', '/service-worker.js']) {
+      const response = await request.get(path);
+      const body = await response.text();
+
+      expect(response.ok(), `${path} should be served`).toBe(true);
+      expect(body).toContain('caches.delete');
+      expect(body).toContain('registration.unregister');
+      expect(body).toContain('skipWaiting');
+    }
+  });
 });
