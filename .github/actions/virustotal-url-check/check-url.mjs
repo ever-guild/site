@@ -192,7 +192,11 @@ if (reanalyze) {
   console.log("Requesting VirusTotal re-analysis.");
   const analysisId = await requestAnalysis(id);
   console.log(`Analysis id: ${analysisId}`);
-  await waitForAnalysis(analysisId);
+  try {
+    await waitForAnalysis(analysisId);
+  } catch (error) {
+    console.log(`::warning::${error.message} Reading the latest available URL report instead.`);
+  }
 }
 
 const report = await getReport(id);
