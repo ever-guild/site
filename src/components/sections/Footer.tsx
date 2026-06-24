@@ -6,7 +6,9 @@ const socials = [
   { platform: 'github', url: 'https://github.com/ever-guild', label: 'GitHub' },
   { platform: 'x', url: 'https://x.com/ever_guild_net', label: 'X' },
   { platform: 'linkedin', url: 'https://www.linkedin.com/company/ever-guild/', label: 'LinkedIn' },
+  { platform: 'telegram', url: 'https://t.me/everguild', label: 'Telegram' },
   { platform: 'upwork', url: 'https://www.upwork.com/agencies/everguild/', label: 'Upwork' },
+  { platform: 'email', url: 'mailto:in@ever-guild.net', label: 'Email' },
 ];
 
 export const Footer = React.memo(function Footer() {
