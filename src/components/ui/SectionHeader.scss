@@ -2,7 +2,7 @@
 @use "../../styles/mixins" as *;
 
 .sec-head {
-  margin-bottom: $space-xl;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
   max-width: $editorial-measure;
 
   &__title {

@@ -1,23 +1,28 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
+#services.section {
+  padding-bottom: clamp(2.5rem, 4vw, 4rem);
+
+  .sec-head {
+    margin-bottom: clamp(1.5rem, 2.5vw, 2.25rem);
+  }
+}
+
 .services {
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-    gap: 1px;
-    max-width: 52rem;
-    overflow: hidden;
-    border: 1px solid $color-border;
-    border-radius: $radius-lg;
-    background: $color-border;
+    gap: clamp(0.9rem, 1.5vw, 1.25rem);
+    max-width: 54rem;
   }
 
   &__card {
     position: relative;
     @include engineered-panel(30px);
-    padding: $space-lg;
-    padding-right: clamp(5.25rem, 10vw, 7rem);
+    min-height: clamp(11.25rem, 14vw, 12.75rem);
+    padding: clamp(1.35rem, 2vw, 1.75rem);
+    padding-right: clamp(4.75rem, 7vw, 6rem);
 
     &:hover {
       border-color: $color-glass-edge;
@@ -61,23 +66,23 @@
 
   &__title {
     @include display;
-    font-size: $text-2xl;
+    font-size: clamp(1.45rem, 2vw, 1.65rem);
     line-height: 1.04;
     letter-spacing: $tracking-tight;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.5rem;
     transition: color $transition-base;
   }
 
   &__desc {
-    margin: $space-sm 0 0;
+    margin: 0;
     max-width: 36ch;
-    font-size: $text-base;
-    line-height: $leading-normal;
+    font-size: clamp(0.92rem, 1.1vw, 0.98rem);
+    line-height: 1.48;
     color: $color-text-2;
   }
 
   &__marquee {
-    margin-top: $space-xl;
+    margin-top: clamp(1.75rem, 3vw, 2.75rem);
     overflow: hidden;
     mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
@@ -134,6 +139,7 @@
     }
 
     &__card {
+      min-height: auto;
       padding: 1.35rem;
       padding-right: 4rem;
     }
@@ -155,7 +161,7 @@
     }
 
     &__marquee {
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
     &__tag {

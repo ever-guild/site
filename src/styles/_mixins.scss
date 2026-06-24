@@ -21,7 +21,7 @@
 
 // Unified vertical rhythm — fluid, kills uneven gaps between sections
 @mixin section-padding {
-  padding-block: clamp(3rem, 8vw, 8.5rem);
+  padding-block: clamp(3rem, 6vw, 6.5rem);
 }
 
 // 12-column content grid (editorial, asymmetric layouts)
@@ -208,7 +208,7 @@
 }
 
 @mixin scroll-offset {
-  scroll-margin-top: 84px;
+  scroll-margin-top: 96px;
 }
 
 // Scroll-reveal (2026 scroll-driven animations, graceful fallback)
