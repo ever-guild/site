@@ -129,8 +129,8 @@
 // Display type (headlines) — Tilt Warp
 @mixin display {
   font-family: $font-display;
-  font-weight: 600;
-  letter-spacing: $tracking-tight;
+  font-weight: 400;
+  letter-spacing: 0;
   line-height: 1.08;
   color: $color-text;
 }

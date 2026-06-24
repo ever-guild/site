@@ -15,15 +15,11 @@
 
   &__card {
     position: relative;
-    border: 1px solid $color-border-2;
-    border-radius: 30px;
-    background: $color-surface;
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 12px 36px rgba(0, 0, 0, 0.24);
+    @include engineered-panel(30px);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    scroll-margin-top: 5.75rem;
     width: 100%;
     transition:
       border-color $transition-base,
@@ -31,8 +27,9 @@
       transform 300ms $ease-spring;
 
     &:hover {
-      border-color: $color-border-2;
-      background: $color-surface-2;
+      border-color: $color-glass-edge;
+      background: $color-glass-2;
+      transform: translateY(-4px);
 
       .team__avatar { filter: grayscale(0) contrast(1); }
 
@@ -50,6 +47,8 @@
 
   &__photo {
     position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
     border-bottom: 1px solid $color-glass-border;
   }
 
@@ -92,6 +91,7 @@
     font-size: clamp(0.82rem, 2.8vw, $text-sm);
     line-height: 1.48;
     color: $color-text-2;
+    flex: 1;
   }
 
   &__github {
@@ -124,8 +124,6 @@
   }
 
   &__github-arrow {
-    margin-left: 0.15rem;
-    color: $color-text-3;
     transition: transform $transition-base, color $transition-base;
   }
 }

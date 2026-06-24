@@ -136,4 +136,44 @@ test.describe('landing page content', () => {
       await expect(footer.locator(`a[href="${url}"]`)).toBeVisible();
     }
   });
+
+  test('footer layout keeps copyright centered and socials on the right', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('.footer').scrollIntoViewIfNeeded();
+
+    const layout = await page.evaluate(() => {
+      const rect = (selector: string) => {
+        const element = document.querySelector(selector);
+        const box = element?.getBoundingClientRect();
+
+        if (!box) return null;
+
+        return {
+          left: box.left,
+          right: box.right,
+          center: box.left + box.width / 2,
+        };
+      };
+
+      return {
+        viewportCenter: window.innerWidth / 2,
+        viewportWidth: window.innerWidth,
+        copyright: rect('.footer__copyright'),
+        socials: rect('.footer__socials'),
+        firstSocial: rect('.footer__socials .social-icon'),
+      };
+    });
+
+    expect(layout.copyright).not.toBeNull();
+    expect(layout.socials).not.toBeNull();
+    expect(layout.firstSocial).not.toBeNull();
+    expect(Math.abs((layout.copyright?.center ?? 0) - layout.viewportCenter)).toBeLessThanOrEqual(1);
+
+    if (layout.viewportWidth >= 1024) {
+      expect(layout.socials?.left).toBeGreaterThan((layout.copyright?.right ?? 0) + 32);
+      expect(layout.socials?.right).toBeGreaterThanOrEqual(layout.viewportWidth - 96);
+    } else {
+      expect(layout.firstSocial?.left).toBeLessThanOrEqual(32);
+    }
+  });
 });
