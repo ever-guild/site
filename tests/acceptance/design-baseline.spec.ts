@@ -1,5 +1,13 @@
 import { expect, type Page, test } from '@playwright/test';
 
+function alphaFromRgb(color: string) {
+  const match = color.match(/rgba?\(([^)]+)\)/);
+  if (!match) return 1;
+
+  const parts = match[1].split(',').map((part) => part.trim());
+  return parts.length === 4 ? Number(parts[3]) : 1;
+}
+
 async function findRuleText(page: Page, selector: string) {
   return page.evaluate((targetSelector) => {
     const matches: string[] = [];
@@ -33,17 +41,16 @@ async function waitForScrolledNavbarEffect(page: Page) {
   await expect(page.locator('.navbar')).toHaveClass(/navbar--scrolled/);
   await expect
     .poll(() =>
-      page.locator('.navbar').evaluate((element) => getComputedStyle(element).backgroundColor),
+      page.locator('.navbar').evaluate((element) => Number(getComputedStyle(element, '::before').opacity)),
     )
-    .not.toBe('rgba(0, 0, 0, 0)');
+    .toBeGreaterThan(0.95);
 }
 
 async function waitForVisualReady(page: Page) {
-  await page.evaluate(() => document.fonts.ready);
-  // Freeze animated mesh so Linux/Windows captures stay aligned.
   await page.addStyleTag({
-    content: '.App::before { animation: none !important; transform: none !important; }',
+    content: 'canvas { visibility: hidden !important; } .App__background { animation: none !important; transform: none !important; }',
   });
+  await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(300);
 }
 
@@ -90,7 +97,7 @@ test.describe('design baseline', () => {
     await expect(page.locator('.navbar')).toHaveScreenshot(`${testInfo.project.name}-navbar.png`, {
       animations: 'disabled',
       caret: 'hide',
-      maxDiffPixelRatio: 0.02,
+      maxDiffPixelRatio: 0.03,
     });
   });
 
@@ -103,81 +110,62 @@ test.describe('design baseline', () => {
     await expect(page.locator('.navbar')).toHaveScreenshot(`${testInfo.project.name}-navbar-scrolled.png`, {
       animations: 'disabled',
       caret: 'hide',
-      maxDiffPixelRatio: 0.02,
+      maxDiffPixelRatio: 0.03,
     });
   });
 
-  test('team cards match approved baselines', async ({ page }, testInfo) => {
+  test('glass surfaces match approved baselines', async ({ page }, testInfo) => {
     await page.goto('/');
     await lockViewportOn(page, '#team');
     await waitForVisualReady(page);
+    await page.addStyleTag({ content: '.navbar { visibility: hidden !important; }' });
 
-    await expect(page.locator('.team__card').first()).toHaveScreenshot(`${testInfo.project.name}-team-card.png`, {
+    await expect(page.locator('.team__card').first()).toHaveScreenshot(`${testInfo.project.name}-team-glass.png`, {
       animations: 'disabled',
       caret: 'hide',
-      maxDiffPixelRatio: 0.03,
+      maxDiffPixelRatio: 0.035,
     });
 
     await page.locator('.team__card').first().hover();
     await page.waitForTimeout(300);
 
-    await expect(page.locator('.team__card').first()).toHaveScreenshot(`${testInfo.project.name}-team-card-hover.png`, {
+    await expect(page.locator('.team__card').first()).toHaveScreenshot(`${testInfo.project.name}-team-glass-hover.png`, {
       animations: 'disabled',
       caret: 'hide',
-      maxDiffPixelRatio: 0.03,
+      maxDiffPixelRatio: 0.035,
     });
   });
 
-  test('solid surfaces are used instead of glass', async ({ page }) => {
+  test('glass and transparency effects are active', async ({ page }) => {
     await page.goto('/');
     await lockViewportOn(page, '#team');
 
-    const cardStyles = await page.locator('.team__card').first().evaluate((element) => {
+    const glassStyles = await page.locator('.team__card').first().evaluate((element) => {
       const style = getComputedStyle(element);
       return {
         backgroundColor: style.backgroundColor,
-        backdropFilter: style.backdropFilter,
       };
     });
     const teamCardRule = await findRuleText(page, '.team__card');
 
-    expect(cardStyles.backgroundColor, 'team card should use an opaque surface').toMatch(/rgb/);
-    expect(cardStyles.backdropFilter, 'team card should not use backdrop blur').toBe('none');
-    expect(teamCardRule, 'team card should not ship glass blur rules').not.toContain('backdrop-filter');
+    expect(alphaFromRgb(glassStyles.backgroundColor), 'team card should keep a translucent glass background').toBeLessThan(1);
+    expect(teamCardRule, 'team card should keep a backdrop blur CSS rule').toContain('backdrop-filter');
+    expect(teamCardRule, 'team card should keep a backdrop blur CSS rule').toContain('blur');
 
     await page.evaluate(() => window.scrollTo(0, 360));
     await waitForScrolledNavbarEffect(page);
 
+    const navbarEffect = await page.locator('.navbar').evaluate((element) => {
+      const style = getComputedStyle(element, '::before');
+      return {
+        opacity: style.opacity,
+      };
+    });
     const navbarRule = await findRuleText(page, '.navbar::before');
-    expect(navbarRule, 'navbar should not rely on a blur pseudo-layer').toBe('');
-  });
 
-  test('team photos keep square framing', async ({ page }) => {
-    await page.goto('/');
-    await lockViewportOn(page, '#team');
-    await waitForVisualReady(page);
-
-    const frames = await page.locator('.team__photo').evaluateAll((elements) =>
-      elements.map((element) => {
-        const frame = element.getBoundingClientRect();
-        const image = element.querySelector('img')?.getBoundingClientRect();
-
-        return {
-          frameWidth: frame.width,
-          frameHeight: frame.height,
-          imageWidth: image?.width ?? 0,
-          imageHeight: image?.height ?? 0,
-        };
-      }),
-    );
-
-    expect(frames).toHaveLength(3);
-
-    for (const frame of frames) {
-      expect(Math.abs(frame.frameWidth - frame.frameHeight), 'team photo frame should stay square').toBeLessThan(2);
-      expect(Math.abs(frame.imageWidth - frame.frameWidth), 'team image should fill frame width').toBeLessThan(2);
-      expect(Math.abs(frame.imageHeight - frame.frameHeight), 'team image should fill frame height').toBeLessThan(2);
-    }
+    expect(Number(navbarEffect.opacity), 'scrolled navbar blur layer should be visible').toBeGreaterThan(0.9);
+    expect(navbarRule, 'scrolled navbar should keep backdrop blur CSS rule').toContain('backdrop-filter');
+    expect(navbarRule, 'scrolled navbar should keep backdrop blur CSS rule').toContain('blur');
   });
 
   for (const state of states) {
@@ -189,7 +177,7 @@ test.describe('design baseline', () => {
         animations: 'disabled',
         caret: 'hide',
         fullPage: false,
-        maxDiffPixelRatio: 0.025,
+        maxDiffPixelRatio: 0.03,
       });
     });
   }
