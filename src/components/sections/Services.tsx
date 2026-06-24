@@ -14,32 +14,32 @@ const services = [
   {
     Icon: LuBlocks,
     title: 'Web3 & Blockchain',
-    description: 'Production-grade smart contracts and protocol integrations on TON, EVM and NEAR, with audited patterns built to hold real value.',
+    description: 'Production-grade smart contracts and protocol integrations on TON, EVM, and NEAR. Audited patterns, built to hold real value.',
   },
   {
     Icon: LuCpu,
     title: 'AI & Automation',
-    description: 'LLM integrations, AI agents and workflow automation wired into your product, not bolted on as an afterthought.',
+    description: 'LLM integrations, AI agents, and workflow automation wired into your product, not bolted on as an afterthought.',
   },
   {
     Icon: LuLayers,
     title: 'Full-Stack Development',
-    description: 'React, Next.js and Node.js SaaS platforms, dashboards and marketplaces shipped fast and built to scale.',
+    description: 'React, Next.js, and Node.js SaaS platforms, dashboards, and marketplaces. Shipped fast, built to scale.',
   },
   {
     Icon: LuPenTool,
     title: 'Product Design & UI/UX',
-    description: 'Interfaces, prototypes and design systems that stay clean and responsive across every screen.',
+    description: 'Interfaces, prototypes, and design systems that stay clean and responsive across every screen.',
   },
   {
     Icon: LuBadgeCheck,
     title: 'Candidate Experience Verification',
-    description: 'Independent verification of claimed engineering experience for safer, sharper technical hiring decisions.',
+    description: 'Independent verification of claimed engineering experience for safer technical hiring decisions.',
   },
   {
     Icon: LuLifeBuoy,
     title: 'Crisis Engineering Management',
-    description: 'Rapid intervention for software projects facing delivery, quality or team breakdowns, with a clear path back on track.',
+    description: 'Rapid intervention for software projects facing delivery, quality, or team breakdowns. Restore the delivery path quickly.',
   },
 ];
 
@@ -61,7 +61,10 @@ const stack = [
 export const Services = React.memo(function Services() {
   return (
     <Section id="services">
-      <SectionHeader title="What we build for you." />
+      <SectionHeader
+        title="What we build for you."
+        lead="Senior service lines we can own from architecture through production support."
+      />
 
       <div className="services__grid">
         {services.map((service) => (

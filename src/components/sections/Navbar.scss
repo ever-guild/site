@@ -15,7 +15,7 @@
 
   // Blur-only backdrop (no darkening tint) with a feathered bottom edge.
   // Lives on a pseudo-element so the logo/links stay crisp and unmasked.
-  &::before {
+  &__backdrop {
     content: "";
     position: absolute;
     inset: 0 0 -24px 0;
@@ -32,8 +32,13 @@
     transition: opacity 320ms ease;
   }
 
-  &--scrolled::before {
+  &--scrolled &__backdrop {
     opacity: 1;
+  }
+
+  &--scrolled {
+    border-color: $color-border;
+    background: rgba(1, 24, 28, 0.98);
   }
 
   &__container {

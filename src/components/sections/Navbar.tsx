@@ -112,7 +112,6 @@ const Navbar = React.memo(function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const toggleMobileMenu = () => setIsMobileMenuOpen((open) => !open);
 
