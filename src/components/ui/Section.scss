@@ -6,10 +6,12 @@
   z-index: $z-content;
   @include section-padding;
   @include scroll-offset;
+  // Keep sections un-layered so frosted panels sample the static field behind them.
+  background: transparent;
 
-  &--alt {
-    background: $color-bg-alt;
-    border-block: 1px solid $color-border;
+  &--alt,
+  &--dark {
+    background: transparent;
   }
 
   &__container {

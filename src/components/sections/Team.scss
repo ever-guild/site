@@ -3,33 +3,46 @@
 
 .team {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: $space-md;
+  grid-template-columns: minmax(0, min(100%, 20rem));
+  justify-content: start;
+  gap: clamp(1rem, 2vw, 1.25rem);
+  max-width: 68rem;
+  margin-inline: 0;
 
   @include tablet-up {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   &__card {
-    @include panel;
+    position: relative;
+    border: 1px solid $color-border-2;
+    border-radius: 30px;
+    background: $color-surface;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 12px 36px rgba(0, 0, 0, 0.24);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    transition:
+      border-color $transition-base,
+      background-color $transition-base,
+      transform 300ms $ease-spring;
 
     &:hover {
       border-color: $color-border-2;
       background: $color-surface-2;
 
-      .team__avatar {
-        filter: grayscale(0.15) contrast(1.05) sepia(0.08);
-      }
+      .team__avatar { filter: grayscale(0) contrast(1); }
 
       .team__github {
-        border-color: $color-border-3;
+        border-color: $color-accent-line;
         color: $color-text;
       }
+
       .team__github-arrow {
-        transform: translate(2px, -2px);
+        transform: translate(3px, -3px);
         color: $color-accent;
       }
     }
@@ -37,10 +50,7 @@
 
   &__photo {
     position: relative;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    border-bottom: 1px solid $color-border;
-    background: $color-surface-3;
+    border-bottom: 1px solid $color-glass-border;
   }
 
   &__avatar {
@@ -49,7 +59,9 @@
     height: 100%;
     object-fit: cover;
     object-position: center 22%;
-    filter: grayscale(0.55) contrast(1.08) sepia(0.12);
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+    outline-offset: -1px;
+    filter: grayscale(0.4) contrast(1.02);
     transition: filter $transition-slow;
   }
 
@@ -57,48 +69,58 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: $space-lg;
+    min-width: 0;
+    padding: clamp(1rem, 2.2vw, 1.4rem);
   }
 
   &__name {
     @include display;
-    font-size: $text-2xl;
-    line-height: 1.1;
-    color: $color-text;
+    font-size: clamp(1.55rem, 4.8vw, 1.95rem);
+    line-height: 1;
+    letter-spacing: $tracking-tight;
+    margin-bottom: 0.4rem;
   }
 
   &__role {
-    margin-top: 0.35rem;
-    font-size: $text-xs;
-    font-weight: 500;
-    letter-spacing: $tracking-wide;
-    text-transform: uppercase;
+    @include mono-coord;
+    font-size: $text-2xs;
     color: $color-accent;
+    margin-bottom: 0.85rem;
   }
 
   &__bio {
-    margin-top: $space-sm;
-    flex: 1;
-    font-size: $text-sm;
-    line-height: $leading-normal;
+    font-size: clamp(0.82rem, 2.8vw, $text-sm);
+    line-height: 1.48;
     color: $color-text-2;
   }
 
   &__github {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    margin-top: $space-md;
-    padding: 0.5rem 0.75rem;
-    width: fit-content;
-    font-family: $font-mono;
-    font-size: $text-xs;
-    color: $color-text-2;
-    border: 1px solid $color-border;
+    gap: 0.5rem;
+    align-self: flex-start;
+    margin-top: 1rem;
+    padding: 0.5rem 0.8rem;
+    min-height: 2.5rem;
+    border: 1px solid $color-border-2;
     border-radius: $radius-sm;
+    color: $color-text-2;
+    font-size: $text-xs;
     transition:
       border-color $transition-base,
-      color $transition-base;
+      color $transition-base,
+      transform 180ms $ease-spring;
+
+    &:active { transform: scale(0.96); }
+  }
+
+  &__github-handle {
+    font-family: $font-mono;
+    font-size: $text-2xs;
+
+    @include tablet-up {
+      font-size: $text-xs;
+    }
   }
 
   &__github-arrow {

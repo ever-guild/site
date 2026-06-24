@@ -1,10 +1,48 @@
 @use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+
+.contact-section {
+  padding-block: clamp(2.5rem, 4vw, 4.5rem) clamp(3rem, 5vw, 5.5rem);
+}
 
 .contact {
-  max-width: $editorial-measure;
-
   &__cta {
-    margin-top: $space-lg;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button.btn {
+    width: min(100%, 64rem);
+    min-height: clamp(4.5rem, 8vw, 7rem);
+    padding: clamp(1rem, 2.6vw, 2rem) clamp(1.2rem, 5vw, 3.75rem);
+    border-radius: $radius-xl;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.34),
+      inset 0 -14px 32px rgba(56, 30, 0, 0.16),
+      0 18px 42px rgba(0, 0, 0, 0.28);
+    font-size: clamp(0.82rem, 2.1vw, 1.45rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-align: center;
+
+    .btn__icon {
+      margin-left: clamp(0.2rem, 1vw, 0.7rem);
+      padding-left: clamp(0.55rem, 1.5vw, 1.1rem);
+    }
+  }
+
+  @media (max-width: #{$bp-mobile - 1px}) {
+    &__button.btn {
+      min-height: 3.9rem;
+      padding-inline: 1rem;
+      border-radius: $radius-lg;
+      font-size: clamp(0.68rem, 3.1vw, 0.84rem);
+      letter-spacing: 0.02em;
+      gap: 0.45rem;
+
+      .btn__icon {
+        margin-left: 0;
+        padding-left: 0.5rem;
+      }
+    }
   }
 }

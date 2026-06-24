@@ -14,28 +14,58 @@
   }
 
   &__card {
-    min-height: 15rem;
-    padding: clamp(1.25rem, 3vw, 1.75rem);
-    background: $color-surface;
+    position: relative;
+    @include engineered-panel(30px);
+    padding: $space-lg;
+    padding-right: clamp(5.25rem, 10vw, 7rem);
+
+    &:hover {
+      border-color: $color-glass-edge;
+      background: $color-glass-2;
+      transform: translateY(-2px);
+
+      .services__title { color: $color-accent; }
+
+    }
+
+    @media (max-width: #{$bp-mobile - 1px}) {
+      padding-right: 4.75rem;
+    }
   }
 
-  &__num {
-    display: block;
-    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
-    font-family: $font-mono;
-    font-size: $text-xs;
-    font-weight: 500;
-    letter-spacing: $tracking-wide;
-    color: $color-cream;
+  &__head {
+    margin: 0;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: clamp(1rem, 1.8vw, 1.35rem);
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2rem, 3vw, 2.7rem);
+    color: $color-accent;
+    transition: color $transition-base;
+
+    svg {
+      display: block;
+      stroke-width: 1.8;
+    }
+
+    @media (max-width: #{$bp-mobile - 1px}) {
+      font-size: 2.05rem;
+    }
   }
 
   &__title {
     @include display;
-    font-size: clamp(1.4rem, 3vw, 1.85rem);
-    line-height: 1.08;
-    color: $color-text;
-    max-width: 14ch;
-    text-wrap: balance;
+    font-size: $text-2xl;
+    line-height: 1.04;
+    letter-spacing: $tracking-tight;
+    margin-bottom: 0.65rem;
+    transition: color $transition-base;
   }
 
   &__desc {
@@ -45,4 +75,97 @@
     line-height: $leading-normal;
     color: $color-text-2;
   }
+
+  &__marquee {
+    margin-top: $space-xl;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
+
+  }
+
+  &__track {
+    display: flex;
+    width: max-content;
+    animation: stack-scroll 38s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      width: auto;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      animation: none;
+    }
+  }
+
+  &__tag {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 0.6rem;
+    padding: 0.5rem 0.9rem;
+    @include glass-chip;
+    border-radius: $radius-sm;
+    font-family: $font-mono;
+    font-size: $text-2xs;
+    letter-spacing: $tracking-wide;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: $color-text-2;
+
+    @media (prefers-reduced-motion: reduce) {
+      margin-right: 0;
+
+      &--duplicate {
+        display: none;
+      }
+    }
+  }
+
+  &__tag-icon {
+    flex-shrink: 0;
+    font-size: 1.05rem;
+    color: $color-accent;
+  }
+
+  @media (max-width: #{$bp-mobile - 1px}) {
+    &__grid {
+      gap: 1rem;
+    }
+
+    &__card {
+      padding: 1.35rem;
+      padding-right: 4rem;
+    }
+
+    &__icon {
+      right: 1.25rem;
+      font-size: 1.65rem;
+    }
+
+    &__title {
+      font-size: clamp(1.35rem, 6vw, 1.55rem);
+      line-height: 1.08;
+      margin-bottom: 0.55rem;
+    }
+
+    &__desc {
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    &__marquee {
+      margin-top: 2rem;
+    }
+
+    &__tag {
+      padding: 0.46rem 0.75rem;
+      font-size: 0.64rem;
+    }
+  }
+}
+
+@keyframes stack-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }

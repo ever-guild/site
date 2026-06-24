@@ -1,21 +1,25 @@
 import React from 'react';
 import { Section } from '../ui/Section';
-import { SectionHeader } from '../ui/SectionHeader';
 import { Button } from '../ui/Button';
+import { ArrowUpRight } from 'lucide-react';
 import './Contact.scss';
 
 export const Contact = React.memo(function Contact() {
   return (
-    <Section id="contact" variant="alt">
+    <Section id="contact" variant="alt" className="contact-section">
       <div className="contact">
-        <SectionHeader
-          title="Start a production build"
-          lead="Tell us what you're building. We reply within a day."
-        />
-
-        <Button href="https://order.ever-guild.net/" size="lg" className="contact__cta">
-          Start a project
-        </Button>
+        <div className="contact__cta">
+          <Button
+            href="https://order.ever-guild.net/"
+            variant="primary"
+            size="lg"
+            className="contact__button"
+            ariaLabel="Start a project with Ever Guild"
+            icon={<ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />}
+          >
+            Start a project with Ever Guild
+          </Button>
+        </div>
       </div>
     </Section>
   );

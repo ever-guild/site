@@ -1,45 +1,143 @@
 @use './styles/variables' as *;
-@use './styles/mixins' as *;
 
 .App {
   position: relative;
-  isolation: isolate;
   min-height: 100vh;
-  background: $color-bg;
+  min-height: 100dvh;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgba(0, 52, 61, 0.28) 0%, transparent 24rem),
+    linear-gradient(180deg, $color-bg 0%, #00161d 48%, $color-bg 100%);
 
-  &::before,
-  &::after {
-    content: "";
+  &__background {
     position: fixed;
-    inset: 0;
+    inset: -18vh -14vw;
     z-index: $z-grid;
     pointer-events: none;
+    background:
+      radial-gradient(ellipse 92% 54% at 48% 4%, rgba(255, 231, 156, 0.13), transparent 66%),
+      radial-gradient(ellipse 72% 58% at 16% 46%, rgba(186, 240, 212, 0.065), transparent 72%),
+      radial-gradient(ellipse 78% 62% at 86% 76%, rgba(241, 184, 0, 0.07), transparent 74%),
+      linear-gradient(180deg, rgba(0, 52, 61, 0.2) 0%, transparent 36%, rgba(56, 30, 0, 0.13) 100%);
+    filter: blur(24px) saturate(110%);
+    opacity: 0.62;
+    transform: translate3d(0, 0, 0) scale(1.02);
+    will-change: transform;
   }
 
-  &::before {
-    @include page-mesh;
-    transform-origin: 50% 40%;
-    will-change: transform;
-
-    @media (prefers-reduced-motion: no-preference) {
-      animation: page-mesh-drift 32s $ease-out-expo infinite alternate;
+  @supports (animation-timeline: scroll()) {
+    &__background {
+      animation: background-float linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0% 100%;
     }
   }
 
-  &::after {
-    @include page-field-dots;
-    mask-image: radial-gradient(
-      ellipse 95% 85% at 50% 42%,
-      rgb(0 0 0 / 72%) 0%,
-      rgb(0 0 0 / 18%) 55%,
-      transparent 78%
-    );
+  @media (prefers-reduced-motion: reduce) {
+    &__background {
+      animation: none;
+      opacity: 0.5;
+      transform: translate3d(0, 0, 0) scale(1.02);
+      will-change: auto;
+    }
+  }
+
+  &__scroll-sentinel {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+  }
+
+  @media (max-width: #{$bp-tablet - 1px}) {
+    &__background {
+      inset: -14vh -34vw;
+      background:
+        radial-gradient(ellipse 112% 46% at 52% 0%, rgba(255, 231, 156, 0.115), transparent 66%),
+        radial-gradient(ellipse 94% 60% at 82% 78%, rgba(241, 184, 0, 0.06), transparent 74%),
+        linear-gradient(180deg, rgba(0, 52, 61, 0.18) 0%, transparent 42%, rgba(56, 30, 0, 0.11) 100%);
+      filter: blur(20px) saturate(108%);
+      opacity: 0.52;
+    }
   }
 
   main,
-  footer {
+  footer,
+  &__landing-end {
     position: relative;
     z-index: $z-content;
+  }
+
+  &__landing-end {
+    display: flex;
+    justify-content: center;
+    padding: 0 $gutter clamp(2rem, 5vw, 3.5rem);
+  }
+
+  &__top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 5.5rem;
+    min-height: 2.75rem;
+    padding-inline: 1.35rem;
+    border: 1px solid rgba(255, 231, 156, 0.2);
+    border-radius: $radius-full;
+    background: rgba(255, 231, 156, 0.06);
+    color: rgba(255, 231, 156, 0.78);
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 600;
+    letter-spacing: $tracking-wide;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition:
+      background-color $transition-base,
+      border-color $transition-base,
+      color $transition-base,
+      transform 180ms $ease-spring;
+
+    &:hover {
+      border-color: rgba(255, 231, 156, 0.42);
+      background: rgba(255, 231, 156, 0.1);
+      color: $color-cream;
+      transform: translateY(-1px);
+
+      .App__top-icon {
+        transform: translateY(-2px);
+      }
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.96);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-accent;
+      outline-offset: 3px;
+    }
+  }
+
+  &__top-icon {
+    flex: 0 0 auto;
+    transition: transform 180ms $ease-spring;
+  }
+}
+
+@keyframes background-float {
+  from {
+    transform: translate3d(-2vw, -2vh, 0) scale(1.02);
+  }
+
+  45% {
+    transform: translate3d(2vw, 3vh, 0) scale(1.04);
+  }
+
+  to {
+    transform: translate3d(-1vw, 6vh, 0) scale(1.03);
   }
 }
 

@@ -25,7 +25,7 @@ body {
   font-size: $text-base;
   font-weight: 400;
   line-height: $leading-normal;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   color: $color-text;
   background: $color-bg;
   -webkit-text-size-adjust: 100%;
@@ -50,6 +50,17 @@ select {
 p,
 h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p,
+li,
+figcaption,
+blockquote {
+  text-wrap: pretty;
 }
 
 a {
@@ -80,7 +91,7 @@ button {
   border-radius: 8px;
 }
 
-// Scrollbar - thin, technical
+// Scrollbar — thin, technical
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -102,12 +113,12 @@ button {
   to   { opacity: 1; }
 }
 
-// Transform reveal - for leaf elements only (headings, text, dividers, ticks).
+// Transform reveal — for leaf elements only (headings, text, dividers, ticks).
 // NEVER apply to an ancestor of a .glass card: a transform establishes a
 // containing block and permanently kills the card's backdrop-filter.
 @keyframes reveal-rise {
-  from { transform: translateY(26px); }
-  to   { transform: translateY(0); }
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 // Horizontal hairline draw-in (section dividers, gold ticks).

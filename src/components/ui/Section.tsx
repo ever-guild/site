@@ -5,7 +5,7 @@ interface SectionProps {
   children: React.ReactNode;
   id?: string;
   className?: string;
-  variant?: 'default' | 'alt';
+  variant?: 'default' | 'alt' | 'dark';
 }
 
 export const Section = React.memo(function Section({
@@ -14,13 +14,19 @@ export const Section = React.memo(function Section({
   className = '',
   variant = 'default',
 }: SectionProps) {
-  const cls = ['section', `section--${variant}`, className]
+  const cls = [
+    'section',
+    `section--${variant}`,
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
 
   return (
     <section id={id} className={cls}>
-      <div className="section__container">{children}</div>
+      <div className="section__container">
+        <div className="section__body">{children}</div>
+      </div>
     </section>
   );
 });
