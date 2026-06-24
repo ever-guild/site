@@ -54,7 +54,7 @@ const states = [
       await page.goto('/');
       await page.evaluate(() => window.scrollTo(0, 0));
       await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
-      await expect(page.getByRole('heading', { name: /Software that lasts/i })).toBeVisible();
+      await expect(page.getByRole('heading', { name: /Build what lasts/i })).toBeVisible();
     },
   },
   {
@@ -71,7 +71,9 @@ const states = [
     target: async (page: Page) => {
       await page.goto('/');
       await lockViewportOn(page, '#contact');
-      await expect(page.locator('#contact').getByRole('link', { name: /Start a project/i })).toBeVisible();
+      const projectLink = page.getByRole('link', { name: /Start a project with Ever Guild/i });
+      await expect(projectLink).toBeVisible();
+      await expect(projectLink).toHaveAttribute('href', 'https://order.ever-guild.net/');
       await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
     },
   },

@@ -1,47 +1,69 @@
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
+import heroBrandRaster from "../../assets/hero-brand-raster.webp";
 import { Button } from "../ui/Button";
 import "./Hero.scss";
+
+const facts = [
+  { k: "Since", v: "2021" },
+  { k: "Mode", v: "Remote-first" },
+  { k: "Team", v: "Senior-led" },
+  { k: "Focus", v: "Web3 / AI" },
+];
 
 const Hero = React.memo(function Hero() {
   return (
     <section id="hero" className="hero">
-      <div className="hero__hud" aria-hidden="true">
-        <span className="hero__hud-line">EVER&nbsp;GUILD&nbsp;//&nbsp;ENGINEERING&nbsp;GUILD</span>
-        <span className="hero__hud-line hero__hud-line--right">EST.&nbsp;2021&nbsp;//&nbsp;GLOBAL&nbsp;·&nbsp;REMOTE</span>
-      </div>
-
+      <img
+        className="hero__art"
+        src={heroBrandRaster}
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+        fetchPriority="high"
+      />
       <div className="hero__inner">
-        <p className="hero__kicker">Senior-led · Remote-first · Since 2021</p>
+        <div className="hero__content">
+          <h1 className="hero__tagline">
+            Build what lasts.
+            <br />
+            <span className="hero__tagline-accent">Keep it running.</span>
+          </h1>
 
-        <h1 className="hero__tagline">
-          Software that lasts.
-          <br />
-          <span className="hero__tagline-accent">Community</span> that builds.
-        </h1>
+          <p className="hero__description">
+            Senior engineers for <strong>Web3 infrastructure</strong>,{" "}
+            <strong>AI products</strong> and <strong>full-stack platforms</strong>,
+            from architecture to production support.
+          </p>
 
-        <p className="hero__description">
-          Senior engineers who ship Web3, AI and full-stack products built to
-          survive production – and stay maintainable long after launch.
-        </p>
+          <div className="hero__actions">
+            <Button
+              href="https://order.ever-guild.net/"
+              variant="primary"
+              size="lg"
+              icon={<ArrowUpRight size={16} strokeWidth={2} aria-hidden="true" />}
+            >
+              Start a project
+            </Button>
+            <Button
+              href="https://github.com/ever-guild"
+              variant="secondary"
+              size="lg"
+            >
+              View on GitHub
+            </Button>
+          </div>
 
-        <div className="hero__actions">
-          <Button href="https://mail.google.com/mail/?view=cm&fs=1&to=in@ever-guild.net&su=New%20project%20enquiry" variant="primary" size="lg" icon={<span aria-hidden="true">↗</span>}>
-            Start a project
-          </Button>
-          <Button
-            href="https://github.com/ever-guild"
-            variant="secondary"
-            size="lg"
-          >
-            View on GitHub
-          </Button>
+          <ul className="hero__facts" aria-label="Ever Guild facts">
+            {facts.map((fact) => (
+              <li key={fact.k} className="hero__fact">
+                <span className="hero__fact-key">{fact.k}</span>
+                <span className="hero__fact-val">{fact.v}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-
-      <a className="hero__scroll" href="#about" aria-label="Scroll to content">
-        <span className="hero__scroll-label">Scroll</span>
-        <span className="hero__scroll-rule" aria-hidden="true" />
-      </a>
     </section>
   );
 });

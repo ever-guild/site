@@ -18,7 +18,7 @@ function imageDelta(a: Buffer, b: Buffer) {
 test.describe('animated design smoke', () => {
   test('hero motion changes between captured frames', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.getByRole('heading', { name: /Software that lasts/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Build what lasts/i })).toBeVisible();
 
     const hero = page.locator('.hero');
     await page.waitForTimeout(80);

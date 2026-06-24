@@ -21,7 +21,7 @@
 
 // Unified vertical rhythm — fluid, kills uneven gaps between sections
 @mixin section-padding {
-  padding-block: clamp(4rem, 8vw, 8.5rem);
+  padding-block: clamp(3rem, 8vw, 8.5rem);
 }
 
 // 12-column content grid (editorial, asymmetric layouts)

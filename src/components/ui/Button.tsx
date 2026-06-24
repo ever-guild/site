@@ -22,7 +22,15 @@ export const Button = React.memo(function Button({
   className = '',
   ariaLabel,
 }: ButtonProps) {
-  const classes = `btn btn--${variant} btn--${size} ${className}`.trim();
+  const classes = [
+    'btn',
+    `btn--${variant}`,
+    `btn--${size}`,
+    icon ? 'btn--with-icon' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   const content = (
     <>

@@ -14,17 +14,17 @@ const services = [
   {
     Icon: LuBlocks,
     title: 'Web3 & Blockchain',
-    description: 'Production-grade smart contracts and protocol integrations on TON, EVM and NEAR – audited patterns, built to hold real value.',
+    description: 'Production-grade smart contracts and protocol integrations on TON, EVM and NEAR, with audited patterns built to hold real value.',
   },
   {
     Icon: LuCpu,
     title: 'AI & Automation',
-    description: 'LLM integrations, AI agents and workflow automation wired into your product – not bolted on as an afterthought.',
+    description: 'LLM integrations, AI agents and workflow automation wired into your product, not bolted on as an afterthought.',
   },
   {
     Icon: LuLayers,
     title: 'Full-Stack Development',
-    description: 'React, Next.js and Node.js SaaS platforms, dashboards and marketplaces – shipped fast, built to scale.',
+    description: 'React, Next.js and Node.js SaaS platforms, dashboards and marketplaces shipped fast and built to scale.',
   },
   {
     Icon: LuPenTool,
@@ -39,7 +39,7 @@ const services = [
   {
     Icon: LuLifeBuoy,
     title: 'Crisis Engineering Management',
-    description: 'Rapid intervention for software projects facing delivery, quality or team breakdowns – back on track, fast.',
+    description: 'Rapid intervention for software projects facing delivery, quality or team breakdowns, with a clear path back on track.',
   },
 ];
 
@@ -60,24 +60,36 @@ const stack = [
 
 export const Services = React.memo(function Services() {
   return (
-    <Section id="services" index="03" label="Services">
+    <Section id="services">
       <SectionHeader title="What we build for you." />
 
       <div className="services__grid">
-        {services.map((service, index) => (
+        {services.map((service) => (
           <article key={service.title} className="services__card">
             <div className="services__head">
               <span className="services__icon" aria-hidden="true">
                 <service.Icon />
-              </span>
-              <span className="services__num" aria-hidden="true">
-                {String(i + 1).padStart(2, '0')}
               </span>
             </div>
             <h3 className="services__title">{service.title}</h3>
             <p className="services__desc">{service.description}</p>
           </article>
         ))}
+      </div>
+
+      <div className="services__marquee" aria-label="Tools and technologies we use">
+        <ul className="services__track">
+          {[...stack, ...stack].map((tech, i) => (
+            <li
+              key={`${tech.name}-${i}`}
+              className={`services__tag ${i >= stack.length ? 'services__tag--duplicate' : ''}`}
+              aria-hidden={i >= stack.length ? true : undefined}
+            >
+              <tech.Icon className="services__tag-icon" aria-hidden="true" />
+              {tech.name}
+            </li>
+          ))}
+        </ul>
       </div>
     </Section>
   );

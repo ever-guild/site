@@ -1,79 +1,48 @@
 @use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
+
+.contact-section {
+  padding-block: clamp(2.5rem, 4vw, 4.5rem) clamp(3rem, 5vw, 5.5rem);
+}
 
 .contact {
-  // Direct channel — a comms terminal panel.
-  &__email {
-    position: relative;
+  &__cta {
     display: flex;
-    align-items: center;
-    gap: $space-md;
-    padding: clamp(1.25rem, 3vw, 2rem);
-    margin-top: $space-lg;
-    @include engineered-panel(30px);
-    color: $color-text;
+    justify-content: center;
+  }
 
-    // Gold rail along the top edge (inset) + frosted depth.
+  &__button.btn {
+    width: min(100%, 64rem);
+    min-height: clamp(4.5rem, 8vw, 7rem);
+    padding: clamp(1rem, 2.6vw, 2rem) clamp(1.2rem, 5vw, 3.75rem);
+    border-radius: $radius-xl;
     box-shadow:
-      inset 0 1px 0 $color-glass-sheen,
-      inset 0 2px 0 -1px $color-accent-soft,
-      inset 0 -12px 28px rgba(0, 0, 0, 0.14),
-      0 12px 36px rgba(0, 0, 0, 0.30);
+      inset 0 1px 0 rgba(255, 255, 255, 0.34),
+      inset 0 -14px 32px rgba(56, 30, 0, 0.16),
+      0 18px 42px rgba(0, 0, 0, 0.28);
+    font-size: clamp(0.82rem, 2.1vw, 1.45rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-align: center;
 
-    &:hover {
-      border-color: $color-glass-edge;
-      background: $color-glass-2;
-
-      .contact__email-arrow { transform: translate(4px, -4px); color: $color-cream-2; }
-      .contact__email-prompt { color: $color-cream-2; }
+    .btn__icon {
+      margin-left: clamp(0.2rem, 1vw, 0.7rem);
+      padding-left: clamp(0.55rem, 1.5vw, 1.1rem);
     }
   }
 
-  &__email-prompt {
-    flex-shrink: 0;
-    font-family: $font-mono;
-    font-size: clamp(1.1rem, 3vw, 1.75rem);
-    line-height: 1;
-    color: $color-accent;
-    transition: color $transition-base;
-  }
+  @media (max-width: #{$bp-mobile - 1px}) {
+    &__button.btn {
+      min-height: 3.9rem;
+      padding-inline: 1rem;
+      border-radius: $radius-lg;
+      font-size: clamp(0.68rem, 3.1vw, 0.84rem);
+      letter-spacing: 0.02em;
+      gap: 0.45rem;
 
-  &__email-text {
-    @include display;
-    font-size: clamp(1.5rem, 5vw, 2.75rem);
-    line-height: 1;
-    letter-spacing: $tracking-tight;
-    color: inherit;
-    word-break: break-word;
-
-    // Blinking terminal caret — invites contact.
-    &::after {
-      content: "_";
-      margin-left: 0.08em;
-      color: $color-accent;
-      @media (prefers-reduced-motion: no-preference) {
-        animation: contactCaret 1.1s steps(1) infinite;
+      .btn__icon {
+        margin-left: 0;
+        padding-left: 0.5rem;
       }
     }
   }
-
-  &__email-arrow {
-    flex-shrink: 0;
-    margin-left: auto;
-    color: $color-accent;
-    transition: transform $transition-base, color $transition-base;
-  }
-
-  &__note {
-    margin-top: $space-lg;
-    max-width: 48ch;
-    font-size: $text-base;
-    line-height: $leading-relaxed;
-    color: $color-text-2;
-  }
-}
-
-@keyframes contactCaret {
-  0%, 50%   { opacity: 1; }
-  50.01%, 100% { opacity: 0; }
 }

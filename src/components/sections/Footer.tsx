@@ -20,7 +20,6 @@ export const Footer = React.memo(function Footer() {
 
         <div className="footer__meta">
           <p className="footer__copyright">© 2026 Ever Guild</p>
-          <a className="footer__top" href="#hero">↑ Top</a>
         </div>
 
         <div className="footer__socials">
