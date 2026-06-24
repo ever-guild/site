@@ -8,6 +8,7 @@ import {
   FaEnvelope,
   FaGlobe,
   FaLink,
+  FaTelegram,
 } from 'react-icons/fa6';
 import './SocialIcon.scss';
 
@@ -19,6 +20,7 @@ const iconMap: Record<string, IconType> = {
   upwork: FaUpwork,
   email: FaEnvelope,
   mail: FaEnvelope,
+  telegram: FaTelegram,
   website: FaGlobe,
   default: FaLink,
 };

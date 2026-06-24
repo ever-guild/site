@@ -116,4 +116,24 @@ test.describe('landing page content', () => {
       expect(body).toContain('skipWaiting');
     }
   });
+
+  test('footer contains all required social and contact links', async ({ page }) => {
+    await page.goto('/');
+
+    const footer = page.locator('.footer');
+    await expect(footer).toBeVisible();
+
+    const expectedLinks = [
+      'https://github.com/ever-guild',
+      'https://x.com/ever_guild_net',
+      'https://www.linkedin.com/company/ever-guild/',
+      'https://t.me/everguild',
+      'https://www.upwork.com/agencies/everguild/',
+      'mailto:in@ever-guild.net',
+    ];
+
+    for (const url of expectedLinks) {
+      await expect(footer.locator(`a[href="${url}"]`)).toBeVisible();
+    }
+  });
 });
