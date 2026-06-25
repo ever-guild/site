@@ -101,6 +101,11 @@
     gap: $space-md;
     text-align: center;
 
+    @media (max-width: #{$bp-tablet - 1px}) {
+      width: var(--app-layout-viewport-width, 100vw);
+      margin-left: -1.5rem;
+    }
+
     @include desktop-up {
       grid-area: copyright;
       align-self: center;

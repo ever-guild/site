@@ -1,6 +1,5 @@
 import React from 'react';
 import { SocialIcon } from '../ui/SocialIcon';
-import './Footer.scss';
 
 const socials = [
   { platform: 'github', url: 'https://github.com/ever-guild', label: 'GitHub' },

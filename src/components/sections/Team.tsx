@@ -66,6 +66,7 @@ export const Team = React.memo(function Team() {
                 alt={member.name}
                 className="team__avatar"
                 loading="lazy"
+                decoding="async"
                 width={member.avatarSize}
                 height={member.avatarSize}
               />
