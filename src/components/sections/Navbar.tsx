@@ -7,7 +7,6 @@ import "./Navbar.scss";
 const navLinks = [
   { label: "Team", href: "#team" },
   { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = React.memo(function Navbar() {
@@ -31,6 +30,7 @@ const Navbar = React.memo(function Navbar() {
   // Scroll-spy — highlight the nav link for the section in view.
   useEffect(() => {
     const ids = navLinks.map((l) => l.href.slice(1));
+    const observed = new Set<string>();
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -39,11 +39,33 @@ const Navbar = React.memo(function Navbar() {
       },
       { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
     );
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
+
+    let mutationObserver: MutationObserver | null = null;
+
+    const observeSections = () => {
+      ids.forEach((id) => {
+        if (observed.has(id)) return;
+
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        observer.observe(el);
+        observed.add(id);
+      });
+
+      if (observed.size === ids.length) {
+        mutationObserver?.disconnect();
+      }
+    };
+
+    mutationObserver = new MutationObserver(observeSections);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    observeSections();
+
+    return () => {
+      mutationObserver?.disconnect();
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {

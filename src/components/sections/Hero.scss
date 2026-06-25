@@ -13,107 +13,14 @@
   padding-block: clamp(5.2rem, 7vh, 5.8rem) clamp(1.6rem, 4vh, 2.6rem);
   overflow: hidden;
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background:
-      linear-gradient(
-        90deg,
-        rgba(0, 29, 37, 0.98) 0%,
-        rgba(0, 29, 37, 0.9) 28%,
-        rgba(0, 29, 37, 0.48) 58%,
-        rgba(0, 29, 37, 0.12) 100%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(0, 29, 37, 0.1) 0%,
-        rgba(0, 29, 37, 0.58) 62%,
-        rgba(0, 29, 37, 0) 100%
-      );
-    -webkit-mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 66%,
-      rgba(0, 0, 0, 0.62) 80%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 66%,
-      rgba(0, 0, 0, 0.62) 80%,
-      transparent 100%
-    );
-    pointer-events: none;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    z-index: 0;
-    height: 50%;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(0, 29, 37, 0) 0%,
-        rgba(0, 29, 37, 0.5) 34%,
-        rgba(0, 29, 37, 0.76) 58%,
-        rgba(0, 29, 37, 0) 100%
-      );
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    -webkit-mask-image: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(0, 0, 0, 0.28) 18%,
-      rgba(0, 0, 0, 0.82) 42%,
-      #000 100%
-    );
-    mask-image: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(0, 0, 0, 0.28) 18%,
-      rgba(0, 0, 0, 0.82) 42%,
-      #000 100%
-    );
-    pointer-events: none;
-  }
-
-  &__art {
-    position: absolute;
-    inset: 0;
-    z-index: -2;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 60% 50%;
-    opacity: 0.9;
-    transform: scale(1.01);
-    -webkit-mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 44%,
-      rgba(0, 0, 0, 0.58) 58%,
-      transparent 80%
-    );
-    mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 44%,
-      rgba(0, 0, 0, 0.58) 58%,
-      transparent 80%
-    );
-  }
-
   &__inner {
     @include container;
     position: relative;
     z-index: 1;
-    display: flex;
-    align-items: flex-end;
+    display: grid;
+    grid-template-columns: minmax(0, 40rem) minmax(28rem, 1fr);
+    gap: clamp(1.5rem, 4vw, 5rem);
+    align-items: center;
     width: 100%;
     max-width: 1500px;
     margin-inline: auto;
@@ -166,51 +73,244 @@
     margin-top: clamp(1.35rem, 2vw, 2rem);
   }
 
-  &__facts {
+  &__signal-field {
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: min(100%, 38rem);
-    margin-top: clamp(0.9rem, 1.6vw, 1.35rem);
-    border: 1px solid $color-glass-border;
-    border-radius: $radius-lg;
-    background: rgba(0, 32, 40, 0.36);
-    backdrop-filter: blur(20px) saturate(130%);
-    -webkit-backdrop-filter: blur(20px) saturate(130%);
-    box-shadow:
-      inset 0 1px 0 $color-glass-sheen,
-      0 18px 60px rgba(0, 0, 0, 0.18);
-    overflow: hidden;
-    text-align: left;
+    justify-self: end;
+    width: min(100%, 52rem);
+    min-height: clamp(32.5rem, 50vw, 45.5rem);
+    perspective: 1200px;
+  }
 
-    @include tablet-up {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
+  &__signal-field::before {
+    content: "";
+    position: absolute;
+    inset: 11% 6% 9% 3%;
+    border-radius: $radius-xl;
+    background:
+      linear-gradient(135deg, rgba(255, 231, 156, 0.12), transparent 38%),
+      linear-gradient(215deg, rgba(186, 240, 212, 0.08), transparent 48%),
+      rgba(0, 40, 53, 0.18);
+    filter: blur(18px);
+    opacity: 0.74;
+    transform: rotate(-6deg) skewY(-2deg);
+    pointer-events: none;
+  }
+
+  &__glass-shard {
+    position: absolute;
+    z-index: 0;
+    display: block;
+    border-radius: $radius-md;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.035)),
+      rgba(10, 63, 55, 0.22);
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -1px 0 rgba(255, 231, 156, 0.08),
+      0 0 0 1px rgba(186, 240, 212, 0.1),
+      0 20px 70px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+  }
+
+  &__glass-shard--a {
+    top: 11%;
+    right: 10%;
+    width: clamp(5.85rem, 9.1vw, 10.1rem);
+    height: clamp(3.4rem, 5.2vw, 5.45rem);
+    --shard-r: 17deg;
+    transform: rotate(17deg);
+  }
+
+  &__glass-shard--b {
+    right: 27%;
+    bottom: 6%;
+    width: clamp(6.5rem, 10.4vw, 10.9rem);
+    height: clamp(4.15rem, 5.7vw, 6.35rem);
+    --shard-r: -13deg;
+    transform: rotate(-13deg);
+  }
+
+  &__glass-shard--c {
+    top: 39%;
+    left: 4%;
+    width: clamp(4.4rem, 7vw, 7.55rem);
+    height: clamp(6.5rem, 9.1vw, 9.6rem);
+    --shard-r: 9deg;
+    transform: rotate(9deg);
+  }
+
+  &__facts {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   &__fact {
+    position: absolute;
+    width: clamp(16.4rem, 20vw, 21.3rem);
+    color: $color-text;
+    transform:
+      translate3d(
+        var(--base-x, 0rem),
+        var(--base-y, 0rem),
+        0
+      )
+      rotate(var(--base-r, 0deg));
+    transform-style: preserve-3d;
+  }
+
+  &__fact--1 {
+    top: 5%;
+    left: 8%;
+    --base-x: 0rem;
+    --base-y: 0rem;
+    --base-r: -8deg;
+    --float-x: 0.55rem;
+    --float-y: 0.8rem;
+    --float-duration: 8.5s;
+    --float-delay: -1.2s;
+    --reveal-delay: 0.34s;
+    --sheen-duration: 14.5s;
+    --sheen-delay: 2.4s;
+  }
+
+  &__fact--2 {
+    top: 21%;
+    right: 4%;
+    --base-x: 0rem;
+    --base-y: 0rem;
+    --base-r: 7deg;
+    --float-x: 0.7rem;
+    --float-y: 0.5rem;
+    --float-duration: 9.4s;
+    --float-delay: -3.4s;
+    --reveal-delay: 0.48s;
+    --sheen-duration: 17.2s;
+    --sheen-delay: 7.1s;
+  }
+
+  &__fact--3 {
+    bottom: 18%;
+    left: 0;
+    --base-x: 1rem;
+    --base-y: 0rem;
+    --base-r: 5deg;
+    --float-x: 0.48rem;
+    --float-y: 0.65rem;
+    --float-duration: 8.8s;
+    --float-delay: -2.1s;
+    --reveal-delay: 0.62s;
+    --sheen-duration: 15.8s;
+    --sheen-delay: 11.3s;
+  }
+
+  &__fact--4 {
+    right: 13%;
+    bottom: 5%;
+    --base-x: 0rem;
+    --base-y: 0rem;
+    --base-r: -9deg;
+    --float-x: 0.6rem;
+    --float-y: 0.7rem;
+    --float-duration: 9.8s;
+    --float-delay: -4.6s;
+    --reveal-delay: 0.76s;
+    --sheen-duration: 18.6s;
+    --sheen-delay: 15.6s;
+  }
+
+  &__fact-surface {
     position: relative;
-    min-width: 0;
-    padding: clamp(0.8rem, 1.35vw, 1.05rem);
+    display: flex;
+    min-height: clamp(10.65rem, 12vw, 13rem);
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(0.95rem, 1.35vw, 1.18rem);
+    border-radius: $radius-lg;
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.035) 42%),
+      linear-gradient(180deg, rgba(255, 231, 156, 0.07), rgba(0, 32, 40, 0.2)),
+      rgba(8, 57, 50, 0.46);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
     box-shadow:
-      inset 1px 0 0 $color-glass-border,
-      inset 0 1px 0 $color-glass-border;
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      inset 0 -1px 0 rgba(255, 231, 156, 0.1),
+      0 0 0 1px rgba(186, 240, 212, 0.14),
+      0 24px 72px rgba(0, 0, 0, 0.24);
+    overflow: hidden;
+    text-align: left;
+    transform: scale(1);
+    transform-origin: center;
+    transition:
+      transform 1100ms $ease-out-expo,
+      box-shadow 900ms $ease-standard;
+  }
+
+  &__fact-surface::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: calc(#{$radius-lg} - 1px);
+    background:
+      linear-gradient(120deg, rgba(255, 255, 255, 0.24), transparent 28%),
+      linear-gradient(300deg, transparent 52%, rgba(255, 231, 156, 0.11));
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  &__fact-surface::after {
+    content: "";
+    position: absolute;
+    top: -35%;
+    left: -65%;
+    width: 60%;
+    height: 180%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    opacity: 0;
+    transform: rotate(18deg);
+    pointer-events: none;
   }
 
   &__fact-key {
     @include mono-coord;
-    font-size: $text-2xs;
+    position: relative;
+    z-index: 1;
+    font-size: $text-xs;
+    color: rgba(199, 212, 209, 0.82);
   }
 
   &__fact-val {
+    position: relative;
+    z-index: 1;
     display: block;
-    margin-top: 0.35rem;
+    margin-top: 0.42rem;
     color: $color-text;
-    font-size: clamp(0.84rem, 1.08vw, 1.02rem);
-    font-weight: 600;
-    line-height: 1.16;
-    letter-spacing: 0;
+    font-size: clamp(1.95rem, 3vw, 2.75rem);
+    font-synthesis-weight: auto;
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    text-shadow: 0 0 0.02em rgba(255, 231, 156, 0.26);
     text-wrap: balance;
+  }
+
+  &__fact-note {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin-top: 0.52rem;
+    color: rgba(199, 212, 209, 0.72);
+    font-size: clamp(0.82rem, 1vw, 1.02rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0;
+    text-wrap: pretty;
   }
 
   &__fact:first-child .hero__fact-val {
@@ -218,12 +318,6 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    &__art {
-      animation: heroArtDrift 8s $ease-standard infinite alternate;
-      transform-origin: 62% 36%;
-      will-change: transform, opacity;
-    }
-
     &__tagline,
     &__description,
     &__actions,
@@ -247,6 +341,76 @@
     &__facts {
       animation-delay: 0.48s;
     }
+
+    &__fact {
+      animation: heroGlassFloat var(--float-duration, 9s) $ease-standard infinite alternate;
+      animation-delay: var(--float-delay, 0s);
+      will-change: transform;
+    }
+
+    &__fact-surface {
+      opacity: 0;
+      animation: heroGlassReveal 0.86s $ease-out-expo forwards;
+      animation-delay: var(--reveal-delay, 0.4s);
+      will-change: transform, opacity, filter;
+    }
+
+    &__fact-surface::after {
+      animation: heroGlassSheen var(--sheen-duration, 16s) $ease-standard infinite;
+      animation-delay: var(--sheen-delay, 3s);
+    }
+
+    &__signal-field::before {
+      animation: heroSignalBreath 3.8s $ease-standard infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    &__glass-shard {
+      animation: heroShardDrift 10s $ease-standard infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    &__glass-shard--b {
+      animation-duration: 11.4s;
+      animation-delay: -3s;
+    }
+
+    &__glass-shard--c {
+      animation-duration: 9.6s;
+      animation-delay: -1.8s;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &__fact:hover &__fact-surface {
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.27),
+        inset 0 -1px 0 rgba(255, 231, 156, 0.13),
+        0 0 0 1px rgba(186, 240, 212, 0.2),
+        0 30px 88px rgba(0, 0, 0, 0.3);
+      transform: scale(1.026);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__fact,
+    &__fact-surface,
+    &__fact-surface::after,
+    &__signal-field::before,
+    &__glass-shard {
+      animation: none;
+      will-change: auto;
+    }
+
+    &__fact-surface {
+      opacity: 1;
+      filter: none;
+      transform: none;
+    }
+
+    &__fact:hover &__fact-surface {
+      transform: none;
+    }
   }
 
   @media (max-width: #{$bp-desktop - 1px}) {
@@ -255,30 +419,51 @@
     min-height: calc(100dvh + 1px);
     min-height: calc(max(100vh, 100svh, 100dvh) + 1px);
 
-    &::before {
-      background:
-        linear-gradient(
-          180deg,
-          rgba(0, 29, 37, 0.46) 0%,
-          rgba(0, 29, 37, 0.74) 35%,
-          rgba(0, 29, 37, 0.98) 100%
-        ),
-        linear-gradient(90deg, rgba(0, 29, 37, 0.76), rgba(0, 29, 37, 0.18));
-    }
-
-    &__art {
-      height: 56%;
-      object-position: 64% 18%;
-      opacity: 0.82;
-    }
-
     &__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(1rem, 2vw, 1.4rem);
       align-items: flex-end;
       max-width: 940px;
     }
 
     &__content {
       padding-bottom: 0;
+    }
+
+    &__signal-field {
+      justify-self: stretch;
+      width: min(100%, 40rem);
+      min-height: auto;
+      perspective: none;
+    }
+
+    &__signal-field::before,
+    &__glass-shard {
+      display: none;
+    }
+
+    &__facts {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.76rem;
+      inset: auto;
+    }
+
+    &__fact {
+      position: relative;
+      inset: auto;
+      width: auto;
+      transform: none;
+      animation: none;
+    }
+
+    &__fact-surface {
+      min-height: 8rem;
+      padding: 0.95rem;
+      opacity: 1;
+      animation: none;
+      will-change: auto;
     }
   }
 
@@ -287,12 +472,6 @@
     min-height: calc(100dvh + 1px);
     min-height: calc(max(100vh, 100svh, 100dvh) + 1px);
     padding-block: 4.7rem 1.1rem;
-
-    &__art {
-      height: 37%;
-      object-position: 68% 8%;
-      opacity: 0.76;
-    }
 
     &__inner {
       min-height: calc(100svh - 5.8rem);
@@ -310,6 +489,10 @@
       max-width: 35rem;
       font-size: clamp(1rem, 4vw, 1.16rem);
     }
+
+    &__signal-field {
+      width: 100%;
+    }
   }
 
   @media (max-width: #{$bp-mobile - 1px}) {
@@ -317,21 +500,6 @@
     min-height: calc(100dvh + 1px);
     min-height: calc(max(100vh, 100svh, 100dvh) + 1px);
     padding-block: 4.85rem max(1rem, env(safe-area-inset-bottom));
-
-    &::before {
-      background:
-        linear-gradient(
-          180deg,
-          rgba(0, 29, 37, 0.28) 0%,
-          rgba(0, 29, 37, 0.66) 30%,
-          rgba(0, 29, 37, 1) 67%
-        );
-    }
-
-    &__art {
-      height: 43%;
-      object-position: 68% 0%;
-    }
 
     &__inner {
       min-height: calc(100svh - 5.85rem);
@@ -357,11 +525,22 @@
 
     &__facts {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.58rem;
+    }
+
+    &__fact-surface {
+      min-height: 5.15rem;
+      padding: 0.58rem;
       border-radius: 18px;
     }
 
-    &__fact {
-      padding: 0.68rem 0.78rem;
+    &__fact-val {
+      margin-top: 0.28rem;
+      font-size: clamp(1.18rem, 6vw, 1.55rem);
+    }
+
+    &__fact-note {
+      display: none;
     }
   }
 }
@@ -378,14 +557,79 @@
   }
 }
 
-@keyframes heroArtDrift {
+@keyframes heroGlassReveal {
   from {
-    opacity: 0.88;
-    transform: translate3d(0, 0, 0) scale(1.01);
+    opacity: 0;
+    filter: blur(8px);
   }
 
   to {
-    opacity: 0.94;
-    transform: translate3d(-0.55rem, 0.25rem, 0) scale(1.025);
+    opacity: 1;
+    filter: blur(0);
   }
 }
+
+@keyframes heroGlassFloat {
+  from {
+    transform:
+      translate3d(
+        calc(var(--base-x, 0rem) - var(--float-x, 0.45rem)),
+        calc(var(--base-y, 0rem) + var(--float-y, 0.55rem)),
+        0
+      )
+      rotate(calc(var(--base-r, 0deg) - 1.5deg));
+  }
+
+  to {
+    transform:
+      translate3d(
+        calc(var(--base-x, 0rem) + var(--float-x, 0.45rem)),
+        calc(var(--base-y, 0rem) - var(--float-y, 0.55rem)),
+        0
+      )
+      rotate(calc(var(--base-r, 0deg) + 1.5deg));
+  }
+}
+
+@keyframes heroGlassSheen {
+  0%,
+  72% {
+    opacity: 0;
+    transform: translateX(0) rotate(18deg);
+  }
+
+  79% {
+    opacity: 0.62;
+  }
+
+  90%,
+  100% {
+    opacity: 0;
+    transform: translateX(320%) rotate(18deg);
+  }
+}
+
+@keyframes heroSignalBreath {
+  from {
+    opacity: 0.54;
+    transform: translate3d(-0.7rem, 0.45rem, 0) rotate(-6deg) skewY(-2deg) scale(0.98);
+  }
+
+  to {
+    opacity: 0.84;
+    transform: translate3d(0.75rem, -0.4rem, 0) rotate(-4.5deg) skewY(-1.4deg) scale(1.025);
+  }
+}
+
+@keyframes heroShardDrift {
+  from {
+    opacity: 0.52;
+    transform: translate3d(-0.3rem, 0.45rem, 0) rotate(var(--shard-r, 10deg));
+  }
+
+  to {
+    opacity: 0.82;
+    transform: translate3d(0.42rem, -0.4rem, 0) rotate(calc(var(--shard-r, 10deg) + 4deg));
+  }
+}
+
