@@ -1,6 +1,13 @@
 ---
 name: Ever Guild Website
-description: Senior engineering team brand site with a deep-teal field, gold signal, and engineered glass surfaces.
+description: Portable design system for the Ever Guild brand site: deep-teal engineered field, sparse gold signal, cream display type, and matte emerald glass surfaces.
+style_contract:
+  north_star: "The Engineering Field Manual"
+  density: "5/10 - spacious hero, compact services, no decorative clutter"
+  variance: "5/10 - left-anchored, grid-led, controlled asymmetry"
+  motion: "4/10 - restrained, physical, transform-only, reduced-motion safe"
+  primary_imagery: "Dark architectural hero raster plus atmospheric field mesh"
+  public_positioning: "Senior engineering team, not community-first"
 colors:
   bg-deep: "#001D25"
   bg-alt: "#002028"
@@ -12,9 +19,18 @@ colors:
   text-cream: "#FFE79C"
   text-secondary: "#C7D4D1"
   text-muted: "#AAB9B5"
-  text-faint: "#8CA09B"
+  text-faint: "#475957"
   accent-gold: "#F1B800"
   accent-cream: "#FFE89E"
+  on-accent: "#01181C"
+  glass: "rgba(6, 50, 44, 0.46)"
+  glass-hover: "rgba(10, 63, 55, 0.60)"
+  glass-border: "rgba(186, 240, 212, 0.16)"
+  glass-edge: "rgba(186, 240, 212, 0.30)"
+  glass-sheen: "rgba(255, 255, 255, 0.08)"
+  border: "rgba(236, 230, 214, 0.10)"
+  border-strong: "rgba(236, 230, 214, 0.18)"
+  border-accent: "rgba(241, 184, 0, 0.34)"
   teal-particle: "#4DB8CC"
 typography:
   display:
@@ -104,14 +120,14 @@ components:
 
 Ever Guild's visual system should feel like a senior engineering team working over a live technical field: deep teal atmosphere, precise gold signals, frosted emerald panels, and measured mono telemetry. The site is a brand surface, not an app shell. It communicates capability, trust, and maintainability before it asks for contact.
 
-The system is committed, dark, and engineered. The Three.js infinity field is the primary imagery; glass panels and blueprint hairlines sit above it as instrumentation, not decoration. The copy stays direct and specific, carrying the product line from `PRODUCT.md`: "Precise, senior, durable."
+The system is committed, dark, and engineered. The full-bleed hero raster and atmospheric teal mesh are the primary imagery; glass panels and blueprint hairlines sit above them as instrumentation, not decoration. The copy stays direct and specific, carrying the product line from `PRODUCT.md`: "Precise, senior, durable."
 
 The system explicitly rejects community-first public positioning, generic SaaS hero tropes, decorative gradient text, identical card grids, excessive glassmorphism, sketchy illustrations, over-rounded cards, and vague engineering claims.
 
 **Key Characteristics:**
 - Deep teal field with rare gold signal.
 - Cream display type over readable teal-gray body copy.
-- Frosted engineered panels that sample the WebGL atmosphere beneath.
+- Frosted engineered panels that sample the dark atmospheric field beneath.
 - Mono labels used as telemetry and coordinates, never as generic "developer" costume.
 - Motion that reveals structure while preserving contrast and reduced-motion safety.
 
@@ -125,12 +141,12 @@ The palette is a committed deep-teal environment with gold as a sparse operation
 - **Cream Readout** (`text-cream`): Display text, logo-adjacent text, and bright hover glints on dark surfaces.
 
 ### Secondary
-- **Frosted Emerald Surface** (`surface-teal`): Base panel tone for cards and content blocks. It should feel like instrument glass over the particle field.
+- **Frosted Emerald Surface** (`surface-teal`): Base panel tone for cards and content blocks. It should feel like instrument glass over the dark field.
 - **Hover Teal Surface** (`surface-teal-hover`): Interactive surface response for secondary buttons, glass cards, and dense chips.
 - **Warm Footer Ground** (`warm-footer`): Footer-only grounding color. Do not spread it into the main page.
 
 ### Tertiary
-- **Particle Cyan** (`teal-particle`): WebGL particle contrast color. It belongs to the atmospheric scene, not standard UI surfaces.
+- **Particle Cyan** (`teal-particle`): Legacy atmospheric contrast color. It belongs to field imagery only, not standard UI surfaces.
 - **Accent Cream** (`accent-cream`): Hover glint and light response where gold needs a brighter edge.
 
 ### Neutral
@@ -173,13 +189,13 @@ The palette is a committed deep-teal environment with gold as a sparse operation
 
 ## 4. Elevation
 
-Depth is conveyed through frosted glass, translucent borders, inset rim light, and a controlled ambient shadow. Surfaces are not generic drop-shadow cards. The shadow exists to place glass over the WebGL field, not to create floating SaaS tiles.
+Depth is conveyed through frosted glass, translucent borders, inset rim light, and a controlled ambient shadow. Surfaces are not generic drop-shadow cards. The shadow exists to place glass over the dark field, not to create floating SaaS tiles.
 
 ### Shadow Vocabulary
 
 - **Glass Panel Depth** (`inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -12px 28px rgba(0,0,0,0.14), 0 12px 36px rgba(0,0,0,0.30)`): Engineered panels and large cards.
 - **Glass Chip Rim** (`inset 0 1px 0 rgba(255,255,255,0.08)`): Small tags and chips.
-- **Contact Signal Rail** (`inset 0 2px 0 -1px rgba(241,184,0,0.10)`): Contact email panel only.
+- **Contact Signal Rail** (`inset 0 1px 0 rgba(255,255,255,0.34), inset 0 -14px 32px rgba(56,30,0,0.16), 0 18px 42px rgba(0,0,0,0.28)`): Large final contact CTA only.
 
 ### Named Rules
 
@@ -217,13 +233,13 @@ The current site has no form inputs. If added, fields must follow the glass-chip
 
 The fixed navbar uses a transparent first state and a blur-only feathered backdrop when scrolled. Links are mono uppercase readouts with numeric indexes, `44px` minimum hit areas, and a gold underline datum for hover or active state. Mobile navigation becomes a full-height fixed teal sheet with stacked links and a full-width primary CTA.
 
-### Signature Component: Infinity Field
+### Signature Component: Hero Brand Field
 
-The WebGL infinity particle field is the site's primary visual asset. It uses teal, gold, cream, and dark teal particles with responsive density. It must remain atmospheric and non-interactive, never blocking content or reducing text contrast. Reduced motion switches the canvas to demand rendering.
+The full-bleed hero raster is the site's primary visual asset. It uses dark teal architectural geometry with gold and cream highlights. It must remain atmospheric and non-interactive, never blocking content or reducing text contrast. Desktop crops visual weight to the right; mobile keeps the image in the upper part of the viewport behind dark masks.
 
-### Signature Component: Contact Terminal
+### Signature Component: Contact Command CTA
 
-The contact email panel is a large engineered glass command surface. It uses a mono gold prompt, Tilt Warp email text, a blinking caret, and a diagonal arrow response. It is the strongest single contact affordance on the page.
+The contact section is a large gold command surface. It uses mono uppercase text, deep-teal foreground, a separated diagonal arrow, generous responsive height, and a soft inset edge. It is the strongest single contact affordance on the page.
 
 ## 6. Do's and Don'ts
 
@@ -231,7 +247,7 @@ The contact email panel is a large engineered glass command surface. It uses a m
 
 - **Do** keep the public site team-first: senior engineers, direct work, production durability.
 - **Do** use Gold Signal for primary action, focus, section index, and active state only.
-- **Do** keep the WebGL field visible behind panels while preserving WCAG AA contrast.
+- **Do** keep the dark atmospheric field visible behind panels while preserving WCAG AA contrast.
 - **Do** use `44px` minimum hit areas for every link and button.
 - **Do** use transform-only reveal motion for text so scroll animation never reduces contrast.
 - **Do** preserve every external contact path: GitHub, website, X, LinkedIn, Telegram, Upwork, and email.
@@ -244,3 +260,315 @@ The contact email panel is a large engineered glass command surface. It uses a m
 - **Don't** add sketchy illustrations, hand-drawn SVG scenes, or decorative stripe backgrounds.
 - **Don't** over-round cards beyond the established `24px` to `30px` panel scale.
 - **Don't** ship vague engineering claims. Specific capability and maintainability language is required.
+
+## 7. Portable Layout Contract
+
+Use this section when creating a new Ever Guild screen, section, mockup, or
+Stitch prompt. The goal is to preserve the brand language without requiring
+the exact React/SCSS implementation.
+
+### Page Shell
+
+- Start from a deep teal canvas, not a light page.
+- Keep a fixed or persistent atmospheric field behind content.
+- Content sits above the field with `z-index` separation and `isolation`.
+- Page backgrounds can use dark teal gradients, low-opacity gold washes, and
+  subtle field texture. They must not become visible decorative blobs.
+- Main sections are transparent bands over the same field. Avoid section cards
+  that make the page look like stacked boxes.
+
+### Containers and Rhythm
+
+- Max content width is `1450px`.
+- Gutters are `1.5rem` on mobile, `2.5rem` on tablet, and `4rem` on desktop.
+- Vertical section rhythm uses `clamp(3rem, 6vw, 6.5rem)`.
+- Section headers align left and sit before the content grid.
+- Hero is allowed to fill the first viewport; later sections should leave air
+  but not become empty.
+
+### Grid Patterns
+
+- Prefer CSS Grid for section layout.
+- Use 1 column below `480px`.
+- Use 2 columns for dense service cards above `480px`.
+- Use 3 equal people cards only for real team members. Do not use this pattern
+  for generic features.
+- Use compact data grids for fact strips: 2 columns on mobile, 4 on tablet and
+  up.
+- Keep final CTAs centered and wide because they are action surfaces, not
+  information cards.
+
+### Responsive Rules
+
+- No horizontal scroll on mobile.
+- Every interactive target is at least `44px`.
+- Hero uses `svh`/`dvh`-safe height, not only `100vh`.
+- Button groups stack vertically on small mobile.
+- Hero image crops into the upper viewport on mobile and never sits behind
+  unreadable text.
+- Text must wrap cleanly inside buttons, cards, nav, and chips.
+
+## 8. Section Patterns
+
+### Hero Pattern
+
+The hero is a full-bleed scene with left-anchored copy. It is the only section
+where imagery dominates the entire viewport.
+
+- Full-bleed dark architectural raster.
+- Strong dark gradient mask from the text side.
+- Headline in Tilt Warp, cream first line and gold second line when emphasis is
+  needed.
+- Short, specific paragraph in Hanken Grotesk.
+- Primary gold CTA plus restrained secondary CTA.
+- Glass fact strip below actions.
+- No hero card, no centered slogan, no scroll cue.
+
+### Team Pattern
+
+Team section proves that visitors work with real senior people.
+
+- Real portraits only.
+- Square portrait crop with subtle grayscale at rest.
+- Glass card body below the image.
+- Name in display font.
+- Role in gold mono uppercase.
+- Bio in readable teal-gray.
+- GitHub handle as a small bordered control.
+
+### Services Pattern
+
+Services are capability modules, not marketing tiles.
+
+- Dense two-column cards above mobile.
+- Large gold icon on the right.
+- Title and description on the left.
+- Text is specific to engineering work.
+- Hover raises by `2px`, densifies glass, and turns title gold.
+
+### Technology Pattern
+
+Technology appears as a moving instrumentation strip.
+
+- Glass chips with mono uppercase labels.
+- Gold technology icons.
+- Slow marquee only when reduced motion is not requested.
+- Reduced motion wraps chips and hides duplicate marquee items.
+
+### Contact Pattern
+
+The contact section is one strong command surface.
+
+- Wide gold CTA, not a small form.
+- Mono uppercase label.
+- Diagonal arrow separated by a hairline.
+- Large radius and inset edge.
+- On mobile, keep it full width with smaller type and a `24px` radius.
+
+### Footer Pattern
+
+Footer is the warm anchor at the bottom of the site.
+
+- Warm brown background only here.
+- Gold top border.
+- Cream Tilt Warp wordmark with small gold plus marker.
+- Social icons as circular restrained controls.
+- Do not add heavy sitemap columns unless there is real navigation content.
+
+## 9. Visual Materials and Recipes
+
+### Engineered Glass
+
+Glass is the signature content material. It must remain matte, tinted, and
+functional.
+
+```scss
+background: rgba(6, 50, 44, 0.46);
+backdrop-filter: blur(30px) saturate(150%) brightness(1.06);
+border: 1px solid rgba(186, 240, 212, 0.16);
+box-shadow:
+  inset 0 1px 0 rgba(255, 255, 255, 0.08),
+  inset 0 -12px 28px rgba(0, 0, 0, 0.14),
+  0 12px 36px rgba(0, 0, 0, 0.30);
+```
+
+Use `24px` radius for standard cards, `30px` for large panels, and `12px` for
+chips. Hover glass can use `rgba(10, 63, 55, 0.60)` and
+`rgba(186, 240, 212, 0.30)`.
+
+### Gold Command Surface
+
+Gold CTAs are flat and signal-like. They do not glow.
+
+```scss
+background: #F1B800;
+color: #01181C;
+border-radius: 18px;
+box-shadow:
+  inset 0 1px 0 rgba(255, 255, 255, 0.34),
+  inset 0 -14px 32px rgba(56, 30, 0, 0.16),
+  0 18px 42px rgba(0, 0, 0, 0.28);
+```
+
+### Mono Label
+
+```scss
+font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+font-size: 0.75rem;
+font-weight: 500;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: #AAB9B5;
+```
+
+### Display Heading
+
+```scss
+font-family: "Tilt Warp", system-ui, -apple-system, "Segoe UI", sans-serif;
+font-weight: 400;
+line-height: 0.98;
+letter-spacing: -0.02em;
+color: #FFE79C;
+text-wrap: balance;
+```
+
+## 10. Interaction and Motion
+
+Motion exists to make the interface feel physical and precise.
+
+### Timing
+
+- Fast transition: `140ms cubic-bezier(0.4, 0, 0.2, 1)`.
+- Base transition: `240ms cubic-bezier(0.4, 0, 0.2, 1)`.
+- Slow transition: `420ms cubic-bezier(0.4, 0, 0.2, 1)`.
+- Reveal transition: `760ms cubic-bezier(0.16, 1, 0.3, 1)`.
+- Spring-like hover: `cubic-bezier(0.32, 0.72, 0, 1)`.
+
+### Behavior
+
+- Hover movement is small: `-1px` for buttons and `-2px` to `-4px` for cards.
+- Active controls scale to `0.96`.
+- Trailing arrows move diagonally by about `3px`.
+- Scroll reveal is allowed for leaf elements: headings, text, dividers, ticks.
+- Do not apply transform reveal to ancestors of glass panels. It can break
+  `backdrop-filter`.
+- Animate `transform`, `opacity`, `color`, `background-color`, and
+  `border-color`.
+- Do not animate layout properties such as `top`, `left`, `width`, or `height`.
+- `prefers-reduced-motion` must disable long loops, marquee movement, and
+  reveal animations.
+
+Approved loops are subtle hero image drift, background drift, and tech marquee.
+No cursor effects, bouncing arrows, neon pulses, or animation for its own sake.
+
+## 11. Content Voice
+
+Ever Guild sounds precise, senior, and durable.
+
+Use:
+
+- Direct capability statements.
+- Specific domains: Web3 infrastructure, AI products, full-stack platforms,
+  product design, candidate verification, crisis engineering.
+- Production language: architecture, support, reliability, maintainability,
+  delivery path, real value.
+- Team-first framing: visitors work directly with senior engineers.
+
+Avoid:
+
+- Community-first public positioning.
+- Hype terms such as "next-gen", "revolutionary", "unleash", "elevate",
+  "seamless", and "supercharge".
+- Fake metrics such as `99.99%`, `10x`, or `50% faster`.
+- Generic placeholder names such as "John Doe", "Acme", or "Nexus".
+- Long abstract mission statements.
+
+## 12. Accessibility and Performance
+
+- Target WCAG AA contrast for all meaningful text.
+- Body text must be `text-secondary` or brighter.
+- Focus state uses a visible gold outline.
+- Do not rely on color alone for active, selected, or error state.
+- All links and buttons need accessible labels.
+- Decorative images use empty `alt` and `aria-hidden`.
+- Meaningful portraits use the person's name as `alt`.
+- Use responsive raster assets, explicit dimensions, and stable aspect ratios.
+- Keep decorative field layers `pointer-events: none`.
+- Preserve keyboard navigation in mobile menus, including Escape close and
+  focus restoration.
+- Never ship a mobile layout with clipped text or horizontal overflow.
+
+## 13. Additional Components for Future Screens
+
+### Forms
+
+Forms are not currently part of the site. If needed, they should inherit the
+glass system.
+
+- Label above field.
+- Deep teal or glass input background.
+- Cream or teal-gray text.
+- Gold focus outline.
+- Helper text below input.
+- Error text below input with icon or copy support, not color alone.
+- `12px` to `18px` radius.
+- Minimum height `44px`.
+
+### Tables and Dense Data
+
+If a future screen needs data tables:
+
+- Keep the dark field.
+- Use mono for headers, IDs, timestamps, and numbers.
+- Use Hanken Grotesk for readable cell content.
+- Prefer hairline row dividers over heavy card nesting.
+- Use gold only for active sort, selected row, or critical action.
+
+### Empty and Loading States
+
+- Use skeleton blocks matching the real layout.
+- Avoid generic circular spinners.
+- Empty states should explain the next action in direct language.
+- Error states should be inline and recoverable.
+
+## 14. Hard Anti-Patterns
+
+Never introduce these into Ever Guild styled work:
+
+- Emojis in UI or brand copy.
+- Inter, default system-only font identity, or generic serif typography.
+- Pure black backgrounds or white cards.
+- Purple/blue neon gradients.
+- Outer glow shadows.
+- Decorative gradient text in large headings.
+- Custom mouse cursors.
+- Centered generic SaaS hero sections.
+- Hero metric strips with fake proof.
+- Stock illustration hero art.
+- Decorative SVG scenes when a real brand image is needed.
+- Excessive glassmorphism. Glass must hold content.
+- Cards inside cards.
+- Generic 3-equal-feature-card rows. Real team cards are the exception.
+- Cards rounded beyond `30px` for normal content.
+- Unreadable muted body copy.
+- Scroll arrows, "scroll to explore", or bouncing chevrons.
+- Vague engineering claims.
+- Broken external links or placeholder social paths.
+- Ad-hoc hex colors in components.
+
+## 15. Acceptance Checklist
+
+Before approving a new Ever Guild screen, verify:
+
+- The page is clearly deep teal, not black, slate, white, beige, or purple.
+- Gold is rare and marks real action or state.
+- The first viewport has a strong brand signal.
+- Display typography uses Tilt Warp and is not used for body paragraphs.
+- Body copy is readable on dark surfaces.
+- Glass panels have content value and preserve backdrop blur.
+- Buttons use uppercase mono labels, physical hover/active response, and
+  visible focus.
+- Mobile has no horizontal scroll and every touch target is at least `44px`.
+- Reduced motion has a clean non-animated path.
+- Copy is specific, senior, and production-minded.
+- The result does not look like a generic SaaS template.
