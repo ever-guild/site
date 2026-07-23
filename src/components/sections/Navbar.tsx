@@ -6,7 +6,8 @@ import "./Navbar.scss";
 
 const navLinks = [
   { label: "Team", href: "#team" },
-  { label: "Services", href: "#services" },
+  { label: "Capabilities", href: "#services" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = React.memo(function Navbar() {

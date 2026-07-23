@@ -2,27 +2,26 @@
 @use "../../styles/mixins" as *;
 
 .sec-head {
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-  max-width: $editorial-measure;
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+  max-width: 44rem;
 
   &__title {
     @include display;
-    // Extreme type-scale: large, tight, architectural. The headline carries
-    // the section — no eyebrow above it (the datum index already categorises).
-    font-size: clamp(2.4rem, 5.6vw, 4.25rem);
-    line-height: 1.0;
+    font-size: clamp(2.1rem, 4.5vw, 3.5rem);
+    font-weight: 700;
+    line-height: $leading-tight;
     letter-spacing: $tracking-tight;
+    color: $color-text;
     text-wrap: balance;
-    max-width: 18ch;
-    @include reveal-rise(22%);
+    max-width: 24ch;
   }
 
   &__lead {
-    margin-top: $space-md;
-    max-width: 60ch;
-    font-size: $text-lg;
-    line-height: $leading-relaxed;
+    margin-top: $space-sm;
+    max-width: 54ch;
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-weight: 400;
+    line-height: $leading-normal;
     color: $color-text-2;
-    @include reveal-rise(28%);
   }
 }

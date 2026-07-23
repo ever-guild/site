@@ -46,8 +46,12 @@ test.describe('landing page content', () => {
 
     const serviceCards = page.locator('#services .services__card');
     await expect(serviceCards).toHaveCount(services.length);
-    await expect(page.getByRole('heading', { name: 'What we build for you.' })).toBeVisible();
-    await expect(page.getByText('Senior service lines we can own from architecture through production support.')).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'Engineering for systems that have to hold up.' }),
+    ).toBeVisible();
+    await expect(
+      page.getByText('Product delivery, critical-system work, and hands-on recovery led by senior engineers.'),
+    ).toBeVisible();
 
     for (const service of services) {
       const card = serviceCards.filter({ has: page.getByRole('heading', { name: service.title }) });
@@ -75,6 +79,24 @@ test.describe('landing page content', () => {
     await expect(page.locator('#services').getByText('Infrastructure', { exact: true })).toHaveCount(0);
   });
 
+  test('technology coverage communicates delivery depth instead of a tag cloud', async ({ page }) => {
+    await page.goto('/');
+
+    const toolkit = page.locator('#services .services__stack');
+    await expect(toolkit).toBeVisible();
+    await expect(toolkit.getByText('Technology', { exact: true })).toBeVisible();
+    await expect(toolkit.getByRole('heading', { name: 'One senior team across the system.' })).toBeVisible();
+
+    for (const group of ['Product surface', 'Applications & data', 'Protocol & infrastructure']) {
+      await expect(toolkit.getByRole('heading', { name: group })).toBeVisible();
+    }
+
+    await expect(toolkit.locator('.services__stack-item')).toHaveCount(12);
+    await expect(page.locator('#services .services__service-icon')).toHaveCount(6);
+    await expect(toolkit.locator('.services__stack-group-icon')).toHaveCount(3);
+    await expect(toolkit.locator('.services__tag')).toHaveCount(0);
+  });
+
   test('contact section routes project starts to the order service', async ({ page }) => {
     await page.goto('/');
 
@@ -85,6 +107,21 @@ test.describe('landing page content', () => {
       'https://order.ever-guild.net/',
     );
     await expect(contact.getByText('in@ever-guild.net')).toHaveCount(0);
+  });
+
+  test('mobile menu does not tint the header', async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== 'mobile', 'The burger menu is only visible on mobile.');
+
+    await page.goto('/');
+
+    await page.getByRole('button', { name: 'Open menu' }).click();
+    await expect(page.locator('.navbar__nav')).toHaveClass(/navbar__nav--open/);
+
+    const overlayBackground = await page.locator('.navbar__overlay').evaluate((element) => {
+      return getComputedStyle(element).backgroundColor;
+    });
+
+    expect(overlayBackground).toBe('rgba(0, 0, 0, 0)');
   });
 
   test('visible and metadata copy avoid banned typography', async ({ page }) => {
@@ -137,43 +174,14 @@ test.describe('landing page content', () => {
     }
   });
 
-  test('footer layout keeps copyright centered and socials on the right', async ({ page }) => {
+  test('footer exposes readable channels and an integrated return link', async ({ page }) => {
     await page.goto('/');
-    await page.locator('.footer').scrollIntoViewIfNeeded();
+    const footer = page.locator('.footer');
+    await footer.scrollIntoViewIfNeeded();
 
-    const layout = await page.evaluate(() => {
-      const rect = (selector: string) => {
-        const element = document.querySelector(selector);
-        const box = element?.getBoundingClientRect();
-
-        if (!box) return null;
-
-        return {
-          left: box.left,
-          right: box.right,
-          center: box.left + box.width / 2,
-        };
-      };
-
-      return {
-        viewportCenter: window.innerWidth / 2,
-        viewportWidth: window.innerWidth,
-        copyright: rect('.footer__copyright'),
-        socials: rect('.footer__socials'),
-        firstSocial: rect('.footer__socials .social-icon'),
-      };
-    });
-
-    expect(layout.copyright).not.toBeNull();
-    expect(layout.socials).not.toBeNull();
-    expect(layout.firstSocial).not.toBeNull();
-    expect(Math.abs((layout.copyright?.center ?? 0) - layout.viewportCenter)).toBeLessThanOrEqual(1);
-
-    if (layout.viewportWidth >= 1024) {
-      expect(layout.socials?.left).toBeGreaterThan((layout.copyright?.right ?? 0) + 32);
-      expect(layout.socials?.right).toBeGreaterThanOrEqual(layout.viewportWidth - 96);
-    } else {
-      expect(layout.firstSocial?.left).toBeLessThanOrEqual(32);
-    }
+    await expect(footer.getByRole('link', { name: 'Back to top' })).toHaveAttribute('href', '#hero');
+    await expect(footer.getByRole('link', { name: 'GitHub' })).toBeVisible();
+    await expect(footer.getByRole('link', { name: 'Email' })).toBeVisible();
+    await expect(page.locator('.App__top')).toHaveCount(0);
   });
 });

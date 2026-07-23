@@ -1,52 +1,44 @@
 // ============================================
-// Ever Guild — Design Tokens
-// Brand palette: deep teal base, gold signal,
-// cream highlight, warm-brown grounding.
-// Flat, technological, no gradients/glows.
-// Source of truth: docs/brandbook.md (Colors.svg).
-// Use ONLY these tokens — no ad-hoc hex.
+// Ever Guild — Impeccable Light Engineering System
+// High-contrast, authoritative architectural design
+// Base: Cool light neutral — calm, daylight, deliberately not cream.
+// Primary structure & text: Deep teal.
+// Primary signal action: A restrained antique gold.
 // ============================================
 
-// --- Surfaces (deep teal scale) ---------------
-$color-bg:           #001D25; // page — deepest
-$color-bg-alt:       #002028; // alternating band
-$color-surface:      #002835; // flat cards (brand teal)
-$color-surface-2:    #00323F; // hover / elevated
-$color-surface-3:    #013C4B; // pressed / deepest panel
+// --- Surfaces --------------------------------
+$color-bg:           #F7F9F9; // page canvas
+$color-bg-alt:       #EAF0F1; // section contrast ground
+$color-surface:      #FFFFFF; // crisp card surface
+$color-surface-2:    #F1F5F5; // hover surface
+$color-surface-dark: #07343A; // footer and rare anchored surface
 
-// Logo warm anchors (wordmark gradient end)
-$color-warm-deep:    #381E00; // footer / warm anchor
-$color-warm-deep-2:  #442801;
+// --- Structural Borders -----------------------
+$color-border:       #D3DEDF; // crisp 1px border
+$color-border-2:     #AABFC1; // stronger border
+$color-border-dark:  #1D5157; // border for dark panels
+$color-border-gold:  #C99B24; // gold accent border
 
-// --- Borders (cream-tinted hairlines from logo) ---
-$color-border:       rgba(236, 230, 214, 0.10);
-$color-border-2:     rgba(236, 230, 214, 0.18);
-$color-border-3:     rgba(241, 184, 0, 0.34); // gold-tinted accent edge
+// --- Typography Colors (High Contrast) --------
+$color-text:         #0A3036; // primary deep teal text
+$color-text-2:       #193F44; // body copy (AA+ / AAA contrast)
+$color-text-3:       #3E6266; // muted labels, still AA on the canvas
+$color-text-4:       #60797C; // metadata only
+$color-text-light:   #F4F8F8; // text on dark panels
+$color-text-light-muted: #B7CBCC;
 
-// --- Text -------------------------------------
-$color-text:         #FFE79C; // light cream (matches footer text)
-$color-text-2:       #C7D4D1; // secondary teal-gray — lightened for readability (AA+)
-$color-text-3:       #AAB9B5; // muted / mono labels — lightened for readability
-$color-text-4:       #475957; // faintest
+// --- Accent (Brand Gold) ----------------------
+$color-accent:       #C99B24; // gold — primary CTA signal
+$color-accent-2:     #D9B449; // hover gold highlight
+$color-gold-text:    #8B680F; // rare gold text on light ground
+$color-accent-soft:  rgba(201, 155, 36, 0.14);
+$color-on-accent:    #0A3036; // text on gold button
 
-// --- Accent (brand gold + cream highlight) ----
-$color-accent:       #F1B800; // gold — primary signal
-$color-accent-2:     #FFE79C; // cream — bright / hover glint
-$color-gold-2:       #F0B800; // brandbook intermediate (gradient start)
-$color-cream-2:      #FFE89E; // brandbook intermediate (cream halo)
-$color-accent-soft:  rgba(241, 184, 0, 0.10);
-$color-accent-line:  rgba(241, 184, 0, 0.34);
+// Footer is the page's only dark anchor; it gives the light system a deliberate end-state.
+$color-footer:       $color-surface-dark;
+$color-footer-border: rgba(244, 248, 248, 0.18);
 
-// --- Liquid glass (frosted murky-emerald panels over the field) ---
-$color-glass:        rgba(6, 50, 44, 0.46);   // dark emerald, matte-frosted
-$color-glass-2:      rgba(10, 63, 55, 0.60);  // hover — denser
-$color-glass-border: rgba(186, 240, 212, 0.16);
-$color-glass-edge:   rgba(186, 240, 212, 0.30); // hover edge highlight
-$color-glass-sheen:  rgba(255, 255, 255, 0.08); // top rim light
-$color-cream:        $color-text;
-$color-on-accent:    #01181C; // deep teal text on gold
-
-// --- Legacy aliases (kept for safety) ---------
+// --- Aliases for safety -----------------------
 $color-primary:           $color-surface;
 $color-primary-light:     $color-surface-2;
 $color-accent-hover:      $color-accent-2;
@@ -56,14 +48,15 @@ $color-text-secondary:    $color-text-2;
 $color-text-muted:        $color-text-3;
 $color-text-inverse:      $color-on-accent;
 $color-border-strong:     $color-border-2;
+$color-border-3:          $color-accent;
+$color-warm-deep:         $color-surface-dark;
+$color-cream:             $color-text;
+
 
 // --- Typography -------------------------------
-// Tilt Warp: characterful display — headings only.
-// Hanken Grotesk: warm, readable body & UI.
-// JetBrains Mono: small labels / tags.
-$font-display: 'Tilt Warp', system-ui, -apple-system, 'Segoe UI', sans-serif;
-$font-body:    'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
-$font-mono:    'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+$font-display: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+$font-body:    'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+$font-mono:    'JetBrains Mono', ui-monospace, monospace;
 
 $text-2xs:  0.6875rem; // 11
 $text-xs:   0.75rem;   // 12
@@ -82,12 +75,12 @@ $leading-snug:    1.2;
 $leading-normal:  1.55;
 $leading-relaxed: 1.7;
 
-$tracking-tight:  -0.02em;
+$tracking-tight:  -0.03em;
 $tracking-normal: 0;
 $tracking-wide:   0.04em;
-$tracking-mono:   0.16em; // uppercase mono labels
+$tracking-mono:   0.12em;
 
-// --- Spacing scale ----------------------------
+// --- Spacing ----------------------------------
 $space-2xs: 0.25rem;
 $space-xs:  0.5rem;
 $space-sm:  1rem;
@@ -96,7 +89,6 @@ $space-lg:  2rem;
 $space-xl:  4rem;
 $space-2xl: 6rem;
 $space-3xl: 9rem;
-$space-4xl: 12rem;
 
 // --- Breakpoints ------------------------------
 $bp-mobile:  480px;
@@ -104,51 +96,30 @@ $bp-tablet:  768px;
 $bp-desktop: 1024px;
 $bp-wide:    1440px;
 
-// --- Motion easings ---------------------------
-// Spring-ish curves for choreographed motion (entry, hover physics).
-$ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);   // heavy fade-up / reveals
-$ease-spring:    cubic-bezier(0.32, 0.72, 0, 1);  // physical, weighted hover
+// --- Motion -----------------------------------
+$ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+$ease-spring:    cubic-bezier(0.2, 0.8, 0.2, 1);
 $ease-standard:  cubic-bezier(0.4, 0, 0.2, 1);
 
-// --- Transitions ------------------------------
 $transition-fast: 140ms $ease-standard;
-$transition-base: 240ms $ease-standard;
-$transition-slow: 420ms $ease-standard;
-$transition-reveal: 760ms $ease-out-expo; // scroll-entry choreography
+$transition-base: 220ms $ease-standard;
+$transition-slow: 360ms $ease-standard;
 
-// --- Radius (iOS-style soft continuous corners) ---
-// Shape-lock: one smooth, generous rounding scale across the whole UI —
-// reads like iOS surfaces (controls, cards, sheets). No sharp corners.
-$radius-sm:   12px; // controls, chips, small tags
-$radius-md:   18px; // buttons, github chip
-$radius-lg:   24px; // cards / panels
-$radius-xl:   30px; // large feature panels
-$radius-full: 9999px; // pills / circular icons
+// --- Radius -----------------------------------
+$radius-sm:   6px;
+$radius-md:   8px;
+$radius-lg:   12px;
+$radius-xl:   16px;
+$radius-full: 9999px;
 
-// --- Blueprint grid / telemetry ---------------
-$color-grid:      rgba(244, 241, 232, 0.05); // faint structural hairlines
-$color-grid-2:    rgba(244, 241, 232, 0.10); // stronger ruler line
-$color-crosshair: rgba(241, 184, 0, 0.22);   // gold tick at grid intersections
+// --- Grid & Layout ----------------------------
+$color-grid:      #D2DDE3;
+$color-grid-2:    #B8C7D0;
+$color-crosshair: #F5B400;
 
-// --- Page field (modern mesh + micro texture) -----
-$color-mesh-gold:       rgba(241, 184, 0, 0.13);
-$color-mesh-cream:      rgba(255, 231, 156, 0.08);
-$color-mesh-teal:       rgba(0, 56, 69, 0.48);
-$color-mesh-warm:       rgba(68, 40, 1, 0.32);
-$color-mesh-depth:      rgba(0, 40, 53, 0.36);
-$color-field-dot:       rgba(236, 230, 214, 0.06);
-$color-field-vignette:  rgba(1, 24, 28, 0.42);
-$field-dot-size:        26px;
-
-// --- Blueprint grid / telemetry (legacy tokens) ---
-$color-grid:      rgba(236, 230, 214, 0.06); // faint structural hairlines
-$color-grid-2:    rgba(236, 230, 214, 0.11); // stronger ruler line
-$color-crosshair: rgba(241, 184, 0, 0.22);   // gold tick at grid intersections
-
-// --- Layout -----------------------------------
-$container-max: 1450px;
+$container-max: 1400px;
 $gutter:        2rem;
-$editorial-measure: 38rem;
+$editorial-measure: 42rem;
 
 // --- Z-index ----------------------------------
 $z-base:    0;
