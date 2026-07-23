@@ -62,8 +62,7 @@
     text-wrap: pretty;
   }
 
-  &__stack {
-    display: grid;
+  &__technology {
     min-width: 0;
     margin-top: clamp(3rem, 6vw, 5.5rem);
     border-top: 1px solid $color-text;
@@ -71,17 +70,14 @@
     background: $color-bg-alt;
   }
 
-  &__stack-intro {
-    display: grid;
+  &__technology-intro {
+    display: flex;
     min-width: 0;
+    flex-direction: column;
     align-items: flex-start;
-    padding: clamp(2rem, 4vw, 4.25rem);
+    gap: $space-sm;
+    padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.5rem, 3.5vw, 3.5rem);
     border-bottom: 1px solid $color-border-2;
-
-    @include tablet-up {
-      grid-template-columns: minmax(12rem, 0.85fr) minmax(0, 1.15fr);
-      column-gap: clamp(2rem, 5vw, 5rem);
-    }
   }
 
   &__stack-label {
@@ -102,105 +98,65 @@
     }
   }
 
-  &__stack-title {
-    max-width: 13ch;
-    margin-top: $space-sm;
-    color: $color-text;
-    font-family: $font-display;
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
-    font-weight: 650;
-    letter-spacing: -0.035em;
-    line-height: 1.03;
-    text-wrap: balance;
-
-    @include tablet-up {
-      grid-column: 1;
-    }
-  }
-
-  &__stack-copy {
-    max-width: 38ch;
-    margin-top: $space-md;
+  &__technology-copy {
+    max-width: 54ch;
     color: $color-text-2;
-    font-size: clamp($text-base, 1.25vw, $text-lg);
+    font-size: $text-base;
     line-height: $leading-normal;
     text-wrap: pretty;
+  }
 
-    @include tablet-up {
-      grid-column: 2;
-      grid-row: 1 / span 2;
-      align-self: end;
-      margin-top: 0;
+  &__marquee {
+    overflow: hidden;
+    padding-block: clamp(1.25rem, 2.5vw, 2rem);
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  }
+
+  &__technology-track {
+    display: flex;
+    width: max-content;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: technology-scroll 44s linear infinite;
+      will-change: transform;
     }
   }
 
-  &__stack-groups {
-    display: grid;
-    min-width: 0;
-
-    @include tablet-up {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  &__technology-list {
+    display: flex;
+    gap: 0.75rem;
+    padding-right: 0.75rem;
   }
 
-  &__stack-group {
-    display: grid;
-    min-width: 0;
-    gap: $space-sm;
-    padding: clamp(1.5rem, 3vw, 2.5rem);
-    border-top: 1px solid $color-border;
-
-    &:first-child {
-      border-top: 0;
-    }
-
-    @include tablet-up {
-      border-top: 0;
-      border-left: 1px solid $color-border;
-
-      &:first-child {
-        border-left: 0;
-      }
-    }
-  }
-
-  &__stack-group-title {
+  &__technology-item {
     display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
-    gap: $space-xs;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-surface;
     color: $color-text;
-    font-family: $font-display;
-    font-size: $text-lg;
-    font-weight: 650;
-    letter-spacing: -0.015em;
-    line-height: 1.2;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
   }
 
-  &__stack-group-icon {
+  &__technology-icon {
     flex: 0 0 auto;
+    width: 1.1rem;
+    height: 1.1rem;
     color: $color-text-3;
   }
 
-  &__stack-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.6rem $space-sm;
-    min-width: 0;
-
-  }
-
-  &__stack-item {
-    color: $color-text-2;
-    font-family: $font-mono;
-    font-size: $text-sm;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    line-height: $leading-normal;
-  }
-
-  @media (max-width: 22.5rem) {
-    &__stack-list {
-      grid-template-columns: 1fr;
+  @media (hover: hover) and (pointer: fine) {
+    &__marquee:hover &__technology-track {
+      animation-play-state: paused;
     }
   }
 
@@ -215,10 +171,40 @@
       height: 1rem;
     }
 
-    &__stack-label-icon,
-    &__stack-group-icon {
+    &__stack-label-icon {
       width: 1rem;
       height: 1rem;
     }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__marquee {
+      overflow: visible;
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+
+    &__technology-track {
+      width: auto;
+    }
+
+    &__technology-list {
+      flex-wrap: wrap;
+      padding-right: 0;
+    }
+
+    &__technology-list--duplicate {
+      display: none;
+    }
+  }
+}
+
+@keyframes technology-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
   }
 }

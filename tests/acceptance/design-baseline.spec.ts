@@ -50,6 +50,15 @@ const states = [
       await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
     },
   },
+  {
+    name: 'technology',
+    target: async (page: Page) => {
+      await page.goto('/');
+      await lockViewportOn(page, '.services__technology');
+      await expect(page.locator('.services__technology')).toBeVisible();
+      await expect(page.getByText('Technology', { exact: true })).toBeVisible();
+    },
+  },
 ];
 
 test.describe('design baseline', () => {

@@ -3,13 +3,27 @@ import {
   BadgeCheck,
   Blocks,
   Braces,
-  Database,
   Layers3,
   PanelsTopLeft,
   Route,
   Workflow,
   type LucideIcon,
 } from 'lucide-react';
+import type { IconType } from 'react-icons';
+import {
+  SiDocker,
+  SiFigma,
+  SiGo,
+  SiGraphql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiRust,
+  SiSolidity,
+  SiTypescript,
+} from 'react-icons/si';
 import { Section } from '../ui/Section';
 import { SectionHeader } from '../ui/SectionHeader';
 import './Services.scss';
@@ -20,10 +34,9 @@ interface Service {
   icon: LucideIcon;
 }
 
-interface StackGroup {
-  title: string;
-  tools: string[];
-  icon: LucideIcon;
+interface Technology {
+  name: string;
+  icon: IconType;
 }
 
 const services: Service[] = [
@@ -59,21 +72,54 @@ const services: Service[] = [
   },
 ];
 
-const stackGroups: StackGroup[] = [
+const technologies: Technology[] = [
   {
-    title: 'Product surface',
-    tools: ['TypeScript', 'React', 'Next.js', 'Figma'],
-    icon: PanelsTopLeft,
+    name: 'TypeScript',
+    icon: SiTypescript,
   },
   {
-    title: 'Applications & data',
-    tools: ['Node.js', 'Python', 'Go', 'PostgreSQL', 'GraphQL'],
-    icon: Database,
+    name: 'React',
+    icon: SiReact,
   },
   {
-    title: 'Protocol & infrastructure',
-    tools: ['Rust', 'Solidity', 'Docker'],
-    icon: Blocks,
+    name: 'Next.js',
+    icon: SiNextdotjs,
+  },
+  {
+    name: 'Node.js',
+    icon: SiNodedotjs,
+  },
+  {
+    name: 'Python',
+    icon: SiPython,
+  },
+  {
+    name: 'Rust',
+    icon: SiRust,
+  },
+  {
+    name: 'Go',
+    icon: SiGo,
+  },
+  {
+    name: 'Solidity',
+    icon: SiSolidity,
+  },
+  {
+    name: 'Docker',
+    icon: SiDocker,
+  },
+  {
+    name: 'PostgreSQL',
+    icon: SiPostgresql,
+  },
+  {
+    name: 'GraphQL',
+    icon: SiGraphql,
+  },
+  {
+    name: 'Figma',
+    icon: SiFigma,
   },
 ];
 
@@ -107,8 +153,8 @@ export const Services = React.memo(function Services() {
         })}
       </div>
 
-      <aside className="services__stack" aria-labelledby="technology-label">
-        <div className="services__stack-intro">
+      <section className="services__technology" aria-labelledby="technology-label">
+        <div className="services__technology-intro">
           <p id="technology-label" className="services__stack-label">
             <Braces
               className="services__stack-label-icon"
@@ -119,40 +165,38 @@ export const Services = React.memo(function Services() {
             />
             <span>Technology</span>
           </p>
-          <h3 className="services__stack-title">One senior team across the system.</h3>
-          <p className="services__stack-copy">
-            We choose the stack around the product, then own the trade-offs through delivery and production.
+          <p className="services__technology-copy">
+            Tools we use across product, data, protocols, and infrastructure.
           </p>
         </div>
 
-        <div className="services__stack-groups">
-          {stackGroups.map((group) => {
-            const GroupIcon = group.icon;
+        <div className="services__marquee" aria-label="Tools and technologies we use">
+          <div className="services__technology-track">
+            {[false, true].map((isDuplicate) => (
+              <ul
+                key={isDuplicate ? 'duplicate' : 'primary'}
+                className={`services__technology-list${isDuplicate ? ' services__technology-list--duplicate' : ''}`}
+                aria-hidden={isDuplicate ? true : undefined}
+              >
+                {technologies.map((technology) => {
+                  const TechnologyIcon = technology.icon;
 
-            return (
-              <section key={group.title} className="services__stack-group">
-                <h4 className="services__stack-group-title">
-                  <GroupIcon
-                    className="services__stack-group-icon"
-                    size={18}
-                    strokeWidth={1.8}
-                    aria-hidden="true"
-                    focusable="false"
-                  />
-                  <span>{group.title}</span>
-                </h4>
-                <ul className="services__stack-list">
-                  {group.tools.map((tool) => (
-                    <li key={tool} className="services__stack-item">
-                      {tool}
+                  return (
+                    <li key={technology.name} className="services__technology-item">
+                      <TechnologyIcon
+                        className="services__technology-icon"
+                        aria-hidden="true"
+                        focusable="false"
+                      />
+                      <span>{technology.name}</span>
                     </li>
-                  ))}
-                </ul>
-              </section>
-            );
-          })}
+                  );
+                })}
+              </ul>
+            ))}
+          </div>
         </div>
-      </aside>
+      </section>
     </Section>
   );
 });

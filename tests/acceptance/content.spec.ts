@@ -79,22 +79,29 @@ test.describe('landing page content', () => {
     await expect(page.locator('#services').getByText('Infrastructure', { exact: true })).toHaveCount(0);
   });
 
-  test('technology coverage communicates delivery depth instead of a tag cloud', async ({ page }) => {
+  test('technology coverage is an icon marquee instead of a static tag cloud', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
 
-    const toolkit = page.locator('#services .services__stack');
-    await expect(toolkit).toBeVisible();
-    await expect(toolkit.getByText('Technology', { exact: true })).toBeVisible();
-    await expect(toolkit.getByRole('heading', { name: 'One senior team across the system.' })).toBeVisible();
+    const technology = page.locator('#services .services__technology');
+    await expect(technology).toBeVisible();
+    await expect(technology.getByText('Technology', { exact: true })).toBeVisible();
+    await expect(
+      technology.getByText('Tools we use across product, data, protocols, and infrastructure.'),
+    ).toBeVisible();
 
-    for (const group of ['Product surface', 'Applications & data', 'Protocol & infrastructure']) {
-      await expect(toolkit.getByRole('heading', { name: group })).toBeVisible();
-    }
-
-    await expect(toolkit.locator('.services__stack-item')).toHaveCount(12);
+    await expect(technology.locator('.services__technology-list')).toHaveCount(2);
+    await expect(technology.locator('.services__technology-list--duplicate')).toHaveCount(1);
+    await expect(technology.locator('.services__technology-item')).toHaveCount(24);
+    await expect(technology.locator('.services__technology-icon')).toHaveCount(24);
     await expect(page.locator('#services .services__service-icon')).toHaveCount(6);
-    await expect(toolkit.locator('.services__stack-group-icon')).toHaveCount(3);
-    await expect(toolkit.locator('.services__tag')).toHaveCount(0);
+
+    const animationName = await technology.locator('.services__technology-track').evaluate((element) => {
+      return getComputedStyle(element).animationName;
+    });
+
+    expect(animationName).toBe('none');
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 
   test('contact section routes project starts to the order service', async ({ page }) => {
