@@ -3,136 +3,126 @@
 
 .footer {
   position: relative;
-  border-top: 1px solid $color-border-3;
-  background: $color-warm-deep;
+  background: $color-footer;
+  border-top: 1px solid $color-border-dark;
+  color: $color-text-light;
 
   &__container {
     @include container;
-    display: grid;
-    gap: $space-md;
-    padding-block: $space-lg;
+    padding-block: clamp(2rem, 4vw, 3.5rem);
+  }
 
-    @include desktop-up {
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-      grid-template-areas: "brand copyright socials";
-      align-items: center;
-      column-gap: clamp(1.5rem, 4vw, 3rem);
-    }
+  &__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $space-lg;
+    padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
+    border-bottom: 1px solid $color-footer-border;
   }
 
   &__brand {
-    display: flex;
+    display: inline-flex;
+    min-width: 0;
     flex-direction: column;
-    gap: 0.25rem;
-
-    @include desktop-up {
-      grid-area: brand;
-      justify-self: start;
-    }
+    gap: 0.55rem;
+    text-decoration: none;
   }
 
-  &__wordmark {
-    position: relative;
-    @include display;
-    font-size: $text-2xl;
-    letter-spacing: $tracking-tight;
-    color: $color-cream;
-    padding-left: 1.4rem;
-
-    &::before {
-      content: "+";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: $font-mono;
-      font-size: 0.85rem;
-      color: $color-accent;
-    }
+  &__logo {
+    width: auto;
+    height: 29px;
   }
 
   &__tag {
+    color: $color-text-light-muted;
     font-size: $text-sm;
-    color: $color-text-2;
+    line-height: 1.35;
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    color: $color-text-light;
+    font-size: $text-sm;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-accent-2;
+
+      .footer__back-icon {
+        transform: translateY(-2px);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-accent-2;
+      outline-offset: 4px;
+    }
+  }
+
+  &__back-icon {
+    transition: transform $transition-base;
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-lg;
+    padding-top: clamp(1.5rem, 3vw, 2.25rem);
   }
 
   &__copyright {
+    color: $color-text-light-muted;
     font-size: $text-sm;
-    color: $color-text-2;
     white-space: nowrap;
   }
 
-  &__email {
-    font-size: $text-sm;
-    color: $color-text-2;
-    white-space: nowrap;
-    transition: color $transition-base;
-
-    &:hover { color: $color-accent; }
-
-    &:focus-visible {
-      outline: 2px solid $color-accent;
-      outline-offset: 3px;
-      border-radius: $radius-sm;
-    }
-  }
-
-  &__top {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    font-size: $text-sm;
-    color: $color-text-2;
-    transition: color $transition-base;
-
-    &:hover { color: $color-accent; }
-
-    &:focus-visible {
-      outline: 2px solid $color-accent;
-      outline-offset: 3px;
-      border-radius: $radius-sm;
-    }
-  }
-
-  &__meta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: $space-md;
-    text-align: center;
-
-    @media (max-width: #{$bp-tablet - 1px}) {
-      width: var(--app-layout-viewport-width, 100vw);
-      margin-left: -1.5rem;
-    }
-
-    @include desktop-up {
-      grid-area: copyright;
-      align-self: center;
-      justify-self: center;
-    }
-  }
-
-  &__socials {
+  &__links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.625rem;
+    justify-content: flex-end;
+    gap: 0.35rem 1.1rem;
+  }
 
-    @include desktop-up {
-      grid-area: socials;
-      justify-self: end;
-      justify-content: flex-end;
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: $color-text-light-muted;
+    font-size: $text-sm;
+    text-decoration: none;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $color-accent-2;
     }
 
-    .social-icon {
-      color: $color-text-2;
-      border-color: $color-border-2;
+    &:focus-visible {
+      outline: 2px solid $color-accent-2;
+      outline-offset: 3px;
+    }
+  }
 
-      &:hover {
-        color: $color-accent;
-        border-color: $color-border-3;
-        background: $color-accent-soft;
-      }
+  @media (max-width: #{$bp-tablet - 1px}) {
+    &__head,
+    &__bottom {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    &__bottom {
+      gap: $space-sm;
+    }
+
+    &__links {
+      justify-content: flex-start;
     }
   }
 }

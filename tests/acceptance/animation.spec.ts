@@ -1,38 +1,26 @@
 import { expect, test } from '@playwright/test';
 
-function imageDelta(a: Buffer, b: Buffer) {
-  if (a.length !== b.length) {
-    return 1;
-  }
-
-  let changed = 0;
-  for (let i = 0; i < a.length; i += 1) {
-    if (Math.abs(a[i] - b[i]) > 6) {
-      changed += 1;
-    }
-  }
-
-  return changed / a.length;
-}
-
-test.describe('animated design smoke', () => {
-  test('hero motion changes between captured frames', async ({ page }) => {
+test.describe('hero stability and controlled motion', () => {
+  test('hero renders immediately without decorative motion', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.getByRole('heading', { name: /Build what lasts/i })).toBeVisible();
 
     const hero = page.locator('.hero');
-    await page.waitForTimeout(80);
-    const first = await hero.screenshot({
-      animations: 'allow',
-      caret: 'hide',
+    await expect(hero).toBeVisible();
+    await expect(page.locator('.hero__scope')).toBeVisible();
+    await expect(page.locator('.hero__matrix-panel')).toHaveCount(0);
+  });
+
+  test('technology marquee moves only when motion is enabled', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+    const marqueeTrack = page.locator('.services__technology-track');
+    await expect(marqueeTrack).toBeVisible();
+
+    const animationName = await marqueeTrack.evaluate((element) => {
+      return getComputedStyle(element).animationName;
     });
 
-    await page.waitForTimeout(520);
-    const second = await hero.screenshot({
-      animations: 'allow',
-      caret: 'hide',
-    });
-
-    expect(imageDelta(first, second), 'animated hero frame should change over time').toBeGreaterThan(0.001);
+    expect(animationName).toBe('technology-scroll');
   });
 });

@@ -1,82 +1,44 @@
-import React, { Suspense } from 'react';
+import { useEffect } from 'react';
 import './App.scss';
-import { ArrowUp } from 'lucide-react';
 import Navbar from './components/sections/Navbar';
 import Hero from './components/sections/Hero';
-
-const Team = React.lazy(() => import('./components/sections/Team'));
-const Services = React.lazy(() => import('./components/sections/Services'));
-const Contact = React.lazy(() => import('./components/sections/Contact'));
-const Footer = React.lazy(() => import('./components/sections/Footer'));
-
-function DeferredSectionsFallback() {
-  return (
-    <div className="App__deferred-skeleton" aria-hidden="true">
-      <div className="App__deferred-head" />
-      <div className="App__deferred-grid">
-        <span />
-        <span />
-        <span />
-      </div>
-    </div>
-  );
-}
+import Team from './components/sections/Team';
+import Services from './components/sections/Services';
+import Contact from './components/sections/Contact';
+import Footer from './components/sections/Footer';
 
 function App() {
-  const [isReady, setIsReady] = React.useState(false);
+  useEffect(() => {
+    const scrollToHashTarget = () => {
+      const targetId = window.location.hash.slice(1);
 
-  React.useEffect(() => {
-    let secondFrame = 0;
-    const firstFrame = window.requestAnimationFrame(() => {
-      secondFrame = window.requestAnimationFrame(() => setIsReady(true));
-    });
+      if (!targetId) {
+        return;
+      }
 
-    return () => {
-      window.cancelAnimationFrame(firstFrame);
-      window.cancelAnimationFrame(secondFrame);
-    };
-  }, []);
-
-  React.useEffect(() => {
-    const syncLayoutViewportWidth = () => {
-      document.documentElement.style.setProperty(
-        '--app-layout-viewport-width',
-        `${window.innerWidth}px`,
-      );
+      window.requestAnimationFrame(() => {
+        document.getElementById(targetId)?.scrollIntoView({ block: 'start' });
+      });
     };
 
-    syncLayoutViewportWidth();
-    window.addEventListener('resize', syncLayoutViewportWidth);
-    window.visualViewport?.addEventListener('resize', syncLayoutViewportWidth);
+    scrollToHashTarget();
+    window.addEventListener('hashchange', scrollToHashTarget);
 
-    return () => {
-      window.removeEventListener('resize', syncLayoutViewportWidth);
-      window.visualViewport?.removeEventListener('resize', syncLayoutViewportWidth);
-    };
+    return () => window.removeEventListener('hashchange', scrollToHashTarget);
   }, []);
 
   return (
-    <div className={`App ${isReady ? 'App--ready' : ''}`}>
+    <div className="App">
       <div className="App__scroll-sentinel" data-scroll-sentinel aria-hidden="true" />
       <div className="App__background" aria-hidden="true" />
       <Navbar />
       <main>
         <Hero />
-        <Suspense fallback={<DeferredSectionsFallback />}>
-          <Team />
-          <Services />
-          <Contact />
-        </Suspense>
+        <Team />
+        <Services />
+        <Contact />
       </main>
-      <div className="App__landing-end">
-        <a className="App__top" href="#hero" aria-label="Back to top">
-          <span>Top</span>
-          <ArrowUp className="App__top-icon" size={15} strokeWidth={2.2} aria-hidden="true" />
-        </a>
-      </div>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
+      <Footer />
     </div>
   );
 }

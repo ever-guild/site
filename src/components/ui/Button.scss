@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  // Mono uppercase — the engineering-console voice
   font-family: $font-mono;
   font-weight: 600;
   font-size: $text-xs;
@@ -14,53 +13,62 @@
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  min-height: 2.5rem;
-  // Soft iOS-style rounded control.
+  max-width: 100%;
+  min-height: 2.75rem; // 44px minimum touch target
   border-radius: $radius-md;
   border: 1px solid transparent;
   transition:
     background-color $transition-base,
     border-color $transition-base,
     color $transition-base,
-    transform 220ms $ease-spring;
+    box-shadow $transition-base,
+    transform 180ms $ease-spring;
 
-  &:hover { transform: translateY(-1px); }
-  &:active { transform: translateY(0) scale(0.96); }
+  &:hover {
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: translateY(0) scale(0.97);
+  }
 
   &:focus-visible {
-    outline: 2px solid $color-accent;
+    outline: 2px solid $color-text;
     outline-offset: 3px;
   }
 
-  // Primary — solid gold, deep-teal text. Flat, no glow.
+  // Primary — Gold signal button, deep teal text
   &--primary {
     background: $color-accent;
     color: $color-on-accent;
+    border-color: $color-border-gold;
 
-    &:hover { background: $color-cream-2; }
+    &:hover {
+      background: $color-accent-2;
+      border-color: $color-accent-2;
+    }
 
     .btn__icon {
-      border-left: 1px solid rgba(0, 29, 37, 0.28);
+      border-left: 1px solid rgba(0, 52, 61, 0.2);
     }
   }
 
-  // Secondary — hairline outline, cream text, gold edge on hover.
+  // Secondary — Crisp white button, hairline border, deep teal text
   &--secondary {
-    background: transparent;
+    background: $color-surface;
     color: $color-text;
-    border-color: $color-border-2;
+    border-color: $color-border;
 
     &:hover {
-      border-color: $color-border-3;
+      border-color: $color-border-2;
       background: $color-surface-2;
     }
 
     .btn__icon {
-      border-left: 1px solid $color-border-2;
+      border-left: 1px solid $color-border;
     }
   }
 
-  // Ghost / link — quiet, arrow affordance.
+  // Ghost / link
   &--ghost {
     background: transparent;
     color: $color-text-2;
@@ -68,34 +76,33 @@
 
     &:hover {
       transform: none;
-      color: $color-accent;
+      color: $color-text;
 
       .btn__icon { transform: translate(3px, -3px); }
     }
-    &:active { transform: scale(0.96); }
+    &:active { transform: scale(0.97); }
   }
 
-  &--sm { padding: 0.55rem 1rem; }
-  &--md { padding: 0.72rem 1.3rem; }
+  &--sm { padding: 0.55rem 1rem; min-height: 2.75rem; }
+  &--md { padding: 0.72rem 1.35rem; min-height: 2.75rem; }
   &--lg {
-    padding: 0.95rem 1.65rem;
+    padding: 0.9rem 1.65rem;
     font-size: $text-sm;
+    min-height: 3rem;
   }
 
   &--with-icon.btn--sm { padding-right: calc(1rem - 2px); }
-  &--with-icon.btn--md { padding-right: calc(1.3rem - 2px); }
+  &--with-icon.btn--md { padding-right: calc(1.35rem - 2px); }
   &--with-icon.btn--lg { padding-right: calc(1.65rem - 2px); }
 
-  // Trailing icon — separated by a hairline rule (telemetry control read).
   &__icon {
     display: inline-flex;
     align-items: center;
     margin-left: 0.15rem;
     padding-left: 0.7rem;
-    transition: transform 220ms $ease-spring;
+    transition: transform 180ms $ease-spring;
   }
 
-  // Ghost arrow sits naked (no separator), tighter to the label.
   &--ghost &__icon {
     margin-left: 0.35rem;
     padding-left: 0;

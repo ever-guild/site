@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 // ============================================
-// Ever Guild — SCSS Mixins
+// Ever Guild — SCSS Mixins (Clean Light System)
 // ============================================
 
 @mixin mobile-up  { @media (min-width: #{$bp-mobile})  { @content; } }
@@ -13,18 +13,19 @@
   width: 100%;
   max-width: $container-max;
   margin: 0 auto;
-  padding-inline: 1.5rem;
+  padding-inline: 1.25rem;
 
+  @include mobile-up { padding-inline: 1.5rem; }
   @include tablet-up  { padding-inline: 2.5rem; }
-  @include desktop-up { padding-inline: 4rem; }
+  @include desktop-up { padding-inline: 3.5rem; }
 }
 
-// Unified vertical rhythm — fluid, kills uneven gaps between sections
+// Unified vertical rhythm
 @mixin section-padding {
-  padding-block: clamp(3rem, 6vw, 6.5rem);
+  padding-block: clamp(3.5rem, 7vw, 7rem);
 }
 
-// 12-column content grid (editorial, asymmetric layouts)
+// 12-column content grid
 @mixin grid-12 {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -32,8 +33,7 @@
   row-gap: clamp(2rem, 4vw, 3.5rem);
 }
 
-// Blueprint hairlines — faint vertical structure behind content.
-// Subtle by design (uses translucent border token); reads as engineering grid.
+// Blueprint hairlines
 @mixin blueprint-lines($step: 16.666%, $color: $color-border) {
   background-image: repeating-linear-gradient(
     to right,
@@ -44,69 +44,14 @@
   );
 }
 
-// Soft color mesh - infinity-loop echo + logo palette washes.
+// Clean page background
 @mixin page-mesh {
   background-color: $color-bg;
-  background-image:
-    radial-gradient(
-      ellipse 130% 92% at 50% 48%,
-      transparent 34%,
-      $color-field-vignette 100%
-    ),
-    radial-gradient(
-      ellipse 44% 38% at 76% 16%,
-      $color-mesh-gold 0%,
-      transparent 68%
-    ),
-    radial-gradient(
-      ellipse 40% 36% at 58% 12%,
-      $color-mesh-cream 0%,
-      transparent 66%
-    ),
-    radial-gradient(
-      ellipse 52% 46% at 14% 82%,
-      $color-mesh-warm 0%,
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 58% 50% at 90% 70%,
-      $color-mesh-teal 0%,
-      transparent 74%
-    ),
-    radial-gradient(
-      ellipse 48% 42% at 26% 34%,
-      $color-mesh-depth 0%,
-      transparent 70%
-    );
-
-  @media (max-width: #{$bp-mobile - 1px}) {
-    background-image:
-      radial-gradient(
-        ellipse 130% 92% at 50% 48%,
-        transparent 40%,
-        $color-field-vignette 100%
-      ),
-      radial-gradient(
-        ellipse 55% 45% at 88% 8%,
-        $color-mesh-gold 0%,
-        transparent 62%
-      ),
-      radial-gradient(
-        ellipse 50% 44% at 10% 88%,
-        $color-mesh-warm 0%,
-        transparent 68%
-      ),
-      radial-gradient(
-        ellipse 45% 40% at 30% 38%,
-        $color-mesh-depth 0%,
-        transparent 68%
-      );
-  }
 }
 
-// Micro dot field - modern texture, not blueprint lines.
+// Micro dot field
 @mixin page-field-dots {
-  background-image: radial-gradient(circle, $color-field-dot 0.55px, transparent 0.55px);
+  background-image: radial-gradient(circle, $color-field-dot 1px, transparent 1px);
   background-size: $field-dot-size $field-dot-size;
 }
 
@@ -116,7 +61,7 @@
   justify-content: center;
 }
 
-// Monospaced technical label (kickers, indices, tags)
+// Monospaced technical label
 @mixin mono-label {
   font-family: $font-mono;
   font-size: $text-xs;
@@ -126,73 +71,37 @@
   color: $color-text-3;
 }
 
-// Display type (headlines) — Tilt Warp
+// Main Display Typography (Hanken Grotesk)
 @mixin display {
   font-family: $font-display;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: $tracking-tight;
+  line-height: $leading-tight;
   color: $color-text;
 }
 
-// Flat technical card with hairline border
+// Flat technical engineering card with 1px border & clean subtle hover shadow
 @mixin card {
   background: $color-surface;
   border: 1px solid $color-border;
   border-radius: $radius-lg;
+  transition: border-color $transition-base, box-shadow $transition-base, background-color $transition-base;
+  box-shadow: 0 1px 3px rgba(0, 52, 61, 0.04);
+}
+
+// Clean panel replacement (replaces liquid glass)
+@mixin glass($blur: 0px) {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  box-shadow: 0 1px 3px rgba(0, 52, 61, 0.04);
   transition: border-color $transition-base, background-color $transition-base;
 }
 
-// Liquid glass — matte murky-emerald frosted panel.
-// Blurs the particle field behind it for depth. Used for ALL content blocks.
-// Top rim-light + soft drop give the "liquid glass" read.
-@mixin glass($blur: 43px) {
-  background: $color-glass;
-  backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
-  -webkit-backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
-  border: 1px solid $color-glass-border;
-  box-shadow:
-    inset 0 1px 0 $color-glass-sheen,
-    inset 0 -12px 28px rgba(0, 0, 0, 0.14),
-    0 12px 36px rgba(0, 0, 0, 0.30);
-  transition:
-    border-color $transition-base,
-    background-color $transition-base,
-    transform $transition-base;
-}
-
-// Small frosted glass chip (tags, pills) — lighter blur, same matte emerald.
-@mixin glass-chip($blur: 22px) {
-  background: $color-glass;
-  backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
-  -webkit-backdrop-filter: blur($blur) saturate(150%) brightness(1.06);
-  border: 1px solid $color-glass-border;
-  box-shadow: inset 0 1px 0 $color-glass-sheen;
+// Clean chip mixin (replaces glass-chip)
+@mixin glass-chip($blur: 0px) {
+  background: $color-surface;
+  border: 1px solid $color-border;
   transition: border-color $transition-base, background-color $transition-base, color $transition-base;
-}
-
-// Corner-bracket decoration (technical motif)
-@mixin corner-brackets($size: 10px, $color: $color-border-3) {
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: $size;
-    height: $size;
-    pointer-events: none;
-  }
-  &::before {
-    top: -1px;
-    left: -1px;
-    border-top: 1px solid $color;
-    border-left: 1px solid $color;
-  }
-  &::after {
-    bottom: -1px;
-    right: -1px;
-    border-bottom: 1px solid $color;
-    border-right: 1px solid $color;
-  }
 }
 
 @mixin visually-hidden {
@@ -211,47 +120,6 @@
   scroll-margin-top: 96px;
 }
 
-// Scroll-reveal (2026 scroll-driven animations, graceful fallback)
-@mixin reveal {
-  // NOTE: opacity-only — no transform. A transform on the section (an
-  // ancestor of the glass cards) would establish a containing block and
-  // permanently break the cards' backdrop-filter (nothing left to blur).
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      opacity: 0;
-      animation: reveal-up linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 26%;
-    }
-  }
-}
-
-// Transform reveal — heavy fade-up for LEAF elements only (headings, text,
-// dividers, ticks). NEVER on an ancestor of a .glass card (kills backdrop-filter).
-@mixin reveal-rise($range: 24%) {
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      opacity: 0;
-      animation: reveal-rise linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover $range;
-    }
-  }
-}
-
-// Hairline draw-in (section dividers, gold ticks). Set transform-origin in caller.
-@mixin reveal-draw($range: 30%) {
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      opacity: 0;
-      animation: reveal-draw linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover $range;
-    }
-  }
-}
-
-// Telemetry coordinate label — mono, uppercase, bracketed engineering voice.
 @mixin mono-coord {
   font-family: $font-mono;
   font-size: $text-2xs;
@@ -261,25 +129,10 @@
   color: $color-text-3;
 }
 
-// Gold crosshair tick — a small machined "+" marker. Place on a positioned host.
-@mixin tick($size: 9px, $color: $color-accent) {
+@mixin engineered-panel($blur: 0px, $radius: $radius-lg) {
   position: relative;
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    background: $color;
-    left: 50%;
-    top: 50%;
-  }
-  &::before { width: $size; height: 1px; transform: translate(-50%, -50%); }
-  &::after  { width: 1px; height: $size; transform: translate(-50%, -50%); }
-}
-
-// Engineered panel — frosted emerald glass surface with soft iOS-style
-// rounded corners. The signature "liquid glass over the field" look.
-@mixin engineered-panel($blur: 30px, $radius: $radius-lg) {
-  position: relative;
-  @include glass($blur);
+  background: $color-surface;
+  border: 1px solid $color-border;
   border-radius: $radius;
+  box-shadow: 0 1px 4px rgba(0, 52, 61, 0.05);
 }

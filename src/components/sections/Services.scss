@@ -5,164 +5,206 @@
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $space-md;
+    column-gap: clamp(2rem, 6vw, 6rem);
 
-    @include mobile-up {
-      grid-template-columns: repeat(2, 1fr);
+    @include tablet-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   &__card {
-    position: relative;
-    @include engineered-panel(30px);
-    padding: $space-lg;
-    padding-right: clamp(5.25rem, 10vw, 7rem);
+    min-width: 0;
+    padding-block: clamp(1.45rem, 2.8vw, 2.25rem);
+    border-top: 1px solid $color-border-2;
 
-    &:hover {
-      border-color: $color-glass-edge;
-      background: $color-glass-2;
-      transform: translateY(-2px);
-
-      .services__title { color: $color-accent; }
-
+    &:nth-last-child(-n + 2) {
+      @include tablet-up {
+        border-bottom: 1px solid $color-border;
+      }
     }
 
-    @media (max-width: #{$bp-mobile - 1px}) {
-      padding-right: 4.75rem;
-    }
-  }
-
-  &__head {
-    margin: 0;
-  }
-
-  &__icon {
-    position: absolute;
-    top: 50%;
-    right: clamp(1rem, 1.8vw, 1.35rem);
-    transform: translateY(-50%);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: clamp(2rem, 3vw, 2.7rem);
-    color: $color-accent;
-    transition: color $transition-base;
-
-    svg {
-      display: block;
-      stroke-width: 1.8;
-    }
-
-    @media (max-width: #{$bp-mobile - 1px}) {
-      font-size: 2.05rem;
-    }
-  }
-
-  &__title {
-    @include display;
-    font-size: $text-2xl;
-    line-height: 1.04;
-    letter-spacing: $tracking-tight;
-    margin-bottom: 0.65rem;
-    transition: color $transition-base;
-  }
-
-  &__desc {
-    font-size: $text-sm;
-    line-height: $leading-normal;
-    color: $color-text-2;
-  }
-
-  &__marquee {
-    margin-top: $space-xl;
-    overflow: hidden;
-    mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 11%, #000 89%, transparent 100%);
-
-  }
-
-  &__track {
-    display: flex;
-    width: max-content;
-    animation: stack-scroll 38s linear infinite;
-
-    @media (prefers-reduced-motion: reduce) {
-      width: auto;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      animation: none;
-    }
-  }
-
-  &__tag {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-right: 0.6rem;
-    padding: 0.5rem 0.9rem;
-    @include glass-chip;
-    border-radius: $radius-sm;
-    font-family: $font-mono;
-    font-size: $text-2xs;
-    letter-spacing: $tracking-wide;
-    text-transform: uppercase;
-    white-space: nowrap;
-    color: $color-text-2;
-
-    @media (prefers-reduced-motion: reduce) {
-      margin-right: 0;
-
-      &--duplicate {
-        display: none;
+    &:last-child {
+      @media (max-width: #{$bp-tablet - 1px}) {
+        border-bottom: 1px solid $color-border;
       }
     }
   }
 
-  &__tag-icon {
-    flex-shrink: 0;
-    font-size: 1.05rem;
-    color: $color-accent;
+  &__title {
+    color: $color-text;
+    font-family: $font-display;
+    font-size: clamp(1.35rem, 2vw, 1.65rem);
+    font-weight: 650;
+    letter-spacing: -0.022em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  &__title-row {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: $space-xs;
+    align-items: start;
+  }
+
+  &__service-icon {
+    flex: 0 0 auto;
+    margin-top: 0.15rem;
+    color: $color-text-3;
+  }
+
+  &__desc {
+    max-width: 47ch;
+    margin-top: 0.55rem;
+    color: $color-text-2;
+    font-size: $text-sm;
+    line-height: $leading-normal;
+    text-wrap: pretty;
+  }
+
+  &__technology {
+    min-width: 0;
+    margin-top: clamp(3rem, 6vw, 5.5rem);
+    border-top: 1px solid $color-text;
+    border-bottom: 1px solid $color-border-2;
+    background: $color-bg-alt;
+  }
+
+  &__technology-intro {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-sm;
+    padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.5rem, 3.5vw, 3.5rem);
+    border-bottom: 1px solid $color-border-2;
+  }
+
+  &__stack-label {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-xs;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 500;
+    letter-spacing: $tracking-mono;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: $color-text-3;
+
+    &-icon {
+      flex: 0 0 auto;
+      color: $color-gold-text;
+    }
+  }
+
+  &__technology-copy {
+    max-width: 54ch;
+    color: $color-text-2;
+    font-size: $text-base;
+    line-height: $leading-normal;
+    text-wrap: pretty;
+  }
+
+  &__marquee {
+    overflow: hidden;
+    padding-block: clamp(1.25rem, 2.5vw, 2rem);
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  }
+
+  &__technology-track {
+    display: flex;
+    width: max-content;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: technology-scroll 44s linear infinite;
+      will-change: transform;
+    }
+  }
+
+  &__technology-list {
+    display: flex;
+    gap: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  &__technology-item {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    color: $color-text;
+    font-family: $font-mono;
+    font-size: $text-xs;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  &__technology-icon {
+    flex: 0 0 auto;
+    width: 1.1rem;
+    height: 1.1rem;
+    color: $color-text-3;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &__marquee:hover &__technology-track {
+      animation-play-state: paused;
+    }
   }
 
   @media (max-width: #{$bp-mobile - 1px}) {
-    &__grid {
-      gap: 1rem;
+    &__title-row {
+      grid-template-columns: 1rem minmax(0, 1fr);
+      gap: $space-xs;
     }
 
-    &__card {
-      padding: 1.35rem;
-      padding-right: 4rem;
+    &__service-icon {
+      width: 1rem;
+      height: 1rem;
     }
 
-    &__icon {
-      right: 1.25rem;
-      font-size: 1.65rem;
+    &__stack-label-icon {
+      width: 1rem;
+      height: 1rem;
     }
+  }
 
-    &__title {
-      font-size: clamp(1.35rem, 6vw, 1.55rem);
-      line-height: 1.08;
-      margin-bottom: 0.55rem;
-    }
-
-    &__desc {
-      font-size: 0.84rem;
-      line-height: 1.45;
-    }
-
+  @media (prefers-reduced-motion: reduce) {
     &__marquee {
-      margin-top: 2rem;
+      overflow: visible;
+      mask-image: none;
+      -webkit-mask-image: none;
     }
 
-    &__tag {
-      padding: 0.46rem 0.75rem;
-      font-size: 0.64rem;
+    &__technology-track {
+      width: auto;
+    }
+
+    &__technology-list {
+      flex-wrap: wrap;
+      padding-right: 0;
+    }
+
+    &__technology-list--duplicate {
+      display: none;
     }
   }
 }
 
-@keyframes stack-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+@keyframes technology-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
