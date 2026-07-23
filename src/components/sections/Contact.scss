@@ -74,8 +74,9 @@
     &__button.btn {
       width: 100%;
       min-height: 3.25rem;
-      padding-inline: 1rem;
-      font-size: 0.73rem;
+      padding-inline: 1.25rem;
+      font-size: $text-xs;
+      font-weight: 600;
       line-height: 1.25;
       text-align: center;
       white-space: normal;

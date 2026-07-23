@@ -69,6 +69,10 @@
     @media (max-width: #{$bp-desktop - 1px}) {
       position: fixed;
       inset: 68px 0 0 0;
+      max-height: calc(100vh - 68px);
+      max-height: calc(100dvh - 68px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       background: $color-surface;
       border-top: 1px solid $color-border;
       display: flex;

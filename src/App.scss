@@ -10,6 +10,7 @@
   opacity: 1;
   background: $color-bg;
   color: $color-text;
+  overflow-x: hidden;
 
   &__background {
     display: none;
@@ -36,4 +37,5 @@ body {
   background: $color-bg;
   color: $color-text;
   margin: 0;
+  overflow-x: hidden;
 }

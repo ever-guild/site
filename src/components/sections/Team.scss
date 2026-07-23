@@ -3,8 +3,7 @@
 
 .team {
   display: grid;
-  grid-template-columns: minmax(0, min(100%, 22rem));
-  justify-content: start;
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(1rem, 2.5vw, 1.75rem);
   max-width: $container-max;
   margin-inline: 0;

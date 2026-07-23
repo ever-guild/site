@@ -13,8 +13,9 @@
   width: 100%;
   max-width: $container-max;
   margin: 0 auto;
-  padding-inline: 1.5rem;
+  padding-inline: 1.25rem;
 
+  @include mobile-up { padding-inline: 1.5rem; }
   @include tablet-up  { padding-inline: 2.5rem; }
   @include desktop-up { padding-inline: 3.5rem; }
 }

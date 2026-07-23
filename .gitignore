@@ -51,3 +51,7 @@ skills-lock.json
 .idea/
 .DS_Store
 Thumbs.db
+
+# Graphify artifacts
+graphify-out/
+
